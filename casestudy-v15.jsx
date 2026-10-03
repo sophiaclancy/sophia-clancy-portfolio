@@ -123,7 +123,7 @@
     }, []);
 
     useEffect(() => {
-      const k = (e) => { if (e.key === "Escape" && !document.querySelector(".fg-lb")) location.href = "Portfolio.html#work"; };
+      const k = (e) => { if (e.key === "Escape" && !document.querySelector(".fg-lb")) location.href = "./#work"; };
       window.addEventListener("keydown", k);
       return () => window.removeEventListener("keydown", k);
     }, []);
@@ -141,7 +141,7 @@
         {window.CustomCursor ? <window.CustomCursor /> : null}
         <div className="c15-grid">
           <aside className="c15-side">
-            <a className="c15-back" href="Portfolio.html#work"><span aria-hidden="true">&larr;</span> Back to work</a>
+            <a className="c15-back" href="./#work"><span aria-hidden="true">&larr;</span> Back to work</a>
             <div className="c15-side-id">
               <span>Case study</span>
               <b>{p.title}</b>

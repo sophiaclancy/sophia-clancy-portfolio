@@ -406,9 +406,9 @@ function App() {
       {window.CustomCursor ? <window.CustomCursor /> : null}
       <header className="v12-top">
         <div className="wrap top-inner">
-          <a className="mark mark-text" href="Portfolio.html">sophia clancy</a>
+          <a className="mark mark-text" href="./">sophia clancy</a>
           <nav className="v12-nav">
-            <a href="Portfolio.html" id="nav-work">work</a>
+            <a href="./" id="nav-work">work</a>
             <a href="About.html">about</a>
             <a href="Pick%20at%20My%20Brain.html" id="nav-play">play</a>
             <a href="https://drive.google.com/file/d/1oPp-S96QerNcEBSoBz0-ZevHmxsRBRNT/view?usp=sharing" target="_blank" rel="noopener">resume</a>
