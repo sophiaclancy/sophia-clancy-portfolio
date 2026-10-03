@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Sand — AR to phone (embed)</title>
+<style>html,body{margin:0;background:#F6F7F6;overflow:hidden;height:100%}[data-omelette-chrome]{display:none!important}#root{position:fixed;inset:0;overflow:hidden}#fit,#fit>div,#fit>div>div{background:#F6F7F6!important}#fit{position:absolute;left:50%;top:50%;width:1600px;height:900px;transform-origin:50% 50%}</style>
+<script>window.OM_SCENES = '[{"name":"Dunes","dur":1.9,"desc":"The Golden Dunes mode card pops into the headset view and its bar fills to 76%"},{"name":"Slide","dur":1.1,"desc":"The card slides out left as the phone slides in from the right"},{"name":"Mode","dur":1.7,"desc":"The camera zooms into the mode card on the phone"},{"name":"Burnout","dur":1.5,"desc":"The camera moves down to the burnout ring"},{"name":"Flow","dur":1.7,"desc":"The daily flow curve draws in"},{"name":"Close","dur":1.4,"desc":"The camera pulls back to the whole phone and fades out"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"loop"}';</script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="animations-v3.jsx"></script>
+<script type="text/babel" src="sand-ar-parts.jsx?v=4"></script>
+<script type="text/babel" src="sand-ar-phone.jsx?v=4"></script>
+<script type="text/babel" src="sand-ar-piece.jsx?v=8"></script>
+<script type="text/babel">
+function Embed() {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const fit = () => {
+      if (!ref.current) return;
+      const s = Math.max(window.innerWidth / 1600, window.innerHeight / 900) ;
+      ref.current.style.transform = `translate(-50%,-50%) scale(${s})`;
+    };
+    fit();
+    window.addEventListener('resize', fit);
+    return () => window.removeEventListener('resize', fit);
+  }, []);
+  return (
+    <div id="fit" ref={ref}>
+      <CompositionStage width={1600} height={900} scenes={window.OM_SCENES} playback={window.OM_PLAYBACK} bg="#F6F7F6">
+        <SandPiece />
+      </CompositionStage>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Embed />);
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pick at My Brain — Sophia Clancy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%231F2940'/%3E%3Crect%20x='20'%20y='20'%20width='10'%20height='10'%20fill='%23FF5F9E'/%3E%3Crect%20x='34'%20y='34'%20width='10'%20height='10'%20fill='%23C9D1E0'/%3E%3C/svg%3E" />
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.1/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.1/examples/jsm/"}}</script>
+<style>
+:root{--bg:#1F2940;--navy:#3A4766;--pale:#C9D1E0;--pink:#FF5F9E;--lime:#A6FF00;--orange:#FF6A00;--mono:"JetBrains Mono",ui-monospace,monospace;--sans:"Satoshi",system-ui,sans-serif;--t-hover:130ms;--t-select:250ms;--t-cam:450ms;--t-entry:900ms;--ease:cubic-bezier(.22,.61,.36,1);--snap:cubic-bezier(.34,1.42,.64,1)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--bg)}
+body{color:var(--pale);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--pale);text-decoration:none}
+a:hover{color:var(--pink)}
+#brain-canvas{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:grab;opacity:0;transition:opacity var(--t-entry) var(--ease)}
+body.is-entered #brain-canvas{opacity:1}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,transparent 35%,rgba(16,22,36,.72) 100%)}
+
+/* ---------- entry ---------- */
+#entry-portal{position:fixed;inset:0;z-index:20;display:grid;place-content:center;justify-items:center;gap:34px;background:var(--bg);cursor:pointer;transition:opacity var(--t-entry) var(--ease)}
+#entry-portal.is-leaving{opacity:0;pointer-events:none}
+.ep-glyph{position:relative;width:120px;height:120px;transform:translate3d(var(--tx,0),var(--ty,0),0);transition:transform 400ms var(--ease)}
+.ep-px{position:absolute;width:9px;height:9px;border:1px solid var(--navy);background:transparent;transition:transform var(--t-hover) var(--snap),border-color var(--t-hover) var(--ease),background-color var(--t-hover) var(--ease),opacity 600ms var(--ease);transition-delay:var(--d)}
+.ep-px.is-fill{background:var(--navy);border-color:var(--navy)}
+#entry-portal:hover .ep-px{transform:translate3d(var(--dx),var(--dy),0);border-color:color-mix(in srgb,var(--pale) 55%,var(--navy))}
+#entry-portal:hover .ep-px.is-fill{background:color-mix(in srgb,var(--pale) 40%,var(--navy))}
+#entry-portal:hover .ep-px:nth-child(3n+1){box-shadow:1px 0 0 color-mix(in srgb,var(--pink) 70%,transparent)}
+#entry-portal:hover .ep-px:nth-child(4n+2){box-shadow:-1px 0 0 color-mix(in srgb,var(--lime) 55%,transparent)}
+#entry-portal:hover .ep-px:nth-child(7n+3){box-shadow:0 1px 0 color-mix(in srgb,var(--orange) 55%,transparent)}
+#entry-portal.is-leaving .ep-px{transform:translate3d(calc(var(--sx) * 7),calc(var(--sy) * 7),0) scale(1.9);opacity:0;transition-duration:var(--t-entry);transition-timing-function:var(--ease)}
+.ep-cue{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:color-mix(in srgb,var(--pale) 80%,var(--bg));transition:color var(--t-hover) var(--ease)}
+#entry-portal:hover .ep-cue{color:var(--pale)}
+#entry-portal.is-leaving .ep-cue{opacity:0;transition:opacity 260ms var(--ease)}
+
+/* ---------- overlay ---------- */
+#brain-overlay{position:fixed;inset:0;z-index:10;pointer-events:none;opacity:0;transition:opacity 700ms var(--ease) 180ms}
+#brain-overlay.is-live{opacity:1}
+#brain-overlay a,#brain-overlay button{pointer-events:auto}
+.bo-corner{position:fixed;display:flex;gap:18px;align-items:baseline;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:color-mix(in srgb,var(--pale) 86%,var(--bg))}
+.bo-tl{top:22px;left:24px}
+.bo-tr{top:22px;right:24px}
+.bo-bl{bottom:22px;left:24px}
+.bo-br{bottom:22px;right:24px}
+.bo-title{color:var(--pale)}
+.bo-sub{color:color-mix(in srgb,var(--pale) 76%,var(--bg))}
+
+.bo-labels{position:fixed;inset:0;transition:opacity 400ms var(--ease)}
+.bo-label{position:absolute;top:0;left:0;margin:0;display:flex;align-items:center;gap:9px;min-height:44px;padding:0 14px 0 0;transform-origin:0 50%;background:none;border:0;color:color-mix(in srgb,var(--pale) 88%,var(--bg));font-family:var(--mono);font-size:11px;letter-spacing:.16em;cursor:pointer;transition:color var(--t-hover) var(--ease)}
+.bo-label>*{pointer-events:none}
+.bo-tick{width:22px;height:1px;background:currentColor;opacity:.5;transition:width var(--t-hover) var(--snap),opacity var(--t-hover) var(--ease)}
+.bo-label:hover,.bo-label:focus-visible{color:var(--pale);outline:none}
+.bo-label:hover .bo-tick,.bo-label:focus-visible .bo-tick{width:34px;opacity:1}
+.bo-label.is-active[data-accent="pink"]{color:var(--pink)}
+.bo-label.is-active[data-accent="lime"]{color:var(--lime)}
+.bo-label.is-active[data-accent="orange"]{color:var(--orange)}
+.bo-label.is-active[data-accent="pale"]{color:#fff}
+.bo-label.is-active .bo-tick{width:34px;opacity:1}
+
+.bo-panel{position:fixed;left:24px;bottom:72px;max-width:min(380px,calc(100vw - 48px));padding:18px 20px;border-left:1px solid color-mix(in srgb,var(--pale) 22%,transparent);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity var(--t-select) var(--ease),transform var(--t-select) var(--snap)}
+.bo-panel.is-open{opacity:1;transform:none;pointer-events:auto}
+.bo-panel[data-accent="pink"]{border-left-color:color-mix(in srgb,var(--pink) 70%,transparent)}
+.bo-panel[data-accent="lime"]{border-left-color:color-mix(in srgb,var(--lime) 60%,transparent)}
+.bo-panel[data-accent="orange"]{border-left-color:color-mix(in srgb,var(--orange) 60%,transparent)}
+.bo-panel[data-accent="pale"],.bo-panel[data-accent="rest"]{border-left-color:color-mix(in srgb,var(--pale) 30%,transparent)}
+.bo-panel-label{margin:0 0 8px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.18em;color:var(--pale)}
+.bo-panel-desc{margin:0 0 14px;font-family:var(--mono);font-size:11.5px;line-height:1.75;letter-spacing:.04em;color:color-mix(in srgb,var(--pale) 85%,var(--bg))}
+.bo-btn{background:none;border:0;padding:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:color-mix(in srgb,var(--pale) 82%,var(--bg));cursor:pointer;transition:color var(--t-hover) var(--ease)}
+.bo-btn:hover,.bo-btn:focus-visible{color:var(--pink);outline:none}
+.bo-reset{position:fixed;bottom:22px;left:24px;opacity:0;pointer-events:none!important;transition:opacity 200ms var(--ease)}
+.bo-reset.is-on{opacity:1;pointer-events:auto!important}
+.bo-hint{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:color-mix(in srgb,var(--pale) 78%,var(--bg))}
+
+@media (max-width:720px){
+  #brain-canvas{cursor:default}
+  .bo-tl{top:16px;left:16px}
+  .bo-tr{top:16px;right:16px}
+  .bo-panel{left:16px;right:16px;bottom:64px}
+  .bo-reset{left:16px;bottom:16px}
+  .bo-hint{display:none}
+  .bo-corner{font-size:10px;gap:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ep-px,.ep-glyph,.bo-label,.bo-tick,.bo-panel{transition-duration:1ms!important}
+  #brain-canvas,#brain-overlay{transition-duration:120ms!important}
+}
+</style>
+</head>
+<body>
+<canvas id="brain-canvas"></canvas>
+<div class="vignette"></div>
+<div class="grain"></div>
+
+<div id="brain-overlay">
+  <div class="bo-corner bo-tl">
+    <span class="bo-title">pick at my brain</span>
+    <span class="bo-sub">v1</span>
+  </div>
+  <div class="bo-corner bo-tr">
+    <a href="Portfolio.html">:: exit ::</a>
+  </div>
+  <div class="bo-labels"></div>
+  <div class="bo-panel">
+    <p class="bo-panel-label"></p>
+    <p class="bo-panel-desc"></p>
+    <button class="bo-btn bo-panel-close" type="button">:: back to centre ::</button>
+  </div>
+  <button class="bo-btn bo-reset" type="button">:: reset view ::</button>
+  <p class="bo-hint">drag to look · click a node</p>
+</div>
+
+<div id="entry-portal" role="button" tabindex="0" aria-label="Enter Pick at My Brain">
+  <div class="ep-glyph"></div>
+  <p class="ep-cue">:: click to enter ::</p>
+</div>
+
+<script type="module" src="brain/main.js"></script>
+</body>
+</html>

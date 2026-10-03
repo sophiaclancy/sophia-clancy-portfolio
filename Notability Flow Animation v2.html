@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Notability Learn — feature flows</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+:root{--nb:#3b6ef5;--nb-deep:#1b3ea8;--ink:#0b1b45;--ink2:#48577f;--tint:#eef3ff;--ease:cubic-bezier(.16,1,.3,1)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden}
+body{background:#e9f0ff;font-family:"Plus Jakarta Sans",system-ui,sans-serif;color:var(--ink)}
+.stage{position:fixed;left:50%;top:50%;width:1180px;height:760px;transform:translate(-50%,-50%) scale(min(100vw / 1180px,100vh / 760px));background:radial-gradient(120% 110% at 18% 0%,#f3f7ff 0%,#e3ecff 42%,#d3e1ff 100%);overflow:hidden;user-select:none}
+.orb{position:absolute;border-radius:50%;filter:blur(40px);opacity:.7;pointer-events:none}
+.orb.o1{width:520px;height:520px;left:-120px;top:-160px;background:radial-gradient(circle,rgba(150,186,255,.75),transparent 70%);animation:float1 26s ease-in-out infinite}
+.orb.o2{width:460px;height:460px;right:-100px;bottom:-140px;background:radial-gradient(circle,rgba(176,196,255,.7),transparent 70%);animation:float2 34s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:none}50%{transform:translate(70px,50px) scale(1.1)}}
+@keyframes float2{0%,100%{transform:none}50%{transform:translate(-60px,-40px) scale(1.08)}}
+/* ---------- lockup header ---------- */
+.lock{position:absolute;left:50%;top:50%;display:flex;align-items:center;gap:26px;transform-origin:left center;will-change:transform;transition:transform .8s var(--ease),gap .7s var(--ease)}
+.stage[data-scene="0"] .lock{transform:translate(-50%,-50%)}
+.stage:not([data-scene="0"]) .lock{transform:translate(-500px,-334px) scale(.42)}
+.chip{width:132px;height:132px;border-radius:34px;background:#fff;display:grid;place-items:center;flex:none;box-shadow:0 26px 50px -22px rgba(24,54,150,.5),0 0 0 1px rgba(59,110,245,.08);transition:transform .9s var(--ease)}
+.chip img{width:86px;display:block}
+.stage[data-scene="0"] .chip{animation:grow 1.1s var(--ease)}
+@keyframes grow{0%{transform:scale(.24) rotate(-24deg);opacity:0}55%{opacity:1}100%{transform:scale(1) rotate(0)}}
+.say-line{font-size:41px;font-weight:700;letter-spacing:-.03em;line-height:1.1;white-space:nowrap;color:#1b2c5c}
+.say-line b{font-weight:800;color:var(--nb)}
+.stage[data-scene="0"] .say-line{animation:slide 1s var(--ease) .35s both}
+@keyframes slide{from{opacity:0;transform:translateX(-22px)}to{opacity:1;transform:none}}
+.cursor{display:inline-block;width:3px;height:.92em;background:var(--nb);margin-left:4px;vertical-align:-2px;animation:blinkc 1s steps(1,end) infinite}
+@keyframes blinkc{50%{opacity:0}}
+.stage:not([data-scene="0"]) .cursor{display:none}
+/* ---------- flow cards ---------- */
+.flows{position:absolute;left:50%;top:52%;width:520px;transform:translate(-50%,-50%) scale(var(--z,1)) translate(var(--zx,0),var(--zy,0));transform-origin:50% 50%;z-index:3;will-change:transform;transition:transform .85s var(--ease)}
+.stage[data-scene="1"] .flows{--z:1}
+.stage[data-scene="2"] .flows{--z:1.16;--zy:-2%}
+.stage[data-scene="3"] .flows{--z:1.06;--zx:1%}
+.stage[data-scene="4"] .flows{--z:1.06}
+.flow{position:absolute;left:0;top:50%;width:100%;opacity:0;pointer-events:none;perspective:1200px;transition:opacity .34s var(--ease),transform .62s var(--ease),filter .4s var(--ease);will-change:transform,opacity}
+.flow[data-tr].on{opacity:1;transform:translateY(-50%) rotateY(0deg) scale(1);filter:none;pointer-events:auto}
+/* each flow enters and leaves its own way */
+.flow[data-tr="rise"]{transform:translateY(-30%) scale(.9);filter:blur(7px)}
+.flow[data-tr="rise"].past{transform:translateY(-78%) scale(1.12);filter:blur(10px)}
+.flow[data-tr="swipe"]{transform:translate(38%,-50%) rotate(3deg);filter:blur(5px)}
+.flow[data-tr="swipe"].past{transform:translate(-42%,-50%) rotate(-3deg);filter:blur(7px)}
+.flow[data-tr="flip"]{transform:translateY(-50%) rotateY(42deg) scale(.92);filter:blur(4px)}
+.flow[data-tr="flip"].past{transform:translateY(-50%) rotateY(-34deg) scale(.9);filter:blur(7px)}
+.flow[data-tr="thru"]{transform:translateY(-50%) scale(.6);filter:blur(12px)}
+.flow[data-tr="thru"].past{transform:translateY(-50%) scale(1.9);filter:blur(16px)}
+.card{background:#fff;border-radius:26px;padding:30px;box-shadow:0 40px 80px -34px rgba(20,44,120,.5),0 2px 6px rgba(20,44,120,.06)}
+.tagline{display:inline-block;background:#dde7ff;color:var(--nb);font-size:11.5px;font-weight:800;letter-spacing:.07em;padding:5px 11px;border-radius:999px}
+.card h3{font-size:27px;line-height:1.16;letter-spacing:-.025em;margin:14px 0 10px;font-weight:800}
+.card .say{font-size:14.5px;line-height:1.62;color:var(--ink2);margin:0 0 20px}
+.card-top{display:flex;align-items:flex-start;gap:12px}
+/* study session card */
+.avatar{width:84px;height:84px;border-radius:26px;background:linear-gradient(160deg,#5b7ef7,#3b5fe0);display:grid;place-items:center;box-shadow:0 18px 32px -12px rgba(41,74,190,.65);cursor:pointer;margin:0 auto 18px;transition:transform .5s var(--ease)}
+.avatar:hover{transform:translateY(-4px) scale(1.06)}
+.avatar.boing{animation:boing .7s var(--ease)}
+@keyframes boing{0%{transform:scale(1)}35%{transform:scale(1.16) rotate(-5deg)}70%{transform:scale(.95) rotate(3deg)}100%{transform:scale(1)}}
+.eyes{display:flex;gap:13px}
+.eye{width:11px;height:17px;border-radius:6px;background:#0c1c46;animation:blink 5s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.12)}}
+.mid{text-align:center}
+.doc{display:flex;align-items:center;gap:12px;background:#f4f7ff;border-radius:15px;padding:14px 16px;text-align:left}
+.doc-ic{width:34px;height:34px;border-radius:11px;background:#fff;display:grid;place-items:center;font-size:16px;box-shadow:0 2px 6px rgba(20,44,120,.1)}
+.doc-t{font-size:13.5px;font-weight:700}
+.doc-s{font-size:11px;color:#8592b5}
+.doc .min{margin-left:auto;background:#dde7ff;color:var(--nb);font-size:11.5px;font-weight:800;padding:5px 10px;border-radius:999px}
+.cta{margin-top:16px;width:100%;border:0;background:var(--nb);color:#fff;font:inherit;font-size:15px;font-weight:700;padding:16px;border-radius:15px;cursor:pointer;box-shadow:0 16px 28px -14px rgba(59,110,245,.9);transition:transform .4s var(--ease),filter .3s}
+.cta:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.cta.ghost{background:#f4f7ff;color:var(--nb);box-shadow:none}
+/* note insight card */
+.excerpt{font-size:15px;line-height:1.85;color:#344054;margin:0}
+.hl{background-image:linear-gradient(transparent 58%,#ffeaa0 58%);background-repeat:no-repeat;background-size:0 100%;transition:background-size .55s var(--ease) .15s}
+.flow.on .hl{background-size:100% 100%}
+.strike{position:relative}
+.strike::after{content:"";position:absolute;left:-1px;right:-1px;top:56%;height:1.5px;background:#344054;transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease) .38s}
+.flow.on .strike::after{transform:scaleX(1)}
+.hand{font-family:"Caveat",cursive;font-size:26px;line-height:1.25;color:#e0683a;margin:18px 0 0;clip-path:inset(0 100% 0 0);transition:clip-path .7s var(--ease) .55s}
+.flow.on .hand{clip-path:inset(0 0 0 0)}
+.link{color:var(--nb);text-decoration:underline;text-underline-offset:3px;font-weight:600}
+/* goals card */
+.seg{margin-left:auto;display:flex;gap:3px;background:#f0f3fa;border-radius:13px;padding:4px}
+.seg button{width:38px;height:32px;border:0;border-radius:10px;background:transparent;cursor:pointer;display:grid;place-items:center;color:#98a2b3;transition:background .3s,color .3s,box-shadow .3s}
+.seg button.on{background:#fff;color:var(--nb);box-shadow:0 2px 6px rgba(24,45,110,.16)}
+.seg svg{width:18px;height:18px}
+.goal{display:flex;gap:13px;align-items:flex-start;background:#f4f7ff;border-radius:15px;padding:16px;margin-bottom:11px;opacity:0;transform:translateY(10px);animation:rise .55s var(--ease) forwards}
+.goal:nth-child(2){animation-delay:.12s}
+@keyframes rise{to{opacity:1;transform:none}}
+.box{width:20px;height:20px;border:2px solid #c3ccdf;border-radius:6px;flex:none;margin-top:1px;cursor:pointer;transition:background .25s,border-color .25s}
+.box.done{background:var(--nb);border-color:var(--nb);position:relative}
+.box.done::after{content:"";position:absolute;left:5px;top:1px;width:7px;height:12px;border:2.4px solid #fff;border-top:0;border-left:0;transform:rotate(42deg)}
+.goal-t{font-size:14.5px;font-weight:600;line-height:1.4}
+.ai-note{display:flex;gap:7px;align-items:flex-start;font-size:12px;color:#7c8aad;margin-top:9px;line-height:1.45}
+.ai-note svg{width:13px;height:13px;flex:none;margin-top:2px;color:#9db1ea}
+.bullets{margin:4px 0;padding-left:20px}
+.bullets li{font-size:14.5px;line-height:2.05}
+.dots{display:flex;gap:7px;justify-content:center;margin-top:16px}
+.dots i{width:7px;height:7px;border-radius:50%;background:#c9d3ea;transition:background .3s,width .3s}
+.dots i.on{background:var(--nb);width:18px}
+/* timer */
+.ring{position:relative;width:184px;height:184px;margin:6px auto 20px}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:11;stroke-linecap:round}
+.ring .trk{stroke:#eef1f7}
+.ring .bar{stroke:var(--nb);stroke-dasharray:509;stroke-dashoffset:509}
+.flow.on .ring .bar{stroke-dashoffset:0;transition:stroke-dashoffset 1.6s linear .1s}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:42px;font-weight:800;letter-spacing:-.03em}
+.ping{position:absolute;width:56px;height:56px;border-radius:50%;border:2px solid var(--nb);opacity:0;pointer-events:none;z-index:9;transform:translate(-50%,-50%)}
+.ping.go{animation:ping .7s var(--ease)}
+@keyframes ping{0%{opacity:.9;transform:translate(-50%,-50%) scale(.3)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.6)}}
+/* caption + hud */
+.caption{position:absolute;left:50%;bottom:74px;transform:translateX(-50%);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#7b8cba;transition:opacity .3s var(--ease)}
+.caption.swap{animation:capin .5s var(--ease)}
+@keyframes capin{0%{opacity:0;transform:translateX(-50%) translateY(8px)}100%{opacity:1;transform:translateX(-50%)}}
+.stage[data-scene="0"] .caption{opacity:0}
+.hud{position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;align-items:center;gap:13px;z-index:10}
+.scenes{display:flex;gap:7px;background:rgba(27,62,168,.14);padding:8px 12px;border-radius:999px}
+.scenes button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(27,62,168,.35);cursor:pointer;transition:background .3s,width .3s}
+.scenes button.on{background:var(--nb);width:22px;border-radius:999px}
+.replay{border:0;background:rgba(27,62,168,.14);color:var(--nb-deep);font:inherit;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:9px 15px;border-radius:999px;cursor:pointer}
+.replay:hover{background:rgba(27,62,168,.24)}
+.embed .hud{display:none}
+a{color:var(--nb)}a:hover{color:var(--nb-deep)}
+</style>
+</head>
+<body>
+<div class="stage" id="stage" data-scene="0">
+  <i class="orb o1"></i><i class="orb o2"></i>
+  <div class="lock">
+    <div class="chip"><img src="assets/notability/pencil.png" alt="Notability" /></div>
+    <div class="say-line">Hi, let's start your study session<span class="cursor"></span></div>
+  </div>
+  <div class="flows">
+    <div class="flow" data-flow="0" data-tr="rise">
+      <div class="card mid">
+        <div class="avatar" id="avatar"><div class="eyes"><i class="eye"></i><i class="eye"></i></div></div>
+        <span class="tagline">STUDY SESSION</span>
+        <h3>Today's plan</h3>
+        <p class="say">I read through your Astronomy notes. We can build a focused 10-minute plan together.</p>
+        <div class="doc">
+          <span class="doc-ic">📄</span>
+          <span><span class="doc-t">The Solar System</span><br /><span class="doc-s">Lecture 6 · 12 highlights</span></span>
+          <span class="min">10 min</span>
+        </div>
+        <button class="cta" id="startBtn">Start session →</button>
+      </div>
+    </div>
+    <div class="flow" data-flow="1" data-tr="swipe">
+      <div class="card">
+        <span class="tagline">FROM YOUR NOTES</span>
+        <h3>Dwarf planets</h3>
+        <p class="excerpt">A <span class="link">dwarf planet</span> orbits the Sun and is round, but <span class="strike">has not cleared other objects out of</span> <span class="hl">its orbital path.</span></p>
+        <p class="hand">ask tutor what<br />“cleared its orbit” means</p>
+        <button class="cta" id="toGoals">Turn into goals →</button>
+      </div>
+    </div>
+    <div class="flow" data-flow="2" data-tr="flip">
+      <div class="card">
+        <div class="card-top">
+          <div><span class="tagline">STUDY SESSION</span><h3 style="margin:12px 0 0">Today's Goals</h3></div>
+          <div class="seg" id="seg">
+            <button data-view="list"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h10" /></svg></button>
+            <button class="on" data-view="ai"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z" /><path d="M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2z" /></svg></button>
+          </div>
+        </div>
+        <div id="goalsView" style="margin-top:20px"></div>
+        <button class="cta" id="toTimer">Begin focus block →</button>
+        <div class="dots"><i></i><i class="on"></i></div>
+      </div>
+    </div>
+    <div class="flow" data-flow="3" data-tr="thru">
+      <div class="card">
+        <span class="tagline">STUDY SESSION</span>
+        <h3 style="margin:12px 0 18px">Pomodoro Timer</h3>
+        <div class="ring">
+          <svg width="184" height="184"><circle class="trk" cx="92" cy="92" r="81" /><circle class="bar" cx="92" cy="92" r="81" /></svg>
+          <b id="clock">34:00</b>
+        </div>
+        <button class="cta ghost" id="endBtn">End Session</button>
+        <div class="dots"><i class="on"></i><i></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="ping" id="ping"></div>
+  <div class="hud">
+    <div class="scenes" id="scenes"></div>
+    <button class="replay" id="replay">Replay</button>
+  </div>
+</div>
+<script>
+if(location.search.indexOf('embed')>-1)document.body.classList.add('embed');
+const stage=document.getElementById('stage'),scenesEl=document.getElementById('scenes');
+const flows=[...document.querySelectorAll('.flow')];
+const SCENES=[
+  {d:1600,flow:-1,cap:''},
+  {d:1250,flow:0,cap:'Study Session'},
+  {d:1350,flow:1,cap:'From your notes'},
+  {d:1450,flow:2,cap:"Today's Goals"},
+  {d:0,flow:3,cap:'Focus timer'}
+];
+let cur=0,timer=null;
+SCENES.forEach((_,i)=>{const b=document.createElement('button');b.onclick=()=>go(i,true);scenesEl.appendChild(b)});
+const dots=[...scenesEl.children];
+
+function go(n,manual){
+  clearTimeout(timer);cur=n;stage.dataset.scene=n;
+  const f=SCENES[n].flow;
+  flows.forEach((el,i)=>{el.classList.toggle('on',i===f);el.classList.toggle('past',i<f)});
+  dots.forEach((d,i)=>d.classList.toggle('on',i===n));
+  if(f===3)runClock();
+  const d=SCENES[n].d;
+  if(d)timer=setTimeout(()=>go(n+1),manual?d+500:d);
+}
+
+const goalsView=document.getElementById('goalsView');
+const VIEWS={
+  ai:`<div class="goal"><span class="box"></span><span><span class="goal-t">Review Chapter 5 using flashcards at 80% accuracy</span><span class="ai-note"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z"/></svg>Based off performance on flashcards, you have achieved this goal.</span></span></div>
+  <div class="goal"><span class="box"></span><span class="goal-t">Understand Planet Properties</span></div>`,
+  list:`<div class="goal" style="background:#fff;padding:2px"><ul class="bullets"><li>understand what a dwarf planet is</li><li>review notes about pluto</li></ul></div>`
+};
+let view='ai';
+const renderGoals=()=>{goalsView.innerHTML=VIEWS[view]};
+renderGoals();
+document.getElementById('seg').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  view=b.dataset.view;
+  [...e.currentTarget.children].forEach(c=>c.classList.toggle('on',c===b));
+  renderGoals();
+});
+goalsView.addEventListener('click',e=>{const b=e.target.closest('.box');if(b)b.classList.toggle('done')});
+const avatar=document.getElementById('avatar');
+avatar.addEventListener('click',()=>{avatar.classList.remove('boing');void avatar.offsetWidth;avatar.classList.add('boing')});
+
+const ping=document.getElementById('ping');
+function tap(el,then){
+  const r=el.getBoundingClientRect(),s=stage.getBoundingClientRect(),z=s.width/stage.offsetWidth;
+  ping.style.left=((r.left+r.width/2-s.left)/z)+'px';
+  ping.style.top=((r.top+r.height/2-s.top)/z)+'px';
+  ping.classList.remove('go');void ping.offsetWidth;ping.classList.add('go');
+  setTimeout(then,260);
+}
+document.getElementById('startBtn').onclick=e=>tap(e.currentTarget,()=>go(2,true));
+document.getElementById('toGoals').onclick=e=>tap(e.currentTarget,()=>go(3,true));
+document.getElementById('toTimer').onclick=e=>tap(e.currentTarget,()=>go(4,true));
+document.getElementById('endBtn').onclick=e=>tap(e.currentTarget,()=>go(0));
+document.getElementById('replay').onclick=()=>go(0);
+
+let clockT=null;
+function runClock(){
+  clearInterval(clockT);
+  const el=document.getElementById('clock');let s=34*60;el.textContent='34:00';
+  clockT=setInterval(()=>{
+    s-=175;
+    if(s<=0){clearInterval(clockT);el.textContent='00:00';setTimeout(()=>go(0),650);return;}
+    el.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+  },120);
+}
+go(0);
+</script>
+</body>
+</html>

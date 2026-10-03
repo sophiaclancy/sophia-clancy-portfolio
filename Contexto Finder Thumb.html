@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Contexto — Finder thumbnail</title>
+<style>
+:root{--loop:9.2s;--ink:#0f2545}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--ink)}
+a{color:#cfe3f5}a:hover{color:#fff}
+.stage{position:absolute;inset:0;container-type:size;overflow:hidden;background:var(--ink)}
+.win{position:absolute;left:50%;top:50%;width:min(82cqw,126cqh);aspect-ratio:1240/812;transform:translate(-50%,-50%);border-radius:1.1cqw;overflow:hidden;background:#f5f7fa;container-type:inline-size;box-shadow:0 3.4cqw 6cqw -2.6cqw rgba(4,14,30,.5)}
+.cam{position:absolute;inset:0}
+.lay{position:absolute;inset:0;overflow:hidden}
+.cam img,.lay img{position:absolute;width:139.35%;height:132.99%;left:-19.677%;top:-15.764%;object-fit:cover;display:block}
+.lay{will-change:transform,opacity}
+.sA{animation:fA var(--loop) linear infinite}
+.sB{animation:fB var(--loop) linear infinite}
+.sC{animation:fC var(--loop) linear infinite}
+.sD{animation:fD var(--loop) linear infinite}
+@keyframes fA{0%,40%{opacity:1;transform:translateX(0)}42.5%,96.4%{opacity:0;transform:translateX(-2.6%)}96.5%{opacity:0;transform:translateX(3.4%)}97.8%,100%{opacity:1;transform:translateX(0)}}
+@keyframes fB{0%,37.5%{opacity:0;transform:translateX(3.4%)}40%,57%{opacity:1;transform:translateX(0)}59.5%,100%{opacity:0;transform:translateX(-2.6%)}}
+@keyframes fC{0%,55.5%{opacity:0;transform:translateX(3.4%)}58%,86%{opacity:1;transform:translateX(0)}86.6%,100%{opacity:0;transform:translateX(-2.6%)}}
+@keyframes fD{0%,85.9%{opacity:0;transform:translateX(3.4%)}86.6%,96%{opacity:1;transform:translateX(0)}96.5%,100%{opacity:0;transform:translateX(-2.6%)}}
+.clip{position:absolute;left:20.32%;top:7.02%;right:0;bottom:0;overflow:hidden}
+.clip img{width:174.89%;height:143.03%;left:-50.2%;top:-24.5%}
+.zoom{transform-origin:46.9% 43.6%;animation:zoom var(--loop) cubic-bezier(.24,.72,.18,1) infinite}
+@keyframes zoom{0%,70%{transform:scale(1)}86%,100%{transform:scale(1.55)}}
+.field{position:absolute;z-index:4;left:24.4%;top:2%;width:45.1%;height:4.2%;background:#fff;border-radius:1.6cqi;display:flex;align-items:center;padding-left:3.4cqi;opacity:0;animation:fieldOn var(--loop) steps(1,end) infinite}
+@keyframes fieldOn{0%,10.4%{opacity:0}11%,39.8%{opacity:1}40%,100%{opacity:0}}
+.field span{font:1.14cqi -apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,sans-serif;color:#1d2430;white-space:nowrap;overflow:hidden;max-width:0;border-right:.14cqi solid #4a5568;animation:type var(--loop) steps(42,end) infinite}
+@keyframes type{0%,12.5%{max-width:0}38%,40%{max-width:40cqi}40.2%,100%{max-width:0}}
+.cursor{position:absolute;z-index:6;width:1.85%;opacity:0;animation:cur var(--loop) cubic-bezier(.32,0,.15,1) infinite;filter:drop-shadow(0 .1cqw .28cqw rgba(10,26,52,.3))}
+.cursor svg{display:block;width:100%;height:auto}
+@keyframes cur{
+0%{opacity:0;left:58%;top:30%;transform:scale(1)}
+3%{opacity:1;left:55%;top:23%;transform:scale(1)}
+11%{opacity:1;left:40%;top:4%;transform:scale(1)}
+12.2%{opacity:1;left:40%;top:4%;transform:scale(.84)}
+13.6%{opacity:1;left:40%;top:4%;transform:scale(1)}
+38%{opacity:1;left:40%;top:4%;transform:scale(1)}
+40%{opacity:0;left:40%;top:4%;transform:scale(1)}
+42%{opacity:0;left:20%;top:70%;transform:scale(1)}
+44.5%{opacity:1;left:18%;top:68%;transform:scale(1)}
+53%{opacity:1;left:7%;top:59.4%;transform:scale(1)}
+54.2%{opacity:1;left:7%;top:59.4%;transform:scale(.84)}
+55.4%{opacity:1;left:7%;top:59.4%;transform:scale(1)}
+57%{opacity:0;left:7%;top:59.4%;transform:scale(1)}
+60%{opacity:0;left:62%;top:62%;transform:scale(1)}
+62.5%{opacity:1;left:60%;top:60%;transform:scale(1)}
+69.5%{opacity:1;left:45.6%;top:42.2%;transform:scale(1)}
+70.6%{opacity:1;left:45.6%;top:42.2%;transform:scale(.84)}
+71.8%{opacity:1;left:45.6%;top:42.2%;transform:scale(1)}
+75%{opacity:0;left:45.6%;top:42.2%;transform:scale(1)}
+100%{opacity:0;left:58%;top:30%;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.stage *{animation:none!important}.sB,.sC,.sD,.cursor,.field{opacity:0!important}}
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="win">
+<div class="cam">
+<div class="lay sD"><img src="assets/contexto/v2-workspace.png" alt="" /></div>
+<div class="lay sC"><img src="assets/contexto/v2-constellation.png" alt="" /><div class="clip"><img class="zoom" src="assets/contexto/v2-constellation.png" alt="" /></div></div>
+<div class="lay sB"><img src="assets/contexto/v2-ask.png" alt="" /></div>
+<div class="lay sA"><img src="assets/contexto/v2-home.png" alt="" /></div>
+</div>
+<div class="field"><span>the resume I edited before my MDB interview</span></div>
+<span class="cursor"><svg viewBox="0 0 16 22" fill="none"><path d="M1.4 1.3 14.2 13.1H8.2l2.9 6.9-2.4 1-2.9-7-4.4 4.1z" fill="#fbfcfd" stroke="#8c949f" stroke-width=".9"></path></svg></span>
+</div>
+</div>
+</body>
+</html>
