@@ -3,7 +3,6 @@
 const WORK_LEFT = [
   { id: "asus", title: "ASUS ProArt", desc: "AI autonomy in creative workflows. Leading research on what creators are comfortable delegating to agents.", tags: ["Product Management", "In Progress"], href: "CaseStudy.html?p=asus", tint: "var(--bg-card)" },
   { id: "p7", title: "Contexto", desc: "Finder concept that organizes files into Workspaces by project. 12-week research and design project.", tags: ["UX Research", "Concept"], href: "CaseStudy.html?p=p7", tint: "var(--bg-card)", bleed: true },
-  { id: "p3", title: "Sand", desc: "A wearable to help you feel time. Speculative AR product design for FigBuild 2026.", tags: ["Speculative Design", "AR"], href: "CaseStudy.html?p=p3", tint: "var(--bg-card)" },
 ];
 
 const WORK_RIGHT = [
