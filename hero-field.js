@@ -283,8 +283,9 @@
       if (getSelection && String(getSelection()).length) return;
       const r = cv.getBoundingClientRect(), g = geo();
       let minX = 40; hero.querySelectorAll(".hero-left > *").forEach(el => { const b = el.getBoundingClientRect(); if (b.width) minX = Math.max(minX, b.right - r.left + TB.w * g.sc * .55); });
-      if (e.clientX - r.left < minX - TB.w * g.sc * .55) return;
-      const x = Math.max(minX, Math.min(W - 40, e.clientX - r.left)), y = Math.max(g.oy + IH * g.sc * .5, TB.h * g.sc * .8, Math.min(H - 8, e.clientY - r.top));
+      const ex = hero.classList.contains("is-mirror") ? r.right - e.clientX : e.clientX - r.left;
+      if (ex < minX - TB.w * g.sc * .55) return;
+      const x = Math.max(minX, Math.min(W - 40, ex)), y = Math.max(g.oy + IH * g.sc * .5, TB.h * g.sc * .8, Math.min(H - 8, e.clientY - r.top));
       const pr = { x, y, rot: (Math.random() - .5) * .5, t0: performance.now() / 1000, arrived: 0 };
       prints.push(pr); if (prints.length > 3) prints.shift();
       tiger.tx = x; tiger.ty = y + 6; tiger.walking = true; tiger.target = pr;
@@ -292,7 +293,7 @@
     });
     let lastEmit = 0;
     if (!coarse) addEventListener("pointermove", (e) => {
-      const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      const r = cv.getBoundingClientRect(), x = hero.classList.contains("is-mirror") ? r.right - e.clientX : e.clientX - r.left, y = e.clientY - r.top;
       const inside = x >= 0 && y >= 0 && x <= W && y <= H && !(e.target.closest && e.target.closest("a,button"));
       lead.tx = x; lead.ty = y;
       if (inside && !lead.on) { lead.x = x; lead.y = lead.ty; lead.vx = lead.vy = 0; trail.length = 0; }

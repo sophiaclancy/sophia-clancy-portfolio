@@ -40,7 +40,7 @@ function Nav({ onNav }) {
       <nav className="nav-right">
         <button className="nav-link is-active" onClick={() => onNav("work")}>Work</button>
         <a className="nav-link" href="About.html">About</a>
-        <a className="nav-link" href="https://drive.google.com/file/d/1oPp-S96QerNcEBSoBz0-ZevHmxsRBRNT/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+        <a className="nav-link" href="About.html">Resume</a>
       </nav>
     </header>
   );

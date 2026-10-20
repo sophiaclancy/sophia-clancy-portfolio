@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400..700&display=swap");
+/* type.css — Sophia Clancy type system. Load last on every page.
+   Main: Instrument Sans (all UI + body). Name: Instrument Serif (name / wordmark only). */
+:root{
+  --f-main:"Instrument Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-name:"Instrument Serif",Georgia,serif;
+  --t-label:12px;   /* uppercase labels, eyebrows: tracking .14em */
+  --t-small:14px;   /* tags, captions, meta */
+  --t-nav:15px;     /* sidebar nav, links */
+  --t-body:16.5px;  /* paragraphs, descriptions */
+  --t-lead:19px;    /* intros, card titles */
+  --t-h2:clamp(24px,2.2vw,32px);
+  --t-h1:clamp(32px,3.2vw,46px);
+  --c-ink:#2f3437;--c-body:#6f6a64;--c-mute:#9a958e;
+}
+html body,html body *:not(.sb-name):not(.sb-name *):not(.mark-text):not(.mark-text *):not(pre):not(code):not(.tg):not(.tg-dots){font-family:var(--f-main)!important}
+html body .sb-name,html body .sb-name *,html body .mark-text,html body .mark-text *{font-family:var(--f-name)!important;font-weight:400!important}

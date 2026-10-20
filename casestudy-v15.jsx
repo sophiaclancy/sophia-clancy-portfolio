@@ -16,6 +16,7 @@
       case "p": return <p className="c15-p">{rich(b.body)}</p>;
       case "cols": return <div className="c15-cols">{b.items.map((x, i) => <p className="c15-p" key={i}>{rich(x)}</p>)}</div>;
       case "statement": return <p className="c15-statement">{rich(b.body)}</p>;
+      case "subhead": return <div className="c16-subhead"><h3>{b.title}</h3>{b.body ? <p className="c15-p">{rich(b.body)}</p> : null}</div>;
       case "quote": return <blockquote className="c15-quote"><p>{b.text}</p></blockquote>;
       case "note": return <p className="c15-note">{b.text}</p>;
       case "fig": return (
@@ -123,7 +124,7 @@
     }, []);
 
     useEffect(() => {
-      const k = (e) => { if (e.key === "Escape" && !document.querySelector(".fg-lb")) location.href = "./#work"; };
+      const k = (e) => { if (e.key === "Escape" && !document.querySelector(".fg-lb")) location.href = "Portfolio.html#work"; };
       window.addEventListener("keydown", k);
       return () => window.removeEventListener("keydown", k);
     }, []);
@@ -141,7 +142,7 @@
         {window.CustomCursor ? <window.CustomCursor /> : null}
         <div className="c15-grid">
           <aside className="c15-side">
-            <a className="c15-back" href="./#work"><span aria-hidden="true">&larr;</span> Back to work</a>
+            <a className="c15-back" href="Portfolio.html#work"><span aria-hidden="true">&larr;</span> Home</a>
             <div className="c15-side-id">
               <span>Case study</span>
               <b>{p.title}</b>
@@ -155,18 +156,20 @@
                 </button>
               ))}
             </nav>
-            <button className="c15-top" onClick={() => scroller.current.scrollTo({ top: 0, behavior: "smooth" })}><span aria-hidden="true">&uarr;</span> Back to top</button>
           </aside>
 
           <main className="c15-main">
-            <header className="c15-hero">
-              <p className="c15-kicker">{d.tags.join(" \u00b7 ")}{d.status ? <span className="c15-status"><i aria-hidden="true"></i>{d.status}</span> : null}</p>
-              <h1 className="c15-h1">{p.headline}</h1>
+            <header className="c15-hero is-v16">
               {p.hero ? <div className="c15-hero-shot" style={p.heroBg ? { background: p.heroBg } : null}><img src={p.hero} alt="" /></div> : (d.cover && window[d.cover]) ? <div className="c15-hero-shot is-cover">{React.createElement(window[d.cover])}</div> : null}
-              <dl className="c15-meta">
+              <ul className="c16-tags">
+                {d.tags.map((t) => <li key={t}>{t}</li>)}
+                {d.status ? <li className="is-status"><i aria-hidden="true"></i>{d.status}</li> : null}
+              </ul>
+              <h1 className="c16-title"><span className="c16-star" aria-hidden="true">*</span>{p.title}<span className="c16-dash"> &mdash; </span>{p.headline}</h1>
+              {p.summary ? <p className="c16-lead">{p.summary}</p> : null}
+              <dl className="c16-meta">
                 {meta.map((m) => <div key={m.k}><dt>{m.k}</dt>{m.v.map((v, i) => <dd key={i}>{v}</dd>)}</div>)}
               </dl>
-              <p className="c15-lead">{p.summary}</p>
             </header>
 
             {secs.map((s) => (

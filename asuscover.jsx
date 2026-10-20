@@ -1,4 +1,5 @@
-// asuscover.jsx — ASUS ProArt card cover: slow lava-lamp gradient with a glowing lockup.
+// ARCHIVED — original ASUS ProArt animated cover (lava-lamp gradient + glowing lockup).
+// To restore: copy this file over asuscover.jsx (styles still live in styles-v12.css under "ASUS ProArt cover").
 function AsusCover() {
   const grain = React.useMemo(() => {
     const s = 128, c = document.createElement("canvas");
