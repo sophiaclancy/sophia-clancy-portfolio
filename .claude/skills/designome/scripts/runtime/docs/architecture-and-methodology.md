@@ -1,0 +1,267 @@
+# Architecture and methodology — Designome v0.3
+
+The additive [Fidelity Contract 1.0](fidelity-contract.md) strengthens extraction and documentation without changing the 13 specialist axes. New extraction run plans require independent assertions, signature qualities and explicit calibration limits. The pure Markdown projection supports a [repeated docs-only benchmark](fidelity-benchmark.md) before DNA acceptance or target installation; component-library APIs remain technical integration inputs. Structural coverage, visual fidelity and artifact finish are evaluated separately.
+
+[Audit Contract 2.0](audit-contract.md) extends the audit handoff without changing the Design DNA, fidelity, request, or context contract versions. New plans carry a semantic DNA fingerprint and an explicit verification registry. The runtime validates obligation links, exact target contexts, capture hashes and native image dimensions, and evaluates measurements per capture; the host agent remains responsible for perceptual judgment. Legacy evidence is kept readable within its historical contract and requires recapture before it can satisfy a v2 plan.
+
+The optional [Context Contract 1.0 compiler](lossless-context.md) separates execution routing from canonical context projection. It preserves full global synthesis boundaries and does not replace host visual reasoning.
+
+## Architecture principles
+
+- The host coding agent performs multimodal and perceptual reasoning; Designome supplies versioned contracts, specialized prompts, and deterministic workflow.
+- Screenshots are immutable inputs and the only source of visual truth.
+- Every claim has exactly one status: `observed`, `inferred`, `proposed`, or `unknown`.
+- Evidence, confidence, scope, exceptions, screenshot limits, and validation survive every stage.
+- Framework-neutral extraction is separate from target-specific installation.
+- A target project is a technical destination, never Design DNA evidence.
+- Missing evidence produces explicit coverage gaps, not fabricated completeness.
+- Natural language is normalized once into a validated contract before specialist routing.
+- Host reasoning, deterministic runtime work, human acceptance, implementation, and browser execution use explicit persisted handoffs.
+- Generated artifacts are checksum-managed; human overrides remain separate.
+
+## Modular pipeline
+
+```mermaid
+flowchart LR
+    A["Conversation and screenshots"] --> B["Request contract v1.1"]
+    B --> C["Runtime validation and run initialization"]
+    C --> D["01 Source evidence, classification, compatibility, routing"]
+    D --> E["02-14 Routed specialist axes, five facets each"]
+    E --> F["15 Canonical synthesis and complete coverage"]
+    F --> G["Human acceptance"]
+    G --> H["16 Transactional project integration"]
+    H --> I["Host-agent implementation"]
+    I --> J["Host browser and evidence adapter"]
+    J --> K["17 Four-layer generation audit"]
+```
+
+`00-orchestrator.md` normalizes intent, validates the request, creates the run plan, and routes work. It does not duplicate specialist analysis. `01-source-evidence.md` decides which visible regions are admitted to which axes and UI domains. The 13 axis prompts inspect five stable facets each. `15-synthesis.md` is the only stage allowed to resolve fragments into canonical Design DNA.
+
+## Stage responsibilities
+
+| Stage                                   | Responsibility                                                                                           | Main output                                           |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| 00 Orchestrator                         | Normalize conversation, validate paths/scope, plan routing, persist handoffs                             | request contract, run plan, workflow state            |
+| 01 Source evidence                      | Describe visible regions, classify surfaces, detect UI domains, enforce directives, assess compatibility | evidence index, compatibility report, routed evidence |
+| 02 Spatial composition                  | Regions, grids, rhythm, alignment, density, depth                                                        | five-facet axis fragment                              |
+| 03 Typography/content hierarchy         | Type roles, readability, numeric treatment, wrapping, truncation                                         | five-facet axis fragment                              |
+| 04 Color/surface/identity               | Semantic color, themes, surfaces, shape, icons, imagery, brand                                           | five-facet axis fragment                              |
+| 05 Component morphology                 | Anatomy, variants, states, composition, constraints, anti-patterns                                       | typed component fragment                              |
+| 06 Navigation/task architecture         | Orientation, hierarchy, priorities, disclosure, continuity                                               | five-facet axis fragment                              |
+| 07 Forms/input workflows                | Labels, controls, validation, formatting, save/recovery, sensitive data                                  | five-facet axis fragment                              |
+| 08 Data display/visualization           | KPIs, context, tables, charts, scales, uncertainty, alternatives                                         | five-facet axis fragment                              |
+| 09 Interaction/state/motion             | States, triggers, feedback, exits, focus, modalities, motion                                             | five-facet axis fragment                              |
+| 10 Responsive/platform adaptation       | Reflow, containers, mobile/native shell, orientation, input conventions                                  | five-facet axis fragment                              |
+| 11 Accessibility/inclusion/localization | Semantics, order, contrast, zoom, modality, localization, verification                                   | five-facet axis fragment                              |
+| 12 Content/trust/ethics                 | Voice, actionability, provenance, permission, consequence, informed choice                               | five-facet axis fragment                              |
+| 13 Performance/resilience               | Loading, stability, scale, degradation, work preservation, recovery                                      | five-facet axis fragment                              |
+| 14 System/governance                    | Tokens, contracts, provenance, coverage, integration, non-regression                                     | five-facet axis fragment                              |
+| 15 Synthesis                            | Resolve duplication/conflict and materialize the canonical grammar                                       | Design DNA, rules, confidence, unknowns, coverage     |
+| 16 Integration                          | Diagnose and install accepted artifacts transactionally                                                  | managed dossier, CSS bridge, manifest, verification   |
+| 17 Generation audit                     | Evaluate accepted grammar against real implementation evidence                                           | canonical report, findings, repair proposal           |
+
+## Evidence and source-routing model
+
+Every source has:
+
+- stable identity, kind, dimensions/hash, limitations, and path;
+- evidence-backed surface/archetype classification with confidence and basis;
+- detected UI domains;
+- the normalized per-source directive that controls evidence admission.
+
+Every evidence region has a visible summary, source reference, limitations, concepts, and UI domains. Visible summaries do not contain interpretations. Claims refer back to these region IDs.
+
+The directive modes are:
+
+- `all`: all visibly supported subjects;
+- `only`: selected axes, concepts, domains, token categories, or rule categories only;
+- `prefer`: selected subjects receive priority without hiding other visible evidence;
+- `exclude`: selected subjects are prohibited.
+
+Source routing is applied before each specialist sees evidence. It therefore supports using two dashboard captures only for statistics while using a third capture only for color and surface treatment.
+
+## Destination compatibility
+
+The optional use-case sentence never rewrites source truth. Direct mode requires representative destination-family evidence before destination-specific accuracy is claimed. Adapt mode permits transfer while preserving every absent destination pattern as `proposed`.
+
+Examples:
+
+- dashboard references can establish KPI/chart grammar but not corporate marketing composition;
+- a website capture can establish visible web hierarchy but not mobile-native safe-area or gesture behavior;
+- a narrow screenshot does not prove native mobile solely from its dimensions;
+- unrecognized optional text is ignored and recorded rather than interpreted creatively.
+
+The compatibility report keeps matching evidence, transferable scoped evidence, missing source families, and proposed adaptation separate.
+
+## Canonical claim model
+
+Every token, rule, and component claim contains:
+
+- a stable ID and testable statement;
+- concept and UI-domain routing;
+- exactly one epistemic status;
+- confidence score and basis;
+- evidence references for `observed` and `inferred`;
+- scope and exceptions;
+- validation method and status.
+
+Confidence and status are independent. A direct observation may have low confidence because of crop or compression. An `unknown` can be certain because the relevant behavior is absent.
+
+Tokens add semantic role, applicable targets, relationships, and an exact/range/relationship/unknown value. Exact values require defensible evidence. Bounded preferred values may be used for forward-test calibration without being promoted to observed.
+
+Rules add category, strength, requirements, applicable targets, rationale, failure modes, dependencies, and validation cases.
+
+Components add:
+
+- purpose and UI-domain routing;
+- typed anatomy with required/optional/conditional parts;
+- variants with purpose, conditions, differences, status, and evidence;
+- state contracts with trigger, behavior, feedback, exit/recovery, programmatic state, validation, and evidence;
+- composition, content, adaptation, accessibility, and anti-pattern contracts;
+- token/rule references and one evidence-backed canonical claim.
+
+## Status admission and promotion
+
+| Status     | Admission rule                                                                        | Promotion path                                 |
+| ---------- | ------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `observed` | Directly visible or explicitly supplied; localized evidence required                  | Remains scoped to that evidence                |
+| `inferred` | Best explanation of repeated visible relationships; evidence and uncertainty required | Human review or further evidence               |
+| `proposed` | Useful destination, resilience, or implementation contract absent from screenshots    | Forward test and explicit acceptance           |
+| `unknown`  | Insufficient evidence for a defensible claim                                          | New evidence or an authorized product decision |
+
+Repeated unsupported statements never increase status. Synthesis merges compatible claims, retains scoped exceptions, exposes conflicts, and rejects evidence leakage.
+
+## Guardrails, budgets and precedence
+
+Designome separates two kinds of generation rules so that its defaults never limit what a person asks for.
+
+- **Quality guardrails** are defects no source wants: a repeated component, such as a KPI tile, row, card or chip, that changes its recipe from one screen to the next; sibling charts drawn with different mark recipes; a screen skeleton that reorders its bands or moves its primary action; content that overflows its container or is cut below its slot's minimum; proportions squeezed at a narrow width instead of reflowing; a screen that hides where the user is; one thing called by two names; an action label that does not name its result; and a primary action, required field, error or status hidden behind a disclosure. They apply on every screen unless the person explicitly asks otherwise.
+- **Budgets** are identity: the number and order of status colors, the series budget of each chart, the accent budget, including the tone of progress and segmented fills, and the interaction budgets: destinations per navigation group, primary and inline actions, items shown before a disclosure trigger, and the case and form of labels. Extraction measures them on the admitted screenshots as counts, orders or shares. A source with six status hues records six.
+
+The dossier brief opens with the precedence order every generator follows: the person's explicit request first, then the rules measured on their screenshots, then Designome's `proposed` defaults. The defaults (at most four status hues in a fixed order, one neutral data series with at most one accented mark, the accent reserved for the primary action, the active navigation item and one highlighted mark, one primary action per screen, at most two inline actions per row, at most seven destinations per navigation group, five preview items before "View all", and sentence-case labels) fill only budgets the Design DNA leaves `unknown`; extraction never writes them as claims. The benchmarks' override case checks the first step: a generator that receives a request contradicting the measured accent budget must follow the request.
+
+### Detail rules
+
+Generators fall back on their own defaults wherever a rule is vague, so extraction records the details that separate a polished screen from a generic one as measures:
+
+- **Size anchors:** component heights, insets and icon sizes as multiples of the body-text size or the row pitch, so a KPI tile or chip keeps its proportion on new content.
+- **Text slot budgets:** the minimum visible characters of each chip, badge, cell and title, the maximum lines, and which part yields first.
+- **Screen skeleton:** the band order shared by the admitted screens, the primary action's position and the order in which bands stack when width shrinks.
+- **Chart family recipes:** one mark recipe (thickness relative to pitch, gap ratio, maximum thickness, corners, gridlines, tones) per family of charts.
+- **Recipes by need:** each component's purpose states the need it serves ("Use when…"), so a generator reuses it when a new product has the same need.
+- **Optical finish:** nested radius relative to the parent radius and inset, the separation cue of each surface tier, icon and divider stroke relative to text weight, and icon size relative to its label.
+- **Micro-details:** faint cues are recorded with their strength, never rounded to "none": border tiers per surface type (containers, controls, dividers), the fill and edge cue (shadow, 1px bottom edge, inner highlight) of each control relative to the canvas, the filled or outlined style of functional glyphs such as sort indicators, weight bands no wider than one step with their most likely value, the gap and size ratio of stacked text pairs, and the body-text size relative to the UI width so a generator can derive its base unit. `prompts/_finish-checklist.md` lists these micro-details in eight sections (canvas, surfaces and borders; typography; spacing and scale; controls; iconography; data display; shell; microcopy patterns). Each axis prompt covers its sections, synthesis walks the whole list so every applicable item becomes a measured claim or an explicit `unknown`, and the audit compares captures section by section. The brief adds four generator guardrails: a measured ratio is never capped away, faint cues are built rather than dropped, sibling panels are filled, and a finish pass precedes delivery.
+
+Every one is a ratio, minimum, order or priority, never a fixed width, so it holds at every viewport. The web benchmark captures each route at 390 px as well as 1440 px to check that the rules do not make narrow layouts worse.
+
+### Interaction architecture rules
+
+Hierarchy, navigation, disclosure and labels are where generated interfaces drift most once the look is right, because a generator fills every unquantified decision with its own habits. Extraction records them as measures too:
+
+- **Navigation budget:** destinations per group, how groups are labeled, and the depth levels shown at once with the carrier of each level, such as sidebar, tabs, breadcrumb or back control.
+- **Location:** every carrier of the current location and whether the page title repeats the term of the active navigation item.
+- **Action budget:** primary actions per screen and dialog, inline actions before an overflow menu, the order of primary, secondary and cancel actions, and how a destructive action is set apart.
+- **Disclosure grammar:** the trigger types the screenshots show, the items a preview shows before its trigger, and the content that never sits behind a disclosure. What lies behind a closed trigger stays `unknown`.
+- **Label grammar:** the form, length band in words and case of each label role, and whether one thing keeps one term across screens. Labels are recorded as patterns, never as the source's words.
+
+A count describes the budget a design carries on a capture, not the product's full set of destinations or actions. Screenshots teach the pattern, such as how a settings list discloses its advanced options; they never decide which of the target product's features are primary, which stays a product decision.
+
+## Complete coverage model
+
+Design DNA v0.3 contains:
+
+- 13 axis coverage entries;
+- exactly five facet entries per axis, for 65 total;
+- 20 UI-domain coverage entries.
+
+Each facet record carries coverage status, epistemic status, summary, evidence/artifact references, gaps, and validation. Each domain record adds applicability. Unsupported specialist questions stay visible as `unknown`; non-detected and irrelevant UI domains can be `not-applicable`.
+
+Coverage completeness is structural honesty, not a claim that a static screenshot proved interaction, accessibility, responsiveness, data meaning, performance, or runtime behavior.
+
+## Motion modes
+
+- `off`: no motion output.
+- `observed-only`: retain motion only from a sequence, recording, explicit specification, or implementation evidence.
+- `auto`: propose functional motion for state or spatial continuity.
+
+Static screenshots never establish duration, easing, path, interruption, or reduced-motion behavior. Auto-mode motion remains `proposed`, interruptible, layout-stable, and compatible with reduced motion.
+
+## Extraction and installation boundary
+
+Extraction may run without a target. Integration can inspect only technical facts:
+
+- package manager, framework, source roots, aliases, and scripts;
+- CSS entry and styling system;
+- already installed technical libraries;
+- applicable repository instructions;
+- declared existing design-documentation paths and precedence.
+
+Existing CSS, components, tokens, documentation, or rendered target UI cannot support a Design DNA visual claim. They affect adapter shape only.
+
+## Run and installed artifacts
+
+```text
+.designome/runs/<run-id>/
+├── request-contract.json
+├── run-context.json
+├── run-plan.json
+├── workflow-state.json
+├── source-manifest.json
+├── evidence-index.json
+├── compatibility-report.json
+├── stages/
+│   ├── 02-spatial-composition.json
+│   ├── ...
+│   └── 14-system-governance.json
+├── design-dna.json
+├── design-rules.md
+├── confidence-report.md
+├── unknowns.md
+├── coverage-report.md
+└── audit/
+    ├── plan.json
+    ├── evidence.json
+    ├── report.json
+    ├── report.md
+    └── findings.json
+```
+
+An accepted installation projects 52 documentation files. `README.md` is the design brief: it carries every artifact's statement, status, scope, exceptions and evidence references with the screenshot regions they were read from, together with token relationships, rule rationale and dependencies, part constraints and variant conditions, so a generator reads this one file completely and needs no other. Topic files hold the confidence, coverage and validation detail. Each artifact is rendered in full once, in its home file (rules in `governance/rules.md`, components under `components/`, the fidelity contract in `governance/calibration.md`, each token in the first foundation that owns its category); every other topic file names it in one line with its value or statement and links to that home. On a real three-region extraction this cut the dossier from 2.4 MB to 0.84 MB with every field still present:
+
+```text
+docs/designome/
+├── README.md
+├── foundations/ (7)
+├── components/ (6)
+├── patterns/ (20)
+├── behavior/ (11)
+└── governance/ (7)
+```
+
+The project also receives the accepted Design DNA, namespaced token CSS, a user-owned override file, project-local audit skill, managed guidance, manifest, and user-owned audit configuration.
+
+Run artifacts are local evidence and are not committed by default. Run initialization writes a `.gitignore` that ignores everything in the run directory, so screenshot metadata, stage fragments and raw Design DNA stay out of the target repository even when it does not ignore `.designome/runs/`. Accepted sanitized outputs may be promoted deliberately.
+
+## Validation layers
+
+1. **Structural:** JSON Schema, parsing, exact matrix cardinality, cross-references, prompt structure, and skill metadata.
+2. **Semantic:** status/evidence rules, typed artifacts, dependencies, exact axis/facet/domain coverage, and unresolved unknowns.
+3. **Installation:** read-only doctor, dry-run, staging, journal, atomic apply, checksums, rollback, manifest integrity, and second-run no diff.
+4. **Mechanical:** geometry, overflow, clipping, measurable constraints, and console evidence.
+5. **Perceptual:** host-agent comparison with provenance, certainty, source/target captures, and limitations; v2 observations must reference one planned check.
+6. **Usage:** executed interactions, keyboard/focus, accessibility semantics, responsive scenarios, directions, states, and recovery.
+
+Reports state which layers ran. Static inspection is not rendered, interaction, accessibility, or perceptual proof.
+
+## Executable runtime boundary
+
+The dependency-light Node runtime performs only deterministic work:
+
+- image metadata and hashes;
+- request/Design DNA validation and input fingerprinting;
+- explicit run-plan routing metadata;
+- installation planning, rendering, staging, journaling, atomic writes, checksums, rollback, and verification;
+- projection of the 52-file dossier;
+- audit planning, evidence normalization, DNA-bound verification, contextual measurements, and result evaluation.
+
+The host agent performs screenshot reasoning, writes evidence and Design DNA, implements the target UI, drives an available browser, and records perceptual observations. The human accepts the draft Design DNA. These ownership boundaries are never collapsed.

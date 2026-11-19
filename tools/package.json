@@ -1,0 +1,7 @@
+{
+  "name": "portfolio-build",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "node build.mjs" },
+  "devDependencies": { "esbuild": "^0.24.0", "sharp": "^0.33.5" }
+}

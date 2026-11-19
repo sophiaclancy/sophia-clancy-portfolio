@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>ContextFile v1 flow</title>
+<style>
+html,body{margin:0;height:100%;background:#14103a;overflow:hidden}
+#fit{position:absolute;inset:0;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1440px;height:900px;overflow:hidden;background:url(img/desktop.webp) center/100% 100%;transform-origin:center;font:500 15px -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif}
+.l{position:absolute;display:block;opacity:0;pointer-events:none;transition:opacity .34s ease,transform .46s cubic-bezier(.2,.85,.25,1);will-change:opacity,transform}
+.l.on{opacity:1;transform:none}
+.pop{transform:scale(.965);box-shadow:0 24px 60px rgba(0,0,0,.42);border-radius:14px}
+.panel{clip-path:inset(0 0 310px 0 round 14px);transition:opacity .2s ease,clip-path .46s cubic-bezier(.2,.85,.25,1);box-shadow:none}
+.panel.on{clip-path:inset(0 0 0 0 round 14px)}
+.left{transform:translateX(-36px);box-shadow:0 20px 50px rgba(0,0,0,.34);border-radius:20px}
+.right{transform:translateX(48px);box-shadow:0 18px 44px rgba(0,0,0,.36);border-radius:18px}
+.fade{transition:opacity .42s ease}
+#cur{position:absolute;left:0;top:0;z-index:30;width:26px;height:34px;transform:translate(720px,620px);transition:transform .82s cubic-bezier(.45,.05,.2,1),opacity .16s linear;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45))}
+#cur.press svg{transform:scale(.86);transform-origin:3px 2px}#cur svg{display:block;transition:transform .12s ease}
+#cap{position:absolute;left:50%;top:38px;z-index:40;transform:translate(-50%,-6px);padding:8px 16px;border-radius:99px;background:rgba(18,16,34,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#fff;white-space:nowrap;opacity:0;transition:opacity .3s ease,transform .3s ease}
+#cap.on{opacity:1;transform:translate(-50%,0)}
+.instant *,.instant{transition:none!important}
+@media (prefers-reduced-motion:reduce){.l,#cur,#cap{transition:none!important}}
+</style></head><body>
+<div id="fit"><div id="stage" role="img" aria-label="ContextFile v1 flow: pin a file from Spotlight, find it in Finder, and open it from a notification">
+  <img class="l pop" id="bar" src="img/bar.webp" alt="" style="left:377px;top:184px;width:662px;height:63px">
+  <img class="l panel" id="panel" src="img/panel.webp" alt="" style="left:363px;top:182px;width:662px;height:373px">
+  <img class="l pop" id="popover" src="img/popover.webp" alt="" style="left:561px;top:517px;width:238px;height:110px;transform-origin:30% 0">
+  <img class="l pop" id="alert" src="img/alert.webp" alt="" style="left:596px;top:349px;width:260px;height:222px">
+  <img class="l pop" id="f1" src="img/finder-1.webp" alt="" style="left:186px;top:77px;width:1042px;height:706px">
+  <img class="l fade" id="f2" src="img/finder-2.webp" alt="" style="left:186px;top:77px;width:1042px;height:700px;border-radius:16px">
+  <img class="l fade" id="f3" src="img/finder-3.webp" alt="" style="left:186px;top:77px;width:1042px;height:700px;border-radius:16px">
+  <img class="l left" id="widget" src="img/widget.webp" alt="" style="left:19px;top:40px;width:297px;height:568px">
+  <img class="l right" id="notif" src="img/notif.webp" alt="" style="left:1045px;top:38px;width:382px;height:80px">
+  <img class="l pop" id="ql" src="img/ql.webp" alt="" style="left:420px;top:120px;width:600px;height:572px;transform-origin:92% 0">
+  <div id="cap"></div>
+  <div id="cur"><svg viewBox="0 0 26 34" width="26" height="34" aria-hidden="true"><path d="M3 2v25l6.6-6.2 4.4 10.4 4.9-2.1-4.5-10.2 9.1-.5z" fill="#111" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div>
+</div></div>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)},st=$("stage"),cur=$("cur"),cap=$("cap");
+  function fit(){var s=Math.min(innerWidth/1440,innerHeight/900);st.style.transform="translate(-50%,-50%) scale("+s+")"}addEventListener("resize",fit);fit();
+  var Q=new URLSearchParams(location.search),STILL=Q.has("step")?+Q.get("step"):null,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var on=function(){[].forEach.call(arguments,function(i){$(i).classList.add("on")})},off=function(){[].forEach.call(arguments,function(i){$(i).classList.remove("on")})};
+  var to=function(x,y){cur.style.transform="translate("+x+"px,"+y+"px)"},show=function(v){cur.style.opacity=v?1:0},say=function(t){if(!t){cap.classList.remove("on");return}cap.textContent=t;cap.classList.add("on")};
+  var click=function(){cur.classList.add("press");setTimeout(function(){cur.classList.remove("press")},170)};
+  /* each step: what changes, then how long to hold it */
+  var T=[
+    [function(){off("bar","panel","popover","alert","f1","f2","f3","widget","notif","ql");to(760,640);show(1);say("")},700],
+    [function(){say("⌘ Space opens Spotlight");on("bar")},1250],
+    [function(){say("Typing “files” surfaces what you might need");on("panel");off("bar")},1500],
+    [function(){to(476,520)},1000],
+    [function(){say("Every suggestion explains why");on("popover")},1700],
+    [function(){to(628,610)},950],
+    [function(){click()},190],
+    [function(){say("Pin it once");off("popover");on("alert")},900],
+    [function(){to(786,528)},1050],
+    [function(){click()},200],
+    [function(){off("alert","panel");say("")},520],
+    [function(){say("Pinned files live in a new Finder section");on("f1");to(354,332)},1750],
+    [function(){to(648,360)},1050],
+    [function(){say("Hover to see when a file was last used");show(0);on("f2");off("f1")},2100],
+    [function(){say("Smart Groups collect a class automatically");on("f3");off("f2")},2200],
+    [function(){off("f3");say("")},560],
+    [function(){say("A widget keeps today’s files on the desktop");on("widget");to(900,560);show(1)},1900],
+    [function(){say("A nudge arrives before lecture");on("notif")},1500],
+    [function(){to(1240,78)},1050],
+    [function(){click()},200],
+    [function(){say("One click opens the notes");off("notif");on("ql");to(1000,650)},2500],
+    [function(){off("ql","widget");say("")},900]
+  ];
+  if(STILL!==null){st.classList.add("instant");for(var i=0;i<=Math.min(STILL,T.length-1);i++)T[i][0]();return}
+  var n=0;(function next(){T[n][0]();var w=T[n][1];n=(n+1)%T.length;setTimeout(next,w)})();
+})();
+</script></body></html>

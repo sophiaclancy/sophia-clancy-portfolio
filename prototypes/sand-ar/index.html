@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Sand AR prototype</title>
+<style>
+html,body{margin:0;height:100%;background:#10151c;overflow:hidden}
+#fit{position:absolute;inset:0;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1440px;height:900px;overflow:hidden;background:#10151c;color:#1d2733;font:400 20px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif}
+.bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .9s ease}
+.bg.on{opacity:1}
+#bg-calib{background-image:url(img/calib.webp)}#bg-focus{background-image:url(img/focus.webp)}#bg-social{background-image:url(img/social.webp);background-position:center 18%}
+#tv{position:absolute;left:29%;top:0;width:45%;height:42%;border-radius:22px;-webkit-backdrop-filter:blur(26px);backdrop-filter:blur(26px);background:rgba(255,226,190,.12);opacity:0;transition:opacity .6s}
+#tv.on{opacity:1}
+#dim{position:absolute;inset:0;background:#0c1420;opacity:0;transition:opacity 1.4s ease}
+#peri{position:absolute;inset:0;opacity:0;transition:opacity 1.8s ease;-webkit-backdrop-filter:blur(13px) saturate(.72);backdrop-filter:blur(13px) saturate(.72);background:rgba(14,24,38,.42);-webkit-mask-image:radial-gradient(ellipse 25% 37% at 64% 66%,transparent 72%,#000 100%);mask-image:radial-gradient(ellipse 25% 37% at 64% 66%,transparent 72%,#000 100%)}
+#peri.on{opacity:1}
+#warm{position:absolute;inset:0;opacity:0;transition:opacity 2s ease;background:radial-gradient(ellipse 62% 50% at 50% 74%,rgba(255,190,110,.32),transparent 72%),rgba(46,24,8,.16)}
+#warm.on{opacity:1}
+#frame{position:absolute;left:47.5%;top:42%;width:33%;height:49%;opacity:0;transform:scale(1.05);transition:opacity .6s,transform .8s cubic-bezier(.2,.8,.2,1)}
+#frame.on{opacity:1;transform:none}
+#frame i{position:absolute;width:38px;height:38px;border:3px solid rgba(255,255,255,.92);filter:drop-shadow(0 0 7px rgba(150,205,255,.8))}
+#frame i:nth-child(1){left:0;top:0;border-right:0;border-bottom:0;border-radius:14px 0 0}
+#frame i:nth-child(2){right:0;top:0;border-left:0;border-bottom:0;border-radius:0 14px 0 0}
+#frame i:nth-child(3){left:0;bottom:0;border-right:0;border-top:0;border-radius:0 0 0 14px}
+#frame i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0;border-radius:0 0 14px}
+.glass{background:rgba(247,250,253,.86);-webkit-backdrop-filter:blur(26px) saturate(1.3);backdrop-filter:blur(26px) saturate(1.3);box-shadow:0 24px 70px -22px rgba(4,12,24,.62),inset 0 0 0 1px rgba(255,255,255,.72)}
+#pill{position:absolute;left:50%;top:44px;display:flex;align-items:center;gap:12px;padding:12px 22px;border-radius:99px;white-space:nowrap;font-size:20px;font-weight:500;opacity:0;transform:translate(-50%,-12px);transition:opacity .45s,transform .55s cubic-bezier(.2,.8,.2,1)}
+#pill.on{opacity:1;transform:translate(-50%,0)}
+#pill b{width:11px;height:11px;border-radius:50%;background:var(--dot,#4d8fd1);box-shadow:0 0 0 5px color-mix(in srgb,var(--dot,#4d8fd1) 22%,transparent)}
+#pill span{font-weight:400;color:#59677a}
+#card{position:absolute;left:50%;top:50%;width:540px;box-sizing:border-box;padding:36px 38px;border-radius:32px;opacity:0;transform:translate(-50%,-46%) scale(.98);transition:opacity .45s,transform .6s cubic-bezier(.2,.8,.2,1)}
+#card.on{opacity:1;transform:translate(-50%,-50%)}
+#card.left{left:27%}
+#card small{display:block;margin-bottom:8px;font-size:17px;font-weight:500;color:#3f76ad}
+#card h2{margin:0 0 10px;font-size:37px;line-height:1.14;font-weight:500;letter-spacing:-.022em}
+#card p{margin:0;font-size:21px;line-height:1.42;color:#536174}
+.acts{display:flex;gap:12px;margin-top:26px}
+.acts u{flex:1;padding:15px 12px;border-radius:99px;background:rgba(40,70,100,.09);text-align:center;text-decoration:none;font-size:20px;font-weight:500;color:#354559;transition:transform .16s,background .2s}
+.acts u.go{background:#3f76ad;color:#fff}.acts u.press{transform:scale(.95);background:#2e5f91}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.nums div{padding:14px 8px;border-radius:18px;background:rgba(63,118,173,.1);text-align:center;font-size:16px;color:#59677a}
+.nums b{display:block;font-size:29px;line-height:1.2;font-weight:500;color:#23476c}
+#rings{position:absolute;left:50%;top:50%;width:300px;height:300px;margin:-150px;opacity:0;transition:opacity .8s}
+#rings.on{opacity:1}
+#rings i{position:absolute;inset:0;border:2px solid rgba(218,236,255,.82);border-radius:50%;animation:r 4.2s ease-out infinite}
+#rings i:nth-child(2){animation-delay:1.4s}#rings i:nth-child(3){animation-delay:2.8s}
+#rings b{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px;border-radius:50%;background:radial-gradient(circle at 36% 30%,#fff,#a9cdee 58%,#e8d9bb);animation:o 4.2s ease-in-out infinite}
+@keyframes r{from{transform:scale(.45);opacity:.8}to{transform:scale(1.25);opacity:0}}@keyframes o{50%{transform:scale(1.13)}}
+#hint{position:absolute;left:50%;top:calc(50% + 190px);transform:translateX(-50%);color:#f1f6fb;font-size:25px;text-align:center;white-space:nowrap;text-shadow:0 2px 14px rgba(0,0,0,.6);opacity:0;transition:opacity .6s}
+#hint.on{opacity:1}
+#note{position:absolute;right:44px;top:44px;width:370px;box-sizing:border-box;padding:17px 20px;border-radius:22px;font-size:18px;line-height:1.3;opacity:0;transform:translateX(30px);transition:opacity .45s,transform .55s cubic-bezier(.2,.8,.2,1),filter 1.7s ease}
+#note b{display:block;font-weight:500}#note span{color:#59677a}
+#note.on{opacity:1;transform:none}#note.mist{opacity:0;filter:blur(26px);transition:opacity 2s ease,filter 1.7s ease}
+#chap{position:absolute;left:44px;bottom:38px;display:flex;gap:8px}
+#chap span{padding:8px 16px;border-radius:99px;background:rgba(10,18,28,.46);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:rgba(255,255,255,.66);font-size:17px;transition:background .3s,color .3s}
+#chap span.on{background:rgba(255,255,255,.92);color:#17222e}
+.solo #chap{display:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body>
+<div id="fit"><div id="stage" role="img" aria-label="Sand AR prototype: calibrating an internal clock, entering deep focus, and staying present with friends">
+  <div class="bg" id="bg-calib"></div><div class="bg" id="bg-focus"></div><div class="bg" id="bg-social"></div>
+  <div id="tv"></div><div id="warm"></div><div id="dim"></div><div id="peri"></div>
+  <div id="frame"><i></i><i></i><i></i><i></i></div>
+  <div id="rings"><i></i><i></i><i></i><b></b></div><div id="hint"></div>
+  <div class="glass" id="pill"></div><div class="glass" id="note"></div><div class="glass" id="card"></div>
+  <div id="chap"><span data-c="calib">Calibrate</span><span data-c="focus">Focus</span><span data-c="social">Be present</span></div>
+</div></div>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)},st=$("stage"),Q=new URLSearchParams(location.search);
+  function fit(){st.style.transform="translate(-50%,-50%) scale("+Math.max(innerWidth/1440,innerHeight/900)+")"}addEventListener("resize",fit);fit();
+  var on=function(i,v){$(i).classList.toggle("on",v!==false)},dim=function(v){$("dim").style.opacity=v};
+  function pill(t,s,c){var p=$("pill");if(!t)return on("pill",false);p.style.setProperty("--dot",c||"#4d8fd1");p.innerHTML="<b></b>"+t+(s?" <span>"+s+"</span>":"");on("pill")}
+  function card(h,left){var c=$("card");if(!h)return on("card",false);c.innerHTML=h;c.classList.toggle("left",!!left);on("card")}
+  function press(){var g=document.querySelector("#card .go");if(g)g.classList.add("press")}
+  function hint(t){if(t)$("hint").textContent=t;on("hint",!!t)}
+  function note(t,s){var n=$("note");n.classList.remove("mist");n.innerHTML="<b>"+t+"</b><span>"+s+"</span>";on("note")}
+  function reset(k){["calib","focus","social"].forEach(function(n){on("bg-"+n,n===k)});["tv","warm","peri","frame","rings","hint","pill","note","card"].forEach(function(i){on(i,false)});$("note").classList.remove("mist");dim(0);on("tv",k==="social");[].forEach.call(document.querySelectorAll("#chap span"),function(s){s.classList.toggle("on",s.dataset.c===k)})}
+  var SC={
+    calib:[
+      [function(){reset("calib");dim(.3)},1100],
+      [function(){card('<small>Welcome to Sand</small><h2>Let’s learn your internal clock.</h2><p>Wait until it feels like 10 minutes have passed. No clocks, no counting.</p><div class="acts"><u class="go">Start calibration</u></div>')},3000],
+      [press,260],
+      [function(){card();dim(.62);on("rings");hint("Tap when 10 minutes feels up")},4300],
+      [function(){on("rings",false);hint();card('<small>Calibration complete</small><h2>It felt like ten minutes.<br>It was seven.</h2><div class="nums"><div><b>10:00</b>You felt</div><div><b>7:00</b>Actual</div><div><b>−30%</b>Variance</div></div><div class="acts"><u class="go">Enter Sand</u></div>')},3900],
+      [press,260],[function(){card();dim(0)},900]
+    ],
+    focus:[
+      [function(){reset("focus")},1200],
+      [function(){on("frame");pill("Architecture project","Review due tonight")},2500],
+      [function(){card('<small>Peak window · 2 hours</small><h2>Enter deep focus?</h2><p>Sand will quiet what’s around your work.</p><div class="acts"><u>Not now</u><u class="go">Begin</u></div>',true)},3000],
+      [press,260],
+      [function(){card();on("frame",false);on("peri");pill("Entering deep focus")},2400],
+      [function(){pill("Deep focus","1 hr 48 min left","#59a58c");note("Group chat","12 new messages")},1900],
+      [function(){$("note").classList.add("mist")},3500],
+      [function(){on("note",false);pill();on("peri",false)},1100]
+    ],
+    social:[
+      [function(){reset("social")},1200],
+      [function(){pill("Friends nearby","Movie night","#e39a4e")},2300],
+      [function(){card('<small>Social moment</small><h2>Stay present tonight?</h2><p>Sand will hold your notifications until later.</p><div class="acts"><u>Not now</u><u class="go">Be here</u></div>')},3000],
+      [press,260],
+      [function(){card();on("warm");pill("Present mode","Warmer light","#e39a4e");note("Studio reminder","Project review tomorrow")},2000],
+      [function(){$("note").classList.add("mist")},3700],
+      [function(){on("note",false);pill();on("warm",false)},1100]
+    ]
+  };
+  var want=Q.get("scene"),list=SC[want]?[want]:["calib","focus","social"];if(SC[want])document.body.classList.add("solo");
+  if(Q.has("step")){var k=list[0];for(var j=0;j<=Math.min(+Q.get("step"),SC[k].length-1);j++)SC[k][j][0]();return}
+  var a=0,b=0;(function next(){var s=SC[list[a]][b];s[0]();b++;if(b>=SC[list[a]].length){b=0;a=(a+1)%list.length}setTimeout(next,s[1])})();
+})();
+</script></body></html>

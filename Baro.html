@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Baro Behavior · 0-to-1 Product | Sophia Clancy</title>
+<meta name="description" content="Case study: leading 5 engineers to turn behavioral science and Figma designs into Baro, a 0-to-1 behavior intervention product for teachers and students." />
+<link rel="icon" href="favicon.ico?v=2" sizes="any" />
+<link rel="stylesheet" href="vendor/fonts/2b1e607304.css?v=a104d2598e" />
+<link rel="stylesheet" href="_build/case-a.css?v=d9eeae5e74" />
+<link rel="stylesheet" href="case-b.css?v=7" />
+<style id="perf-vt">
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(root){animation:vt-out .18s cubic-bezier(.4,0,1,1) both}
+::view-transition-new(root){animation:vt-in .32s cubic-bezier(.2,.8,.2,1) both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0;transform:translateY(6px)}}
+.sb{view-transition-name:sb}
+::view-transition-group(sb),::view-transition-old(sb),::view-transition-new(sb){animation:none}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+</style>
+<script type="speculationrules" id="perf-spec">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"eager"}]}</script>
+</head>
+<body class="cs-min cb">
+
+<aside class="rail">
+  <a class="back" href="./" data-home><svg viewBox="0 0 13 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 3 3 9l6 6"/></svg>BACK TO HOME</a>
+  <a class="owner" href="./" data-home>Sophia Clancy</a>
+  <p class="k">Case Study</p>
+  <p class="p">Baro</p>
+  <ul class="toc">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#challenge">The Challenge</a></li>
+    <li><a href="#role">My Role</a></li>
+    <li><a href="#system">The Product</a></li>
+    <li><a href="#logic">Behavior Logic</a></li>
+    <li><a href="#teacher">Teacher Flow</a></li>
+    <li><a href="#student">Student Flow</a></li>
+    <li><a href="#hard">Hard Problems</a></li>
+    <li><a href="#reflection">Reflection</a></li>
+  </ul>
+</aside>
+
+<main>
+<section id="overview">
+  <figure class="cb-hero cb-frame"><img src="assets/baro/t-home.webp" alt="Baro teacher home showing student cards" decoding="async"></figure>
+  <p class="cb-label">Baro Behavior</p>
+  <h1>Taking a behavior intervention platform for teachers from 0 to 1.</h1>
+  <p class="cb-lede">Baro helps teachers support individual students through behavior interventions. As project manager, I led 5 engineers in turning a founder’s expertise and Figma designs into a web product.</p>
+  <dl class="cb-meta"><div><dt>Role</dt><dd>Project Manager</dd></div><div><dt>Timeline</dt><dd>Sept – Dec 2025</dd></div><div><dt>Team</dt><dd>5 engineers, working with the founder</dd></div><div><dt>Skills</dt><dd>Product scoping, technical translation, behavioral science</dd></div></dl>
+</section>
+
+<section id="challenge">
+  <p class="cb-label">The challenge</p>
+  <h2>The expertise existed. It just wasn’t buildable yet.</h2>
+  <p>The founder knew exactly how a good intervention should work, and the Figma file showed how it should look. But engineers can’t build from terms like “variable ratio reinforcement.” Every clinical idea needed to become a rule, a state, or a screen.</p><blockquote class="cb-quote"><p>How might we turn expert behavioral knowledge into product logic that 5 engineers could build, and a busy teacher could trust?</p></blockquote>
+</section>
+
+<section id="role">
+  <p class="cb-label">My role</p>
+  <h2>I translated between the founder, the designs, and the engineers.</h2>
+  <p>My cognitive science background helped me understand the behavioral concepts well enough to explain them in engineering terms. We organized the build into seven milestones, each pairing planned work and a clear deliverable with specific questions for the founder.</p><ol class="cb-steps" style="--n:4"><li><b>Accounts</b>Teacher and student login</li><li><b>Dashboards</b>Core screens and tabs</li><li><b>Teacher Prep</b>Add students, match interventions</li><li><b>Teacher Launch</b>Run timed interventions</li><li><b>Teacher Review</b>Progress and insights</li><li><b>Student pages</b>Prep, launch, and review</li><li><b>AI</b>Optional assistant</li></ol>
+</section>
+
+<section id="system">
+  <p class="cb-label">The product</p>
+  <h2>Two experiences, built around the same three steps.</h2>
+  <p>Baro supports one student at a time, because individual support was the point. Teachers and students both move through the same structure, even though each sees something different.</p><div class="cb-cols three"><div><b>Prep</b><p>Teachers describe a behavior and choose an intervention. Students see their goal and rewards.</p></div><div><b>Launch</b><p>Teachers start a session for selected students. Students track their points live.</p></div><div><b>Review</b><p>Both sides look back at progress, points, and achievements.</p></div></div>
+</section>
+
+<section id="logic">
+  <p class="cb-label">Behavior logic</p>
+  <h2>One question decides how a student gets rewarded.</h2>
+  <p>The behavior tree covers 41 behaviors across 6 categories. Each one is tagged by type, and that tag sets the reward schedule. Rewards then fade in three phases, so a student can build a habit without depending on constant points.</p><div class="lg" id="lg">
+    <div class="lg-top"><p>Does the behavior have a clear start and finish?</p><div class="lg-seg" role="group" aria-label="Behavior type"><button type="button" data-m="d" aria-pressed="true">Yes · Discrete</button><button type="button" data-m="c" aria-pressed="false">No · Continuous</button></div></div>
+    <p class="lg-ex" id="lgEx"><b>Example:</b> inappropriate language. <b>Schedule:</b> ratio, based on how many times the goal behavior happens.</p>
+    <ol class="lg-ph">
+      <li><span>1 · Adoption</span><b id="lg1">Every instance earns a point</b><em>At least 1 week or 3 sessions</em></li>
+      <li><span>2 · Growth</span><b id="lg2">The ratio grows as goals are met</b><em>Until 80% of the goal on 3 of 5 days</em></li>
+      <li><span>3 · Maintenance</span><b id="lg3">Rewards become variable</b><em>Difficulty keeps increasing over time</em></li>
+    </ol>
+  </div>
+</section>
+
+<section id="teacher">
+  <p class="cb-label">Teacher flow</p>
+  <h2>Turning a hard judgment call into guided steps.</h2>
+  <div class="cb-group"><h3>Narrow from broad to specific.</h3><p>Teachers move from a category to one target behavior. Those answers give the behavior tree what it needs to recommend an intervention.</p><figure class="cb-media"><div class="cb-frame"><img src="assets/baro/t-add1.webp" alt="Choosing specific behaviors during student intake" loading="lazy" decoding="async"></div></figure></div><div class="cb-group"><h3>Launch in three steps.</h3><p>Select students, choose settings, and start. The barometer counts down, so the session has a clear beginning.</p><figure class="cb-media"><div class="cb-frame"><img src="assets/baro/t-launch2.webp" alt="Barometer countdown before an intervention starts" loading="lazy" decoding="async"></div></figure></div>
+</section>
+
+<section id="student">
+  <p class="cb-label">Student flow</p>
+  <h2>Keeping goals clear and motivation kind.</h2>
+  <div class="cb-group"><h3>Show progress in the moment.</h3><p>Students see points and achievements at a glance, while the reward logic stays behind the scenes.</p><figure class="cb-media"><div class="cb-frame"><img src="assets/baro/s-active.webp" alt="Student view of points earned during a session" loading="lazy" decoding="async"></div></figure></div><div class="cb-group"><h3>Write goals in a student’s words.</h3><p>“I will raise my hand and wait until the teacher calls on me.” A goal should be easy to picture and repeat.</p><figure class="cb-media"><div class="cb-frame"><img src="assets/baro/s-goal.webp" alt="Student goal written in first person" loading="lazy" decoding="async"></div></figure></div>
+</section>
+
+<section id="hard">
+  <p class="cb-label">Hard problems</p>
+  <h2>The hardest part was everything between the design and the code.</h2>
+  <div class="cb-chs"><article class="cb-ch"><header><h3>Figma didn’t translate directly.</h3></header><div class="cb-ch-b"><div><p class="k">The problem</p><p>A single student screen could change with the reward schedule, session state, or whether rewards were unlocked. Static frames couldn’t capture all of that logic.</p></div><div><p class="k">How we handled it</p><p>We built in milestones, tied requirements back to Figma, and marked features like chat as optional for the prototype.</p></div></div></article><article class="cb-ch"><header><h3>Behavioral science had to become rules.</h3></header><div class="cb-ch-b"><div><p class="k">The problem</p><p>Concepts like reinforcement schedules are precise for clinicians but abstract for engineers. A vague requirement would have changed the intervention itself.</p></div><div><p class="k">How we handled it</p><p>We turned them into explicit tags, thresholds, and if-then logic.</p></div></div></article><article class="cb-ch"><header><h3>AI could have come too early.</h3></header><div class="cb-ch-b"><div><p class="k">The problem</p><p>An LLM could eventually recommend interventions, but the first version needed behavior teachers could predict and understand.</p></div><div><p class="k">How we handled it</p><p>We started with decision-tree logic and kept AI as a later, optional milestone.</p></div></div></article></div>
+</section>
+
+<section id="reflection">
+  <p class="cb-label">Reflection</p>
+  <h2>A good spec is an act of translation.</h2>
+  <p>Baro taught me that managing a 0-to-1 product means understanding the domain deeply enough to protect what matters. Knowing why a reward schedule works helped me make better scope decisions, ask the founder better questions, and give engineers requirements they could actually build.</p>
+</section>
+
+  <footer>
+    <p class="eyebrow">Connect with me</p>
+    <p>Built with a team of 5 engineers. Say hi at <a href="mailto:sophiaclancy@berkeley.edu">sophiaclancy@berkeley.edu</a></p>
+    <div class="nextcs"><a href="Play.html">← All play</a><a href="Sand.html">Next: Sand →</a></div>
+  </footer>
+</main>
+<script src="_build/case-notability.js?v=56885b59ae"></script>
+<script>
+(function(){var r=document.getElementById("lg");if(!r)return;var D={d:['<b>Example:</b> inappropriate language. <b>Schedule:</b> ratio, based on how many times the goal behavior happens.','Every instance earns a point','The ratio grows as goals are met','Rewards become variable'],c:['<b>Example:</b> off-task disruption. <b>Schedule:</b> interval, based on checking in over time.','Frequent, fixed check-ins earn points','The interval grows as goals are met','Check-ins become variable']};
+[].forEach.call(r.querySelectorAll("button"),function(b){b.onclick=function(){[].forEach.call(r.querySelectorAll("button"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});var v=D[b.dataset.m];document.getElementById("lgEx").innerHTML=v[0];document.getElementById("lg1").textContent=v[1];document.getElementById("lg2").textContent=v[2];document.getElementById("lg3").textContent=v[3]}})})();
+</script>
+</body>
+</html>

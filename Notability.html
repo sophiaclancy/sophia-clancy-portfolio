@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Notability Learn · Study Session | Sophia Clancy</title>
+<meta name="description" content="Case study: designing Study Session and Profile Personalization for Notability Learn, an AI study experience that motivates through evidence of progress instead of gamification." />
+<link rel="icon" href="favicon.ico?v=2" sizes="any" />
+<link rel="stylesheet" href="vendor/fonts/2b1e607304.css?v=a104d2598e" />
+<link rel="stylesheet" href="_build/case-a.css?v=d9eeae5e74" />
+<link rel="stylesheet" href="case-b.css?v=7" />
+<style id="perf-vt">
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(root){animation:vt-out .18s cubic-bezier(.4,0,1,1) both}
+::view-transition-new(root){animation:vt-in .32s cubic-bezier(.2,.8,.2,1) both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0;transform:translateY(6px)}}
+.sb{view-transition-name:sb}
+::view-transition-group(sb),::view-transition-old(sb),::view-transition-new(sb){animation:none}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+</style>
+<script type="speculationrules" id="perf-spec">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"eager"}]}</script>
+</head>
+<body class="cs-min cs-nb cb">
+
+<aside class="rail">
+  <a class="back" href="./" data-home><svg viewBox="0 0 13 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 3 3 9l6 6"/></svg>BACK TO HOME</a>
+  <a class="owner" href="./" data-home>Sophia Clancy</a>
+  <p class="k">Case Study</p>
+  <p class="p">Notability</p>
+  <ul class="toc">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#role">My Role</a></li>
+    <li><a href="#challenge">The Brief</a></li>
+    <li><a href="#found">Research</a></li>
+    <li><a href="#question">The Reframe</a></li>
+    <li><a href="#strategy">Strategy</a></li>
+    <li><a href="#decisions">Key Decisions</a></li>
+    <li><a href="#solution">The Solution</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#reflection">Reflection</a></li>
+  </ul>
+</aside>
+
+<main>
+<section id="overview">
+  <figure class="cb-hero cb-frame"><div class="device"><iframe src="prototypes/notability/index.html?embed&tour=all" title="Study Session prototype, playing the full flow" loading="eager"></iframe></div></figure>
+  <p class="cb-label">Notability × Berkeley Innovation</p>
+  <h1>Designing a guided AI study session for Notability.</h1>
+  <p class="cb-lede">Notability asked us to make its AI study tool, Learn, more gamified. Research said students didn’t want a game. They wanted a starting point, so we designed Study Session.</p>
+  <dl class="cb-meta"><div><dt>Role</dt><dd>UX Researcher,<br>Product Designer</dd></div><div><dt>Timeline</dt><dd>Aug – Dec 2025</dd></div><div><dt>Team</dt><dd>Cheyenne Paw, Mikayla Acosta, Grace Zhang, Karen Pham</dd></div><div><dt>Status</dt><dd>Concept delivered to Notability</dd></div></dl>
+</section>
+
+<section id="role">
+  <p class="cb-label">My role</p>
+  <h2>I turned research into the direction.</h2>
+  <p>I worked across our surveys, interviews, focus groups, and diary studies, then synthesized them into affinity maps, feature maps, and personas. From there, I revised our how-might-we away from gamification and rebuilt our hi-fi as the clickable prototype on this page.</p>
+</section>
+
+<section id="challenge">
+  <p class="cb-label">The brief</p>
+  <h2>Learn could do almost everything. So could every other AI study tool.</h2>
+  <p>Learn already summarized notes, quizzed students, and answered questions in chat. But nothing tied those tools into a study routine, and every one started from a blank prompt.</p>
+  <p>Notability asked us for two things: a more inclusive study experience for students with learning differences, and a version of Learn that felt more gamified, personalized, and engaging.</p>
+</section>
+
+<section id="found">
+  <p class="cb-label">Research</p>
+  <h2>Students wanted motivation, but rejected almost every way of providing it.</h2>
+  <dl class="cb-stats">
+    <div><dt>Survey responses</dt><dd>85</dd></div>
+    <div><dt>Interviews</dt><dd>15</dd></div>
+    <div><dt>Focus groups</dt><dd>5</dd></div>
+    <div><dt>Diary studies</dt><dd>5</dd></div>
+  </dl>
+  <blockquote class="cb-quote"><p>“I don’t want points. I want to know I’m actually getting better.”</p><cite>Student participant</cite></blockquote>
+  <div class="cb-group">
+    <h3>Four themes kept coming up.</h3>
+    <div class="cb-cols">
+      <div><b>Less gamification</b><p>Streaks and badges didn’t matter. Progress in a tool that felt personal did.</p></div>
+      <div><b>Time efficiency</b><p>Lectures move fast, so students wanted to stay present and organize later.</p></div>
+      <div><b>Trust and accuracy</b><p>When AI made mistakes, students stopped using it.</p></div>
+      <div><b>Simplification</b><p>Complicated tools broke focus. Clarity beat novelty.</p></div>
+    </div>
+  </div>
+  <figure class="cb-wide cb-media cb-frame"><img src="assets/notability/cs/figjam-affinity.webp" alt="FigJam affinity map of student research, grouped into themes" loading="lazy" /></figure>
+</section>
+
+<section id="question">
+  <p class="cb-label">The reframe</p>
+  <h2>The brief asked for a game. Research asked for a starting point.</h2>
+  <p>Streaks created pressure. Badges felt childish. Points rewarded activity instead of understanding, and automatic answers made students doubt they were learning. Adding game mechanics would have solved the wrong problem, so we changed the question.</p>
+  <blockquote class="cb-quote cb-question"><p class="cb-old">How do we make studying more engaging?</p><p>How can we help students find where to begin?</p></blockquote>
+</section>
+
+<section id="strategy">
+  <p class="cb-label">Strategy</p>
+  <h2>Win on the student, not the feature.</h2>
+  <p>Tools like NotebookLM already adapt to your content, and flashcards, quizzes, and summaries are table stakes. But none we reviewed learned how someone studies, or let them turn the AI down. That gap became three bets.</p>
+  <div class="cb-cols three">
+    <div><b>Know the student</b><p>Learn their style, struggles, and goals.</p></div>
+    <div><b>Stay inside the note</b><p>Start plans from notes students already own.</p></div>
+    <div><b>Earn trust</b><p>Make the AI transparent, and easy to turn down.</p></div>
+  </div>
+</section>
+
+<section id="decisions">
+  <p class="cb-label">Key decisions</p>
+  <h2>Four decisions that shaped Study Session.</h2>
+  <div class="cb-group">
+    <h3>Personalize first, but keep it optional and private.</h3>
+    <p>A one-minute survey tailors everything after it. The struggles question is optional, private, and hideable, because disclosure should never be the price of personalization.</p>
+    <figure class="cb-media cb-frame"><div class="device"><iframe data-src="prototypes/notability/index.html?embed&tour=survey" title="Onboarding survey demo"></iframe></div></figure>
+  </div>
+  <div class="cb-group">
+    <h3>Let students turn the AI down.</h3>
+    <p>Students write goals in their own words. Learn can turn them into specific tasks, or leave them as written. No competitor we reviewed let students use less AI.</p>
+    <div class="cb-demo"><div class="segdemo">
+      <div class="sd-step"><span class="sd-n">1</span><p class="sd-l">The student writes</p></div>
+      <div class="sd-typed"><span>understand what a dwarf planet is</span><span>review notes about pluto</span></div>
+      <div class="sd-step"><span class="sd-n">2</span><p class="sd-l">They choose how much help</p><div class="seg"><button data-m="ai">✦ AI goals</button><button data-m="list">☰ My list</button></div></div>
+      <div class="sd-step"><span class="sd-n">3</span><p class="sd-l" id="sdOut">Learn turns it into</p></div>
+      <div class="rows"></div><div class="ft"></div>
+    </div></div>
+  </div>
+  <div class="cb-group">
+    <h3>Replace streaks with evidence of progress.</h3>
+    <p>Our early profile had a day streak. Research said streaks created pressure, so we replaced it with concepts reviewed and before-and-after scores.</p>
+    <figure class="cb-media cb-frame"><div class="device"><iframe data-src="prototypes/notability/index.html?embed&tour=profile" title="Learning profile demo"></iframe></div></figure>
+  </div>
+  <div class="cb-group">
+    <h3>Celebrate completion, not activity.</h3>
+    <p>One brief moment marks a natural stopping point: time studied, topics read, and goals completed. Nothing can be farmed, and nothing asks you to come back tomorrow.</p>
+    <figure class="cb-media cb-frame"><div class="device"><iframe data-src="prototypes/notability/index.html?embed&tour=session" title="Session and completion demo"></iframe></div></figure>
+  </div>
+</section>
+
+<section id="solution">
+  <p class="cb-label">The solution</p>
+  <h2>Study Session gives studying a beginning, middle, and end.</h2>
+  <div class="loop">
+    <div class="steps">
+      <button data-tour="survey">Tailor</button><button data-tour="content">Choose</button><button data-tour="goals">Set goals</button><button data-tour="timer">Time</button><button data-tour="session">Focus & finish</button>
+    </div>
+    <div class="stage">
+      <div class="scene paper" style="margin:0"><div class="device"><iframe data-src="" title="Core loop step demo"></iframe></div></div>
+      <div style="margin-top:18px">
+        <div data-pane><p class="body" style="margin:0">Three questions shape every screen after.</p></div>
+        <div data-pane hidden><p class="body" style="margin:0">AI suggests chapters from past sessions; the outline comes from the note itself.</p></div>
+        <div data-pane hidden><p class="body" style="margin:0">Type goals, enhance them with AI, or keep your own list.</p></div>
+        <div data-pane hidden><p class="body" style="margin:0">Knowing when you’ll stop makes it easier to start.</p></div>
+        <div data-pane hidden><p class="body" style="margin:0">Check off goals beside your notes, then see what changed.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="impact">
+  <p class="cb-label">Impact</p>
+  <h2>We changed the client’s question.</h2>
+  <p>Our work moved Notability from gamifying Learn toward supporting growth with evidence of progress. We delivered a hi-fi prototype of Study Session and Profile Personalization, plus three written concepts.</p>
+  <p>In April 2026, Notability launched a Study Timer on iOS, the direction we explored.</p>
+</section>
+
+<section id="reflection">
+  <p class="cb-label">Reflection</p>
+  <h2>Treat the brief as a hypothesis.</h2>
+  <p>Students didn’t need more engagement. They needed less friction getting started. If we had built what the brief first asked for, we would have answered the wrong question well.</p>
+  <a class="cb-link" href="prototypes/notability/index.html">Try the full prototype ↗</a>
+</section>
+
+  <footer>
+    <p class="eyebrow">Connect with me</p>
+    <p>Built with Berkeley Innovation for Notability alongside Cheyenne Paw, Mikayla Acosta, Grace Zhang, and Karen Pham. Say hi at <a href="mailto:sophiaclancy@berkeley.edu">sophiaclancy@berkeley.edu</a></p>
+    <div class="nextcs"><a href="./" data-home>← All work</a><a href="ASUS.html">Next: ASUS ProArt →</a></div>
+  </footer>
+</main>
+
+<script src="_build/case-notability.js?v=56885b59ae"></script>
+</body>
+</html>

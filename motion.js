@@ -52,11 +52,18 @@
     }
   }
 
-  // Babel-transpiled React trees mount after load, so sweep a few times.
+  // Tag content as soon as React renders it (not on window load, which waits for every image).
   // run() skips nodes it already tagged, so repeats are cheap.
-  function schedule() { [60, 350, 900, 1800].forEach(function (t) { setTimeout(run, t); }); }
-  if (document.readyState === "complete") schedule();
-  else window.addEventListener("load", schedule);
+  function schedule() {
+    run();
+    var pending = 0, mo = new MutationObserver(function () {
+      if (!pending) pending = requestAnimationFrame(function () { pending = 0; run(); });
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+    setTimeout(function () { mo.disconnect(); }, 4000);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", schedule);
+  else schedule();
 })();
 
 /* cursor inverts over the footer for contrast */

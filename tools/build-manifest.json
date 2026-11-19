@@ -1,0 +1,470 @@
+{
+  "images": {
+    "assets/about-default.jpg": {
+      "src": "1828932:1792524992000",
+      "used": true,
+      "out": "assets/about-default.webp",
+      "from": 1828932,
+      "to": 254086
+    },
+    "assets/about-hover.jpg": {
+      "src": "1661041:1792524992000",
+      "used": true,
+      "out": "assets/about-hover.webp",
+      "from": 1661041,
+      "to": 210660
+    },
+    "assets/asus-gradient.png": {
+      "src": "1079517:1792524992000",
+      "used": true,
+      "out": "assets/asus-gradient.webp",
+      "from": 1079517,
+      "to": 10938
+    },
+    "assets/asus-proart-cover.png": {
+      "src": "1349285:1792524992000",
+      "used": true,
+      "out": "assets/asus-proart-cover.webp",
+      "from": 1349285,
+      "to": 13120
+    },
+    "assets/asus-proart-cover2.png": {
+      "src": "1320302:1792524992000",
+      "used": true,
+      "out": "assets/asus-proart-cover2.webp",
+      "from": 1320302,
+      "to": 18638
+    },
+    "assets/asus-proart-lockup.png": {
+      "src": "338848:1792524992000",
+      "used": true,
+      "out": "assets/asus-proart-lockup.webp",
+      "from": 338848,
+      "to": 58844
+    },
+    "assets/chip-brain-base.png": {
+      "src": "324990:1792524992000",
+      "used": true,
+      "out": "assets/chip-brain-base.webp",
+      "from": 324990,
+      "to": 73658
+    },
+    "assets/chip-brain-only.png": {
+      "src": "116567:1792524992000",
+      "used": true,
+      "out": "assets/chip-brain-only.webp",
+      "from": 116567,
+      "to": 25756
+    },
+    "assets/chip-brain.png": {
+      "src": "431359:1792524992000",
+      "used": true,
+      "out": "assets/chip-brain.webp",
+      "from": 431359,
+      "to": 98446
+    },
+    "assets/chip-resume-v2.png": {
+      "src": "178223:1792524992000",
+      "used": true,
+      "out": "assets/chip-resume-v2.webp",
+      "from": 178223,
+      "to": 43514
+    },
+    "assets/contexto/before-finder.jpg": {
+      "src": "113695:1792524992000",
+      "used": true,
+      "out": "assets/contexto/before-finder.webp",
+      "from": 113695,
+      "to": 32296
+    },
+    "assets/contexto/lofi-cleanup.jpg": {
+      "src": "339516:1792524992000",
+      "used": true,
+      "out": "assets/contexto/lofi-cleanup.webp",
+      "from": 339516,
+      "to": 109120
+    },
+    "assets/contexto/lofi-search.jpg": {
+      "src": "321077:1792524992000",
+      "used": true,
+      "out": "assets/contexto/lofi-search.webp",
+      "from": 321077,
+      "to": 156966
+    },
+    "assets/contexto/v2-ask.png": {
+      "src": "187193:1792524992000",
+      "used": true,
+      "out": "assets/contexto/v2-ask.webp",
+      "from": 187193,
+      "to": 48130
+    },
+    "assets/contexto/v2-constellation.png": {
+      "src": "215144:1792524992000",
+      "used": true,
+      "out": "assets/contexto/v2-constellation.webp",
+      "from": 215144,
+      "to": 57968
+    },
+    "assets/contexto/v2-home.png": {
+      "src": "207731:1792524992000",
+      "used": true,
+      "out": "assets/contexto/v2-home.webp",
+      "from": 207731,
+      "to": 66370
+    },
+    "assets/contexto/v2-suggest.png": {
+      "src": "219821:1792524992000",
+      "used": true,
+      "out": "assets/contexto/v2-suggest.webp",
+      "from": 219821,
+      "to": 62288
+    },
+    "assets/contexto/v2-workspace.png": {
+      "src": "204536:1792524992000",
+      "used": true,
+      "out": "assets/contexto/v2-workspace.webp",
+      "from": 204536,
+      "to": 52014
+    },
+    "assets/contexto/wallpaper2.png": {
+      "src": "1307245:1792524992000",
+      "used": true,
+      "out": "assets/contexto/wallpaper2.webp",
+      "from": 1307245,
+      "to": 25908
+    },
+    "assets/finder-constellation.png": {
+      "src": "286745:1792524992000",
+      "used": true,
+      "out": "assets/finder-constellation.webp",
+      "from": 286745,
+      "to": 35370
+    },
+    "assets/finder-recents.png": {
+      "src": "312952:1792524992000",
+      "used": true,
+      "out": "assets/finder-recents.webp",
+      "from": 312952,
+      "to": 40100
+    },
+    "assets/footer-art.png": {
+      "src": "2220622:1792524992000",
+      "used": true,
+      "out": "assets/footer-art.webp",
+      "from": 2220622,
+      "to": 20136
+    },
+    "assets/footer-night.png": {
+      "src": "1656742:1792524992000",
+      "used": true,
+      "out": "assets/footer-night.webp",
+      "from": 1656742,
+      "to": 29416
+    },
+    "assets/forest-frame.png": {
+      "src": "862302:1792524992000",
+      "used": true,
+      "out": "assets/forest-frame.webp",
+      "from": 862302,
+      "to": 230790
+    },
+    "assets/forest-frame2.png": {
+      "src": "1054726:1792524992000",
+      "used": true,
+      "out": "assets/forest-frame2.webp",
+      "from": 1054726,
+      "to": 249170
+    },
+    "assets/forest-frame3.png": {
+      "src": "1788967:1792524992000",
+      "used": true,
+      "out": "assets/forest-frame3.webp",
+      "from": 1788967,
+      "to": 300748
+    },
+    "assets/forest-pixel.png": {
+      "src": "883094:1792524992000",
+      "used": true,
+      "out": "assets/forest-pixel.webp",
+      "from": 883094,
+      "to": 638118
+    },
+    "assets/forest-wide.png": {
+      "src": "2734162:1792524992000",
+      "used": true,
+      "out": "assets/forest-wide.webp",
+      "from": 2734162,
+      "to": 267924
+    },
+    "assets/logo-bi.png": {
+      "src": "897022:1792524992000",
+      "used": true,
+      "out": "assets/logo-bi.webp",
+      "from": 897022,
+      "to": 40238
+    },
+    "assets/logo-mark.png": {
+      "src": "124807:1792524992000",
+      "used": true,
+      "out": "assets/logo-mark.webp",
+      "from": 124807,
+      "to": 34448
+    },
+    "assets/logo-partiful.png": {
+      "src": "199491:1792524992000",
+      "used": true,
+      "out": "assets/logo-partiful.webp",
+      "from": 199491,
+      "to": 9494
+    },
+    "assets/logo-tiger-alpha.png": {
+      "src": "287706:1792524992000",
+      "used": true,
+      "out": "assets/logo-tiger-alpha.webp",
+      "from": 287706,
+      "to": 46352
+    },
+    "assets/logo-tiger-crop.png": {
+      "src": "752718:1792524992000",
+      "used": true,
+      "out": "assets/logo-tiger-crop.webp",
+      "from": 752718,
+      "to": 20052
+    },
+    "assets/logo-tiger.png": {
+      "src": "836690:1792524992000",
+      "used": true,
+      "out": "assets/logo-tiger.webp",
+      "from": 836690,
+      "to": 21794
+    },
+    "assets/notability/comp-goals-ai.png": {
+      "src": "162310:1792524992000",
+      "used": true,
+      "out": "assets/notability/comp-goals-ai.webp",
+      "from": 162310,
+      "to": 16810
+    },
+    "assets/notability/comp-goals-todo.png": {
+      "src": "197592:1792524992000",
+      "used": true,
+      "out": "assets/notability/comp-goals-todo.webp",
+      "from": 197592,
+      "to": 17368
+    },
+    "assets/notability/comp-timer.png": {
+      "src": "185989:1792524992000",
+      "used": true,
+      "out": "assets/notability/comp-timer.webp",
+      "from": 185989,
+      "to": 13214
+    },
+    "assets/notability/journey-cheryl.png": {
+      "src": "106943:1792524992000",
+      "used": true,
+      "out": "assets/notability/journey-cheryl.webp",
+      "from": 106943,
+      "to": 43750
+    },
+    "assets/notability/journey-dylan.png": {
+      "src": "108511:1792524992000",
+      "used": true,
+      "out": "assets/notability/journey-dylan.webp",
+      "from": 108511,
+      "to": 43278
+    },
+    "assets/notability/pencil.png": {
+      "src": "804113:1792524992000",
+      "used": true,
+      "out": "assets/notability/pencil.webp",
+      "from": 804113,
+      "to": 31510
+    },
+    "assets/notability/showcase.png": {
+      "src": "1384320:1792524993000",
+      "used": true,
+      "out": "assets/notability/showcase.webp",
+      "from": 1384320,
+      "to": 241048
+    },
+    "assets/notability/ss-content.png": {
+      "src": "281939:1792524993000",
+      "used": true,
+      "out": "assets/notability/ss-content.webp",
+      "from": 281939,
+      "to": 69818
+    },
+    "assets/notability/ss-goals.png": {
+      "src": "289891:1792524993000",
+      "used": true,
+      "out": "assets/notability/ss-goals.webp",
+      "from": 289891,
+      "to": 71848
+    },
+    "assets/notability/ss-intro.png": {
+      "src": "293133:1792524993000",
+      "used": true,
+      "out": "assets/notability/ss-intro.webp",
+      "from": 293133,
+      "to": 68996
+    },
+    "assets/notability/sup-profile.png": {
+      "src": "220261:1792524993000",
+      "used": true,
+      "out": "assets/notability/sup-profile.webp",
+      "from": 220261,
+      "to": 21624
+    },
+    "assets/notability/sup-reading.png": {
+      "src": "182606:1792524993000",
+      "used": true,
+      "out": "assets/notability/sup-reading.webp",
+      "from": 182606,
+      "to": 30020
+    },
+    "assets/notability/sup-visuals.png": {
+      "src": "203901:1792524993000",
+      "used": true,
+      "out": "assets/notability/sup-visuals.webp",
+      "from": 203901,
+      "to": 22306
+    },
+    "assets/notability/wordmark-white.png": {
+      "src": "346607:1792524993000",
+      "used": true,
+      "out": "assets/notability/wordmark-white.webp",
+      "from": 346607,
+      "to": 55300
+    },
+    "assets/sophia-src.png": {
+      "src": "1857796:1792524993000",
+      "used": true,
+      "out": "assets/sophia-src.webp",
+      "from": 1857796,
+      "to": 52890
+    },
+    "assets/sophia-wordmark.png": {
+      "src": "162971:1792524993000",
+      "used": true,
+      "out": "assets/sophia-wordmark.webp",
+      "from": 162971,
+      "to": 38596
+    },
+    "assets/thumbs/notability-base-v4.png": {
+      "src": "4162379:1792524993000",
+      "used": true,
+      "out": "assets/thumbs/notability-base-v4.webp",
+      "from": 4162379,
+      "to": 162636
+    },
+    "assets/thumbs/notability-base-v5.png": {
+      "src": "4156092:1792524993000",
+      "used": true,
+      "out": "assets/thumbs/notability-base-v5.webp",
+      "from": 4156092,
+      "to": 162866
+    },
+    "assets/thumbs/notability-base.png": {
+      "src": "4176144:1792524993000",
+      "used": true,
+      "out": "assets/thumbs/notability-base.webp",
+      "from": 4176144,
+      "to": 164044
+    },
+    "assets/thumbs/notability-cover.png": {
+      "src": "1129372:1792524993000",
+      "used": true,
+      "out": "assets/thumbs/notability-cover.webp",
+      "from": 1129372,
+      "to": 54120
+    },
+    "assets/thumbs/notability-cover2.png": {
+      "src": "1159509:1792524993000",
+      "used": true,
+      "out": "assets/thumbs/notability-cover2.webp",
+      "from": 1159509,
+      "to": 58918
+    },
+    "assets/thumbs/notability-cover3.png": {
+      "src": "2977373:1792524993000",
+      "used": true,
+      "out": "assets/thumbs/notability-cover3.webp",
+      "from": 2977373,
+      "to": 124938
+    },
+    "assets/thumbs/notability-cover4.png": {
+      "src": "3979178:1792524993000",
+      "used": true,
+      "out": "assets/thumbs/notability-cover4.webp",
+      "from": 3979178,
+      "to": 132828
+    },
+    "assets/thumbs/partake-cover.png": {
+      "src": "1391496:1792524993000",
+      "used": true,
+      "out": "assets/thumbs/partake-cover.webp",
+      "from": 1391496,
+      "to": 44678
+    }
+  },
+  "outputs": {
+    "_build/image-slot.js": "image-slot.js",
+    "_build/tiger.js": "tiger.js",
+    "_build/tweaks-panel.js": "tweaks-panel.jsx",
+    "_build/data.js": "data.jsx",
+    "_build/flipcover.js": "flipcover.jsx",
+    "_build/notabilitycover.js": "notabilitycover.jsx",
+    "_build/contextocover.js": "contextocover.jsx",
+    "_build/partakecover.js": "partakecover.jsx",
+    "_build/sandcover.js": "sandcover.jsx",
+    "_build/sandanimcover.js": "sandanimcover.jsx",
+    "_build/contextoflowcover.js": "contextoflowcover.jsx",
+    "_build/asuscover.js": "asuscover.jsx",
+    "_build/about-v2.js": "about-v2.jsx",
+    "_build/app-v13.js": "app-v13.jsx",
+    "_build/motion.js": "motion.js",
+    "_build/hero-field.js": "hero-field.js",
+    "_build/twinkle-trail.js": "twinkle-trail.js",
+    "_build/styles.css": "styles.css",
+    "_build/styles-v12.css": "styles-v12.css",
+    "_build/type.css": "type.css",
+    "_build/figs-core.js": "figs-core.jsx",
+    "_build/figs-nb-app.js": "figs-nb-app.jsx",
+    "_build/figs-nb-research.js": "figs-nb-research.jsx",
+    "_build/casestudy-blocks.js": "casestudy-blocks.jsx",
+    "_build/data-case15.js": "data-case15.jsx",
+    "_build/casestudy-convert.js": "casestudy-convert.jsx",
+    "_build/casestudy-v15.js": "casestudy-v15.jsx",
+    "_build/casestudy-v13.js": "casestudy-v13.jsx",
+    "_build/styles-case13.css": "styles-case13.css",
+    "_build/figs.css": "figs.css",
+    "_build/styles-case15.css": "styles-case15.css",
+    "_build/proto/data.js": "proto/data.jsx",
+    "_build/proto/chrome.js": "proto/chrome.jsx",
+    "_build/proto/screens.js": "proto/screens.jsx",
+    "_build/proto/app.js": "proto/app.jsx",
+    "_build/proto/styles.css": "proto/styles.css",
+    "_build/brain/main.js": "brain/main.js",
+    "_build/play-v2.js": "play-v2.jsx",
+    "_build/animations-v3.js": "animations-v3.jsx",
+    "_build/sand-ar-parts.js": "sand-ar-parts.jsx",
+    "_build/sand-ar-phone.js": "sand-ar-phone.jsx",
+    "_build/sand-ar-piece.js": "sand-ar-piece.jsx",
+    "_build/direction-a.css": "direction-a.css",
+    "_build/case-notability.js": "case-notability.js",
+    "_build/case-a.css": "case-a.css"
+  },
+  "fonts": {
+    "vendor/fonts/e8c39833b2.css": "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400..700&family=Space+Grotesk:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&display=swap",
+    "vendor/fonts/4d87221c3e.css": "https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap",
+    "vendor/fonts/a611d6e62d.css": "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Space+Grotesk:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&display=swap",
+    "vendor/fonts/6a777a6e42.css": "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@500;600&display=swap",
+    "vendor/fonts/5268de063b.css": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap",
+    "vendor/fonts/079ef9fa6a.css": "https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap",
+    "vendor/fonts/2e0572aac9.css": "https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400..700&display=swap",
+    "vendor/fonts/08b099d786.css": "https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Hanken+Grotesk:wght@400;500&display=swap",
+    "vendor/fonts/5abba3fc30.css": "https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Hanken+Grotesk:wght@400;500;600;700&display=swap",
+    "vendor/fonts/c685ac4459.css": "https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Geist:wght@400;500;600;700&display=swap",
+    "vendor/fonts/2b1e607304.css": "https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Figtree:wght@400;500;600;700&display=swap"
+  }
+}

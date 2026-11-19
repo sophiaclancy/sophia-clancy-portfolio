@@ -1,13 +1,13 @@
 // app-v13.jsx — Sophia portfolio, sidebar layout
 
 const WORK_LEFT = [
-  { id: "asus", title: "ASUS ProArt", desc: "AI autonomy in creative workflows. Leading research on what creators are comfortable delegating to agents.", tags: ["Product Management", "In Progress"], href: "CaseStudy.html?p=asus", tint: "var(--bg-card)" },
-  { id: "p7", title: "Contexto", desc: "Finder concept that organizes files into Workspaces by project. 12-week research and design project.", tags: ["UX Research", "Concept"], href: "CaseStudy.html?p=p7", tint: "var(--bg-card)", bleed: true },
+  { id: "asus", title: "ASUS ProArt", desc: "AI autonomy in creative workflows. Leading research on what creators are comfortable delegating to agents.", tags: ["Product Strategy", "Coming Dec"], href: "ASUS.html", tint: "var(--bg-card)" },
+  { id: "p7", title: "Contexto", desc: "A graph-based layer for macOS that finds the file you mention, right where you’re writing.", tags: ["UX Research", "Concept"], href: "Contexto.html", tint: "var(--bg-card)", bleed: true },
 ];
 
 const WORK_RIGHT = [
-  { id: "p1", title: "Notability", desc: "A personalized, accessible AI study experience for Notability Learn.", tags: ["Product Design", "Shipped"], href: "CaseStudy.html?p=p1", tint: "var(--bg-card)" },
-  { id: "p2", title: "Partake", desc: "TikTok content strategy for an allergen-free snack brand. 10-week research project.", tags: ["Content Strategy", "TikTok"], href: "CaseStudy.html?p=p2", tint: "var(--bg-card)" },
+  { id: "p1", title: "Notability", desc: "A personalized, accessible AI study experience for Notability Learn.", tags: ["Product Design", "Shipped"], href: "Notability.html", tint: "var(--bg-card)" },
+  { id: "p2", title: "Partake", desc: "TikTok content strategy for an allergen-free snack brand. 10-week research project.", tags: ["Content Strategy", "TikTok"], href: "Partake.html", tint: "var(--bg-card)" },
 ];
 
 const TIMELINE = [
@@ -41,7 +41,7 @@ function HeroName() {
   return (
     <React.Fragment>
       <h1 className="hero-head sb-name">Sophia Clancy</h1>
-      <p className="sb-sub">CogSci &amp; Data Science @ UC Berkeley</p>
+      <p className="sb-sub">CogSci &amp; Data Science<br /> @ UC Berkeley</p>
     </React.Fragment>
   );
 }
@@ -357,25 +357,52 @@ function Playground() {
   );
 }
 
-function Cover({ item }) {
-  if (item.id === "p1") return (
-    <div className="nb-cover">
-      <div className="nb-sky"></div>
-      <div className="nb-stage">
-        <img className="nb-shot" src="assets/thumbs/notability-base-v5.png" alt="" loading="lazy" />
-        <div className="nb-hsky" aria-hidden="true"><i></i></div>
-        <img className="nb-pill nb-notes" src="assets/thumbs/notability-pill-notes.png" alt="" loading="lazy" style={{ left: "7.60%", top: "14.34%", width: "23.83%" }} />
-        <img className="nb-pill nb-tutor" src="assets/thumbs/notability-pill-tutor.png" alt="" loading="lazy" style={{ left: "73.08%", top: "26.00%", width: "20.67%" }} />
-        <img className="nb-pill nb-plan" src="assets/thumbs/notability-pill-plan.png" alt="" loading="lazy" style={{ left: "7.10%", top: "70.57%", width: "25.89%" }} />
-      </div>
-      <div className="nb-grain"></div>
+function NbLiveCover() {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const f = ref.current; if (!f) return;
+    const card = f.closest(".wcard"); if (!card) return;
+    const reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const send = (cmd) => { try { f.contentWindow.postMessage({ nbCmd: cmd, tour: "all" }, "*"); } catch (e) {} };
+    const on = () => { if (!reduced) send("play"); }, off = () => send("rest");
+    card.addEventListener("mouseenter", on); card.addEventListener("mouseleave", off);
+    card.addEventListener("focus", on); card.addEventListener("blur", off);
+    return () => { card.removeEventListener("mouseenter", on); card.removeEventListener("mouseleave", off); card.removeEventListener("focus", on); card.removeEventListener("blur", off); };
+  }, []);
+  return (
+    <div className="nx-cover">
+      <img className="nx-win nx-still" src="assets/thumbs/notability-window.webp" alt="" aria-hidden="true" />
+      <iframe ref={ref} className="nx-live" src="prototypes/notability/index.html?embed&rest=great" title="Study Session prototype" tabIndex="-1" loading="lazy" aria-hidden="true"></iframe>
     </div>
   );
+}
+
+function CxLiveCover() {
+  const ref = React.useRef(null);
+  const [live, setLive] = React.useState(false);
+  const [ready, setReady] = React.useState(false);
+  React.useEffect(() => {
+    const card = ref.current && ref.current.closest(".wcard"); if (!card) return;
+    const reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const on = () => { if (!reduced) setLive(true); }, off = () => { setLive(false); setReady(false); };
+    card.addEventListener("mouseenter", on); card.addEventListener("mouseleave", off);
+    card.addEventListener("focus", on); card.addEventListener("blur", off);
+    return () => { card.removeEventListener("mouseenter", on); card.removeEventListener("mouseleave", off); card.removeEventListener("focus", on); card.removeEventListener("blur", off); };
+  }, []);
+  return (
+    <div className="cx-mail" ref={ref}>
+      <img src="assets/contexto/cover-mail.webp" alt="" loading="lazy" />
+      {live ? <iframe className={"cx-mail-live" + (ready ? " is-on" : "")} src="prototypes/contexto/index.html?embed&scene=mail&tour=scene" title="Contexto prototype" tabIndex="-1" aria-hidden="true" onLoad={() => setTimeout(() => setReady(true), 350)}></iframe> : null}
+    </div>
+  );
+}
+
+function Cover({ item }) {
+  if (item.id === "p1") return <NbLiveCover />;
   if (item.id === "p2" && window.PartakeCover) return <window.PartakeCover />;
   if (item.id === "p3" && window.SandAnimCover) return <window.SandAnimCover />;
-  if (item.id === "p7" && window.ContextoFlowCover) return <window.ContextoFlowCover />;
-  if (item.id === "p7") return <img src="assets/thumbs/contexto.png" alt="" loading="lazy" />;
-  if (item.id === "asus" && window.AsusCover) return <window.AsusCover />;
+  if (item.id === "p7") return <CxLiveCover />;
+  if (item.id === "asus") return <div className="ax-cover"><span className="ax-grain" aria-hidden="true"></span><span className="ax-lens"><img src="assets/asus-proart-lockup.webp" alt="ASUS ProArt" /></span></div>;
   return null;
 }
 
@@ -384,11 +411,15 @@ const HAS_ART = ["p1", "p2", "p3", "p7", "asus"];
 function Card({ item, lead }) {
   const body = (
     <React.Fragment>
-      <div className={"card-plate" + (HAS_ART.includes(item.id) ? "" : " is-empty")} style={{ background: item.tint }}>
+      <div className={"card-plate sc-" + item.id + (HAS_ART.includes(item.id) ? "" : " is-empty")} style={{ background: item.tint }}>
+        <span className="da-rim" aria-hidden="true"></span>
         <div className="card-art"><Cover item={item} /></div>
+        <span className="da-glint g-top" aria-hidden="true"></span><span className="da-glint g-bot" aria-hidden="true"></span><span className="da-glint g-tl" aria-hidden="true"></span><span className="da-glint g-tr" aria-hidden="true"></span><span className="da-glint g-br" aria-hidden="true"></span>
+        {item.href ? <span className="da-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M8 7h9v9" /></svg></span> : null}
+        {item.tools ? <span className="da-tools" aria-hidden="true">{item.tools.map((t) => <span key={t} className="da-tool"><img src={t} alt="" /></span>)}</span> : null}
       </div>
       <div className="card-cap">
-        <span className="card-title">{item.title}</span>
+        <span className="card-title">{item.title}{item.locked ? <svg className="card-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-label="Password protected"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> : null}</span>
         {item.tags ? <span className="card-tags">{item.tags.map((t) => <span key={t} className="card-tag">{t}</span>)}</span> : <span className="card-meta">{item.meta}</span>}
       </div>
       {item.desc ? <p className="card-desc">{item.desc}</p> : null}
@@ -400,7 +431,7 @@ function Card({ item, lead }) {
 }
 
 const SB_NAV = [
-  { n: "01", t: "Work", href: "./", on: (window.PAGE || "work") === "work" },
+  { n: "01", t: "Work", href: location.protocol === "file:" ? "index.html" : "./", on: (window.PAGE || "work") === "work" },
   { n: "02", t: "About", href: "About.html", on: window.PAGE === "about" },
   { n: "03", t: "Play", href: "Play.html", on: window.PAGE === "play" },
   { n: "04", t: "Resume", href: "https://drive.google.com/file/d/1oPp-S96QerNcEBSoBz0-ZevHmxsRBRNT/view?usp=sharing", ext: true },
@@ -505,6 +536,10 @@ function App() {
           <HeroName />
           <HeroRole />
         </div>
+        <div className="da-now">
+          <p className="da-now-label da-mono">Currently</p>
+          <ul className="da-now-list">{STATUS_PHRASES.map((p) => <li key={p}>{p}</li>)}</ul>
+        </div>
         <nav className="sb-nav" aria-label="Main">
           {SB_NAV.map((it) => (
             <a key={it.n} href={it.href} target={it.ext ? "_blank" : undefined} rel={it.ext ? "noopener" : undefined} className={it.on ? "is-active" : undefined} aria-current={it.on ? "page" : undefined}>
@@ -525,12 +560,10 @@ function App() {
         <main className="sb-main is-about"><window.AboutMain /></main>
       ) : (
       <main className="sb-main" id="work">
-        <NowToast />
-        <div className="work-cols">
-          <div className="work-col">{WORK_LEFT.map((w) => <Card key={w.id} item={w} />)}</div>
-          <div className="work-col">{WORK_RIGHT.map((w) => <Card key={w.id} item={w} />)}</div>
+        <div className="da-grid">
+          {WORK_LEFT.flatMap((w, i) => [w, WORK_RIGHT[i]]).filter(Boolean).map((w) => <Card key={w.id} item={w} />)}
         </div>
-        <PixelTrees />
+
       </main>
       )}
     </div>

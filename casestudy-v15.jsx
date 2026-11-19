@@ -1,3 +1,4 @@
+var HOMEW = location.protocol === "file:" ? "index.html#work" : "./#work";
 // casestudy-v15.jsx — full-page case study: sticky dot TOC, descriptive headings, framed visuals
 (function () {
   const { useState, useEffect, useRef, useCallback } = React;
@@ -124,7 +125,7 @@
     }, []);
 
     useEffect(() => {
-      const k = (e) => { if (e.key === "Escape" && !document.querySelector(".fg-lb")) location.href = "./#work"; };
+      const k = (e) => { if (e.key === "Escape" && !document.querySelector(".fg-lb")) location.href = HOMEW; };
       window.addEventListener("keydown", k);
       return () => window.removeEventListener("keydown", k);
     }, []);
@@ -142,7 +143,7 @@
         {window.CustomCursor ? <window.CustomCursor /> : null}
         <div className="c15-grid">
           <aside className="c15-side">
-            <a className="c15-back" href="./#work"><span aria-hidden="true">&larr;</span> Home</a>
+            <a className="c15-back" href={HOMEW}><span aria-hidden="true">&larr;</span> Home</a>
             <div className="c15-side-id">
               <span>Case study</span>
               <b>{p.title}</b>
