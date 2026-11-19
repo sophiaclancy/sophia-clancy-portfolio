@@ -32,12 +32,12 @@
     var scrim = document.createElement("div"); scrim.className = "sb-scrim";
     var close = document.createElement("button"); close.className = "sb-close"; close.type = "button"; close.setAttribute("aria-label", "Close menu");
     close.innerHTML = '<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
-    document.body.appendChild(tab); sb.parentNode.insertBefore(scrim, sb); sb.appendChild(close); sb.setAttribute("tabindex", "-1");
+    document.body.appendChild(tab); document.body.appendChild(scrim); sb.appendChild(close); sb.setAttribute("tabindex", "-1");
     if (!sb.id) sb.id = "sidebar"; tab.setAttribute("aria-controls", sb.id);
     // name + tagline at the top of the page while the sidebar is tucked away
     when(".sb-main", function (main) {
       var name = sb.querySelector(".hero-left"), h = document.createElement("div"); h.className = "sb-mhead";
-      h.innerHTML = "<b>Sophia Clancy</b><span>CogSci &amp; Data Science @ UC Berkeley. A product builder who decides what AI should do, and what stays human.</span>";
+      var wm = sb.querySelector(".sb-wm"); h.innerHTML = (wm ? '<a class="sb-mwm" href="./"><span class="sb-wm">' + wm.innerHTML + '</span><span class="sb-wm-txt">Sophia Clancy</span></a>' : "<b>Sophia Clancy</b>") + "<span>CogSci &amp; Data Science @ UC Berkeley. A product builder who decides what AI should do, and what stays human.</span>";
       main.insertBefore(h, main.firstChild);
     });
     function set(open) {

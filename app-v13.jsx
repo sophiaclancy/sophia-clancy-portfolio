@@ -37,10 +37,13 @@ const STATUS_PHRASES = [
 const STATUS_COLORS = ["#2c9169", "#2c9169", "#2c9169"];
 const STATUS_LONGEST = "looking to bring a creative lens to technical spaces";
 
+// Handwritten wordmark (from her handwriting, version A, lowercase). Real text sits on top, transparent, so it highlights and copies.
+const SB_WORDMARK = "<svg class=\"sb-wm-svg\" viewBox=\"-12 -12 709 164\" aria-hidden=\"true\"><g transform=\"translate(0 0)\"><path d=\"M40 60 C33 50 12 50 11 63 C10 76 40 72 41 87 C42 101 17 105 7 94\" stroke-width=\"12.00\" transform=\"translate(0.0 0.0) rotate(-0.2 25 80)\"></path><path d=\"M26 52 C40 52 46 64 46 77 C46 91 38 101 26 101 C13 101 6 91 6 77 C6 63 13 52 26 52 Z\" stroke-width=\"12.00\" transform=\"translate(58.0 0.2) rotate(-0.2 25 80)\"></path><path d=\"M9 54 L9 138 M9 68 C14 54 42 50 44 72 C46 93 26 101 10 92\" stroke-width=\"12.00\" transform=\"translate(120.0 0.2) rotate(-0.2 25 80)\"></path><path d=\"M9 10 L9 100 M9 70 C14 55 40 53 40 71 L40 100\" stroke-width=\"12.00\" transform=\"translate(182.0 0.1) rotate(-0.2 25 80)\"></path><path d=\"M12 56 L12 100 M12 31 L12 32\" stroke-width=\"12.00\" transform=\"translate(241.0 0.1) rotate(0.1 25 80)\"></path><path d=\"M40 64 C34 51 8 53 6 77 C4 97 31 104 40 87 M40 56 L41 100\" stroke-width=\"12.00\" transform=\"translate(275.0 -0.2) rotate(0.0 25 80)\"></path><path d=\"M41 62 C31 49 6 55 6 77 C6 99 30 104 42 92\" stroke-width=\"12.00\" transform=\"translate(368.0 -0.2) rotate(-0.1 25 80)\"></path><path d=\"M11 8 C11 40 12 78 14 100\" stroke-width=\"12.00\" transform=\"translate(425.0 -0.2) rotate(-0.1 25 80)\"></path><path d=\"M40 64 C34 51 8 53 6 77 C4 97 31 104 40 87 M40 56 L41 100\" stroke-width=\"12.00\" transform=\"translate(460.0 -0.2) rotate(0.1 25 80)\"></path><path d=\"M9 55 L9 100 M9 70 C14 55 40 53 40 71 L40 100\" stroke-width=\"12.00\" transform=\"translate(521.0 -0.1) rotate(0.0 25 80)\"></path><path d=\"M41 62 C31 49 6 55 6 77 C6 99 30 104 42 92\" stroke-width=\"12.00\" transform=\"translate(580.0 0.1) rotate(0.1 25 80)\"></path><path d=\"M6 55 C6 80 12 90 23 90 C34 90 40 80 40 55 M40 55 L40 120 C40 139 19 143 7 132\" stroke-width=\"12.00\" transform=\"translate(637.0 0.1) rotate(-0.1 25 80)\"></path></g></svg>";
+
 function HeroName() {
   return (
     <React.Fragment>
-      <h1 className="hero-head sb-name"><a className="sb-home" href={location.protocol === "file:" ? "index.html" : "./"} aria-label="Sophia Clancy, back to Work">Sophia Clancy</a></h1>
+      <h1 className="hero-head sb-name sb-name-wm"><a className="sb-home" href={location.protocol === "file:" ? "index.html" : "./"}><span className="sb-wm" dangerouslySetInnerHTML={{ __html: SB_WORDMARK }} /><span className="sb-wm-txt">Sophia Clancy</span></a></h1>
       <p className="sb-sub">CogSci &amp; Data Science<br /> @ UC Berkeley</p>
     </React.Fragment>
   );
