@@ -596,3 +596,18 @@ Branch: `design/direction-a`. All styling lives in `direction-a.css` (remove its
 - Risk: Low (copy only)
 - Status: ✅ Done
 - Review: [ ]
+
+### Milestone 22.0 — Case-study storytelling pass (overnight, Nov 19)
+- What changed: Every ending now follows May Wu's QoderWake model: the existing reflection, then "What I learned" (three short headed lessons), then an honest "What I got wrong first" / "What was harder than expected" drawn only from missteps already documented on each page (Notability's day streak, Sand's readiness score, Partake's polished early ideas, Contexto's v2.1/v2.2, Baro's static Figma frames). ASUS gets "What I'm learning by leading it." Contexto's "Wrap-up & key takeaways" became "What building it myself taught me." Hero ledes for Contexto, Sand, Baro and Partake were rewritten as tension → turn (Notability's pattern).
+- Primary inspiration used: May Wu (lessons + honest course corrections), Bao (concrete), Rachel (short)
+- Anti-slop decision: No new facts, quotes or metrics; every lesson cites something already on the page.
+- Risk: Low (copy). Backups: ~/git/portfolio-design-versions/backups/*-before-reflection-pass.html
+- Status: ✅ Done · Needs Sophia's voice check (lesson wording is mine)
+- Review: [ ]
+
+### Milestone 23.0 — Case-study structure: less "text floating on white"
+- What changed: On desktop every section after the hero is a two-column block: numbered section marker + label (sticky) on the left, content on the right, hairline between sections. Quotes become soft tinted panels; reframes ("old question → new question") become a white card; "What I learned" is a tinted panel with large mono numbers; "What I got wrong first" is a white aside with a warm edge. Sub-groups get a dashed rule. Phone stays one column.
+- Primary inspiration used: Sophia ("better separation"), her About page layout
+- Risk: Low (block 23.0 at end of case-b.css; backup case-b-before-structure.css)
+- Status: ✅ Done
+- Review: [ ]

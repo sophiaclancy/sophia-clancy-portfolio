@@ -116,7 +116,7 @@ const PROJECTS = [
 
       { t: "head", id: "problem", eyebrow: "Problem",
         title: "Digital clutter becomes visible only when someone needs something.",
-        body: "Files accumulate gradually, below the threshold of attention. The problem becomes urgent when someone cannot locate the correct assignment, r\u00e9sum\u00e9, or project draft." },
+        body: "Files accumulate gradually, below the threshold of attention. The problem becomes urgent when someone cannot locate the correct assignment, resume, or project draft." },
       { t: "text", body: "This creates:" },
       { t: "list", items: [
         "Time lost searching and reopening files",
@@ -258,7 +258,7 @@ const PROJECTS = [
 
       { t: "subhead", title: "Ask Finder",
         body: "Users can search using what they remember:" },
-      { t: "callout", text: "\u201cThe r\u00e9sum\u00e9 I edited before my MDB interview.\u201d" },
+      { t: "callout", text: "\u201cThe resume I edited before my MDB interview.\u201d" },
       { t: "text", body: "Contexto returns the likely file and explains which contextual signals created the match." },
       { t: "text", body: "We kept this feature intentionally quiet. AI supports retrieval without turning Finder into a chatbot." },
       { t: "img", src: "assets/contexto/v2-ask.png", frame: true, bg: "#e8eef4",

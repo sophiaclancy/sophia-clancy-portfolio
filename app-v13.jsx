@@ -49,7 +49,7 @@ function HeroName() {
 function HeroRole() {
   return (
     <div className="hero-roleset">
-      <p className="hero-role">a <i className="hl hl-pink" data-text="product builder">product builder</i> who decides what AI should do, and what <i className="hl hl-orange" data-text="stays human">stays human</i>.</p>
+      <p className="hero-role">a product builder who decides what AI should do, and what stays human.</p>
     </div>
   );
 }
@@ -402,16 +402,21 @@ function Cover({ item }) {
   if (item.id === "p2" && window.PartakeCover) return <window.PartakeCover />;
   if (item.id === "p3" && window.SandAnimCover) return <window.SandAnimCover />;
   if (item.id === "p7") return <CxLiveCover />;
-  if (item.id === "asus") return <div className="ax-cover"><span className="ax-grain" aria-hidden="true"></span><span className="ax-lens"><img src="assets/asus-proart-lockup.webp" alt="ASUS ProArt" /></span></div>;
+  if (item.id === "asus") return <img className="ax-flat" src="assets/asus-proart-lockup.webp" alt="ASUS ProArt" />;
   return null;
 }
 
 const HAS_ART = ["p1", "p2", "p3", "p7", "asus"];
+// Terrarium "fields": blurred nature behind the work (painted by fields.js). 
+// Ants per card (ants.js): mode + what they walk around
+const ANTS = { asus: ["march", ".ax-flat"], p1: ["edge", ".nx-live"], p7: ["keys"], p2: ["cookie"] };
+const FIELD = { asus: "asus", p1: "notability", p7: "contexto", p2: "partake" };
 
 function Card({ item, lead }) {
   const body = (
     <React.Fragment>
-      <div className={"card-plate sc-" + item.id + (HAS_ART.includes(item.id) ? "" : " is-empty")} style={{ background: item.tint }}>
+      <div className={"card-plate sc-" + item.id + (HAS_ART.includes(item.id) ? "" : " is-empty") + (FIELD[item.id] ? " has-field" : "")} style={{ background: item.tint }} data-ants={ANTS[item.id] && ANTS[item.id][0]} data-ants-target={ANTS[item.id] && ANTS[item.id][1]}>
+        {FIELD[item.id] ? <canvas className="da-field" data-field={FIELD[item.id]} aria-hidden="true"></canvas> : null}
         <span className="da-rim" aria-hidden="true"></span>
         <div className="card-art"><Cover item={item} /></div>
         <span className="da-glint g-top" aria-hidden="true"></span><span className="da-glint g-bot" aria-hidden="true"></span><span className="da-glint g-tl" aria-hidden="true"></span><span className="da-glint g-tr" aria-hidden="true"></span><span className="da-glint g-br" aria-hidden="true"></span>
@@ -434,7 +439,7 @@ const SB_NAV = [
   { n: "01", t: "Work", href: location.protocol === "file:" ? "index.html" : "./", on: (window.PAGE || "work") === "work" },
   { n: "02", t: "About", href: "About.html", on: window.PAGE === "about" },
   { n: "03", t: "Play", href: "Play.html", on: window.PAGE === "play" },
-  { n: "04", t: "Resume", href: "https://drive.google.com/file/d/1oPp-S96QerNcEBSoBz0-ZevHmxsRBRNT/view?usp=sharing", ext: true },
+  { n: "04", t: "Resume", href: "https://drive.google.com/file/d/1xUUJODBYS7LKQRSLNRIj3dxtsqX9ORgb/view?usp=sharing", ext: true },
 ];
 
 function AsusBar() {
@@ -526,8 +531,42 @@ function useGlassGlare() {
   }, []);
 }
 
+// Footer clock: live time in Berkeley, with a time-of-day word
+function FooterClock() {
+  const fmt = React.useMemo(() => new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", minute: "2-digit" }), []);
+  const hr = React.useMemo(() => new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", hour12: false }), []);
+  const [now, setNow] = React.useState(() => new Date());
+  React.useEffect(() => { const t = setInterval(() => setNow(new Date()), 1000); return () => clearInterval(t); }, []);
+  const h = +hr.format(now) % 24;
+  const mood = h < 6 ? "asleep" : h < 12 ? "morning" : h < 18 ? "afternoon" : h < 22 ? "evening" : "late night";
+  const parts = fmt.format(now).split(":");
+  return <p className="sf-clock"><span className="sf-dot" aria-hidden="true"></span>Berkeley · <time>{parts[0]}<span className="sf-colon">:</span>{parts[1]}</time> · {mood}</p>;
+}
+
+function SiteFooter() {
+  // Filled by footer.js: quote of the day + dot-matrix scene of the day
+  return (
+    <footer className="sf" aria-label="Footer">
+      <canvas className="sf-dots" aria-hidden="true"></canvas>
+      <figure className="sf-q"><blockquote className="sf-quote"></blockquote><figcaption className="sf-by"></figcaption></figure>
+      <nav className="sf-col" aria-label="Pages">
+        {SB_NAV.map((it) => <a key={it.n} href={it.href} target={it.ext ? "_blank" : undefined} rel={it.ext ? "noopener" : undefined} className={it.on ? "is-on" : undefined}>{it.t}</a>)}
+      </nav>
+      <nav className="sf-col" aria-label="Outbound">
+        <a href="mailto:sophiaclancy@berkeley.edu">Email</a>
+        <a href="https://www.linkedin.com/in/sophia-clancy-488970325/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/sophiaclancy" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://x.com/clancystufff" target="_blank" rel="noopener">X</a>
+        <a href="#top" className="sf-top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>✦ Back to top</a>
+      </nav>
+      <FooterClock />
+    </footer>
+  );
+}
+
 function App() {
   return (
+    <React.Fragment>
     <div className="v12 sb-shell">
       {window.CustomCursor ? <window.CustomCursor /> : null}
       <aside className="sb fh">
@@ -538,11 +577,15 @@ function App() {
         </div>
         <nav className="sb-nav" aria-label="Main">
           {SB_NAV.map((it) => (
-            <a key={it.n} href={it.href} target={it.ext ? "_blank" : undefined} rel={it.ext ? "noopener" : undefined} className={it.on ? "is-active" : undefined} aria-current={it.on ? "page" : undefined}>
+            <a key={it.n} href={it.href} target={it.ext ? "_blank" : undefined} rel={it.ext ? "noopener" : undefined} className={it.on ? "is-active" : undefined} aria-current={it.on ? "page" : undefined} data-n={it.n}>
               <span>{it.t}</span><span className="sb-arr" aria-hidden="true">&rarr;</span>
             </a>
           ))}
         </nav>
+        <div className="sb-outbound" aria-label="Outbound">
+          <p className="sb-ob-h">Outbound</p>
+          <p className="sb-ob-links"><a href="mailto:sophiaclancy@berkeley.edu">Email</a>, <a href="https://www.linkedin.com/in/sophia-clancy-488970325/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://github.com/sophiaclancy" target="_blank" rel="noopener">GitHub</a>, <a href="https://x.com/clancystufff" target="_blank" rel="noopener">X</a>, <a href={SB_NAV[3].href} target="_blank" rel="noopener">Resume</a></p>
+        </div>
         <div className="sb-out">
           <a href="https://www.linkedin.com/in/sophia-clancy-488970325/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V16.5M8 7.6v.1M11.5 16.5v-6M11.5 13.2a2.4 2.4 0 0 1 4.8 0v3.3"/></svg></a>
           <a href="https://github.com/sophiaclancy" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
@@ -563,6 +606,8 @@ function App() {
       </main>
       )}
     </div>
+    <SiteFooter />
+    </React.Fragment>
   );
 }
 

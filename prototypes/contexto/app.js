@@ -185,8 +185,8 @@
         ["Midterm_ECON1_graded.pdf", "Exam", "Downloads", "Nov 3, 2023", ["Fall 2023", "Exam"]]]],
       ["Mentions ECON 1", "", [["ECON 100B · Midterm review", "Note", "Notes app", "Today", ["Links to Lecture07"]]]]] },
     cs61a: { title: "CS 61A", sub: "Class · 14 files from 3 places", secs: [["Spring 2024", "freshman year", [["lab01.py", "Lab", "Downloads", "Jan 24, 2024", ["Spring 2024", "Lab"]], ["CS61A_Hog_Project.zip", "Project", "Documents", "Feb 16, 2024", ["Spring 2024", "Project"]], ["CS61A_Ants_Project_Writeup.pdf", "Project", "Downloads", "Apr 26, 2024", ["Spring 2024", "Project", "Sent to Prof. Rivera"]], ["CS61A_Final_Notes.pdf", "Notes", "iCloud Drive › School", "May 6, 2024", ["Spring 2024", "Notes"]]]]] },
-    latest: { title: "Latest versions", sub: "Only the newest copy of each document", note: 1, secs: [["Résumés & records", "", [["Resume_PM_Fall26.pdf", "Résumé · product", "Downloads", "Oct 30, 2026", ["Current", "Sent to 3"]], ["Resume_UX_Fall26.pdf", "Résumé · design", "Documents", "Oct 12, 2026", ["Current", "Sent to 1"]], ["Resume_PM_Fall26_Notion.pdf", "Résumé · tailored", "Documents", "Oct 21, 2026", ["Tailored for Notion"]], ["Unofficial_Transcript_Spring2026.pdf", "Transcript", "Downloads", "Jun 2, 2026", ["Current"]]]],
-      ["Hidden older versions", "still on disk", [["Resume_final_v3 (2).pdf", "Résumé · older", "Downloads", "Aug 2, 2025", ["Older version"], "", 1], ["resume_PM_new (2).pdf", "Résumé · older", "Downloads", "Sep 18, 2026", ["Older version"], "", 1], ["Resume_Design_2025.pdf", "Résumé · older", "Documents", "Nov 4, 2025", ["Older version"], "", 1]]]] },
+    latest: { title: "Latest versions", sub: "Only the newest copy of each document", note: 1, secs: [["Resumes & records", "", [["Resume_PM_Fall26.pdf", "Resume · product", "Downloads", "Oct 30, 2026", ["Current", "Sent to 3"]], ["Resume_UX_Fall26.pdf", "Resume · design", "Documents", "Oct 12, 2026", ["Current", "Sent to 1"]], ["Resume_PM_Fall26_Notion.pdf", "Resume · tailored", "Documents", "Oct 21, 2026", ["Tailored for Notion"]], ["Unofficial_Transcript_Spring2026.pdf", "Transcript", "Downloads", "Jun 2, 2026", ["Current"]]]],
+      ["Hidden older versions", "still on disk", [["Resume_final_v3 (2).pdf", "Resume · older", "Downloads", "Aug 2, 2025", ["Older version"], "", 1], ["resume_PM_new (2).pdf", "Resume · older", "Downloads", "Sep 18, 2026", ["Older version"], "", 1], ["Resume_Design_2025.pdf", "Resume · older", "Documents", "Nov 4, 2025", ["Older version"], "", 1]]]] },
   };
   const SIDE = [["Classes", [["econ1", "ECON 1", 8], ["cs61a", "CS 61A", 14], ["", "DATA 8", 9], ["", "ECON 100B", 6]]], ["Terms", [["", "Fall 2023", 31], ["", "Spring 2024", 44], ["", "Fall 2026 · now", 18]]], ["", [["latest", "Latest versions", ""]]]];
   let vMode = "folders", vView = "econ1", organized = false, showOld = false;
@@ -230,7 +230,7 @@
     if (my !== run) return;
     organized = true; renderSide();
     const B = $("#vBanner"); B.hidden = false; B.className = "vbanner found";
-    B.innerHTML = `<div><b>Your files, organized. Nothing moved.</b><div class="stats"><span>4 classes</span><span>6 terms</span><span>11 résumés</span><span>3 projects</span></div></div><button class="btn blue" id="seeOrg">See Organized</button>`;
+    B.innerHTML = `<div><b>Your files, organized. Nothing moved.</b><div class="stats"><span>4 classes</span><span>6 terms</span><span>11 resumes</span><span>3 projects</span></div></div><button class="btn blue" id="seeOrg">See Organized</button>`;
     $("#seeOrg").onclick = () => { vMode = "org"; vView = "econ1"; renderViews(); finish(); hint(() => $('#orgSide [data-view="latest"]'), 900); };
     hint("#seeOrg", 400);
   }
@@ -238,10 +238,10 @@
 
   /* ── Find any file: Finder's search misses the middle of names; ⌥Space doesn't ── */
   const RES = [
-    ["Resume_PM_Fall26.pdf", "pdf", ["Résumé", "Current"], "Downloads", "Oct 30, 2026"],
-    ["Resume_UX_Fall26.pdf", "pdf", ["Résumé", "Current"], "Documents", "Oct 12, 2026"],
-    ["Resume_PM_Fall26_Notion.pdf", "pdf", ["Résumé", "Tailored · Notion"], "Documents", "Oct 21, 2026"],
-    ["resume_PM_new (2).pdf", "pdf", ["Résumé", "Older version"], "Downloads", "Sep 18, 2026"],
+    ["Resume_PM_Fall26.pdf", "pdf", ["Resume", "Current"], "Downloads", "Oct 30, 2026"],
+    ["Resume_UX_Fall26.pdf", "pdf", ["Resume", "Current"], "Documents", "Oct 12, 2026"],
+    ["Resume_PM_Fall26_Notion.pdf", "pdf", ["Resume", "Tailored · Notion"], "Documents", "Oct 21, 2026"],
+    ["resume_PM_new (2).pdf", "pdf", ["Resume", "Older version"], "Downloads", "Sep 18, 2026"],
     ["CV_template_2024.docx", "docx", ["Template", "Someone else's"], "Downloads", "Mar 9, 2024"],
   ];
   const hlq = (name, q) => { const i = name.toLowerCase().indexOf(q); return i < 0 ? name : `${name.slice(0, i)}<mark>${name.slice(i, i + q.length)}</mark>${name.slice(i + q.length)}`; };

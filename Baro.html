@@ -8,7 +8,7 @@
 <link rel="icon" href="favicon.ico?v=2" sizes="any" />
 <link rel="stylesheet" href="vendor/fonts/2b1e607304.css?v=a104d2598e" />
 <link rel="stylesheet" href="_build/case-a.css?v=d9eeae5e74" />
-<link rel="stylesheet" href="_build/case-b.css?v=160b919ea3" />
+<link rel="stylesheet" href="_build/case-b.css?v=7f12ddeda2" />
 <style id="perf-vt">
 @view-transition{navigation:auto}
 ::view-transition-group(root){animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
@@ -44,10 +44,10 @@
 
 <main>
 <section id="overview">
-  <figure class="cb-hero cb-frame"><img src="assets/baro/t-home.webp" alt="Baro teacher home showing student cards" decoding="async"></figure>
+  <figure class="cb-hero cb-frame has-field"><canvas class="da-field" data-field="baro" aria-hidden="true"></canvas><img src="assets/baro/t-home.webp" alt="Baro teacher home showing student cards" decoding="async"></figure>
   <p class="cb-label">Baro Behavior</p>
   <h1>Taking a behavior intervention platform for teachers from 0 to 1.</h1>
-  <p class="cb-lede">Baro helps teachers support individual students through behavior interventions. As project manager, I led 5 engineers in turning a founder’s expertise and Figma designs into a web product.</p>
+  <p class="cb-lede">A founder knew exactly how a good behavior intervention works. Engineers needed rules, not clinical terms. As project manager, I turned that expertise into something 5 engineers could build.</p>
   <dl class="cb-meta"><div><dt>Role</dt><dd>Project Manager</dd></div><div><dt>Timeline</dt><dd>Sept – Dec 2025</dd></div><div><dt>Team</dt><dd>5 engineers, working with the founder</dd></div><div><dt>Skills</dt><dd>Product scoping, technical translation, behavioral science</dd></div></dl>
 </section>
 
@@ -105,6 +105,7 @@
   <p class="cb-label">Reflection</p>
   <h2>A good spec is an act of translation.</h2>
   <p>Baro taught me that managing a 0-to-1 product means understanding the domain deeply enough to protect what matters. Knowing why a reward schedule works helped me make better scope decisions, ask the founder better questions, and give engineers requirements they could actually build.</p>
+  <div class="cb-group"><h3>What I learned</h3><ol class="cb-take"><li><b>Learn the domain to protect it.</b> A vague requirement would have quietly changed the intervention itself.</li><li><b>Make expertise explicit.</b> Clinical ideas only became buildable once they were tags, thresholds, and if-then rules.</li><li><b>Earn the right to add AI.</b> Teachers needed behavior they could predict first, so AI waited for a later milestone.</li></ol></div><div class="cb-group cb-aside"><h3>What was harder than expected</h3><p>Figma. A single student screen changed with the reward schedule, the session state, and what was unlocked, and static frames couldn’t hold that. Tying every requirement to a milestone did.</p></div>
 </section>
 
   <footer>
@@ -118,5 +119,6 @@
 (function(){var r=document.getElementById("lg");if(!r)return;var D={d:['<b>Example:</b> inappropriate language. <b>Schedule:</b> ratio, based on how many times the goal behavior happens.','Every instance earns a point','The ratio grows as goals are met','Rewards become variable'],c:['<b>Example:</b> off-task disruption. <b>Schedule:</b> interval, based on checking in over time.','Frequent, fixed check-ins earn points','The interval grows as goals are met','Check-ins become variable']};
 [].forEach.call(r.querySelectorAll("button"),function(b){b.onclick=function(){[].forEach.call(r.querySelectorAll("button"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});var v=D[b.dataset.m];document.getElementById("lgEx").innerHTML=v[0];document.getElementById("lg1").textContent=v[1];document.getElementById("lg2").textContent=v[2];document.getElementById("lg3").textContent=v[3]}})})();
 </script>
+<script src="_build/fields.js?v=692c9d13ce"></script>
 </body>
 </html>

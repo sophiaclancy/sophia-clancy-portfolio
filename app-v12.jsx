@@ -411,12 +411,12 @@ function App() {
             <a href="./" id="nav-work">work</a>
             <a href="About.html">about</a>
             <a href="Pick%20at%20My%20Brain.html" id="nav-play">play</a>
-            <a href="https://drive.google.com/file/d/1oPp-S96QerNcEBSoBz0-ZevHmxsRBRNT/view?usp=sharing" target="_blank" rel="noopener">resume</a>
+            <a href="https://drive.google.com/file/d/1xUUJODBYS7LKQRSLNRIj3dxtsqX9ORgb/view?usp=sharing" target="_blank" rel="noopener">resume</a>
           </nav>
         </div>
       </header>
 
-      <a className="clancy-chip" href="https://drive.google.com/file/d/1oPp-S96QerNcEBSoBz0-ZevHmxsRBRNT/view?usp=sharing" target="_blank" rel="noopener" aria-label="Resume">
+      <a className="clancy-chip" href="https://drive.google.com/file/d/1xUUJODBYS7LKQRSLNRIj3dxtsqX9ORgb/view?usp=sharing" target="_blank" rel="noopener" aria-label="Resume">
         <span className="chip-art">
           <img className="chip-base" src="assets/chip-resume-v2.png" alt="" />
         </span>
@@ -451,7 +451,7 @@ function App() {
         <nav className="foot-links">
           <a href="https://www.linkedin.com/in/sophia-clancy-488970325/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:sophiaclancy@berkeley.edu">Email</a>
-          <a href="https://drive.google.com/file/d/1oPp-S96QerNcEBSoBz0-ZevHmxsRBRNT/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+          <a href="https://drive.google.com/file/d/1xUUJODBYS7LKQRSLNRIj3dxtsqX9ORgb/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
         </nav>
       </footer>
     </div>

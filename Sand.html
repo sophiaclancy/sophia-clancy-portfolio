@@ -8,7 +8,7 @@
 <link rel="icon" href="favicon.ico?v=2" sizes="any" />
 <link rel="stylesheet" href="vendor/fonts/2b1e607304.css?v=a104d2598e" />
 <link rel="stylesheet" href="_build/case-a.css?v=d9eeae5e74" />
-<link rel="stylesheet" href="_build/case-b.css?v=160b919ea3" />
+<link rel="stylesheet" href="_build/case-b.css?v=7f12ddeda2" />
 <style id="perf-vt">
 @view-transition{navigation:auto}
 ::view-transition-group(root){animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
@@ -43,10 +43,10 @@
 
 <main>
 <section id="overview">
-  <figure class="cb-hero cb-frame"><div class="device" style="aspect-ratio:16/10"><iframe src="prototypes/sand-ar/index.html" title="Sand AR prototype: calibrate, focus, and be present" loading="eager"></iframe></div></figure>
+  <figure class="cb-hero cb-frame has-field"><canvas class="da-field" data-field="sand" aria-hidden="true"></canvas><div class="device" style="aspect-ratio:16/10"><iframe src="prototypes/sand-ar/index.html" title="Sand AR prototype: calibrate, focus, and be present" loading="eager"></iframe></div></figure>
   <p class="cb-label">Sand · FigBuild 2026</p>
   <h1>AR glasses, a ring, and an app that help you feel time.</h1>
-  <p class="cb-lede">Sand is a speculative system that helps busy people sense their focus and fatigue as they happen, instead of reading about them the next morning.</p>
+  <p class="cb-lede">It started with a 10-minute scroll break that turned into two hours. Instead of another score to read the next morning, we designed a system that helps you feel focus and fatigue while you can still do something about it.</p>
   <dl class="cb-meta"><div><dt>Role</dt><dd>App + AR design and prototyping</dd></div><div><dt>Timeline</dt><dd>One weekend · FigBuild 2026</dd></div><div><dt>Skills</dt><dd>AR prototyping, interaction design, speculative design</dd></div><div><dt>Team</dt><dd>Avery Roslansky, Neha Haresh, Dylan Hoan</dd></div></dl>
 </section>
 
@@ -90,6 +90,7 @@
   <p class="cb-label">Reflection</p>
   <h2>The best interface may be the room you’re already in.</h2>
   <p>Most wearables turn how you feel into a score, and the score starts to define you. So every feature had to answer one question: does this give people agency, or does it quietly watch them? That question led us to Mist Mode, and to a wearable that disappears into your day instead of grading it.</p>
+  <div class="cb-group"><h3>What I learned</h3><ol class="cb-take"><li><b>Timing beats data.</b> People already had numbers. What they lacked was help while they could still act on it.</li><li><b>Design the off switch.</b> Every signal Sand reads can be hidden or turned off, because ambient tech only works if you can say no to it.</li><li><b>Start with the edges.</b> Designing for ADHD, sleep disorders, and burnout first made the system kinder for everyone.</li></ol></div><div class="cb-group cb-aside"><h3>What I got wrong first</h3><p>The obvious move was another readiness score. It would have repeated exactly the problem people described, so we threw it out and moved the experience into the room.</p></div>
 </section>
 
   <footer>
@@ -99,5 +100,6 @@
   </footer>
 </main>
 <script src="_build/case-notability.js?v=56885b59ae"></script>
+<script src="_build/fields.js?v=692c9d13ce"></script>
 </body>
 </html>

@@ -99,7 +99,7 @@ function Page() {
           <nav className="v12-nav">
             <a href={HOMEW}>work</a>
             <a href="About.html">about</a>
-            <a href="https://drive.google.com/file/d/1oPp-S96QerNcEBSoBz0-ZevHmxsRBRNT/view?usp=sharing" target="_blank" rel="noopener">resume</a>
+            <a href="https://drive.google.com/file/d/1xUUJODBYS7LKQRSLNRIj3dxtsqX9ORgb/view?usp=sharing" target="_blank" rel="noopener">resume</a>
           </nav>
         </div>
       </header>
