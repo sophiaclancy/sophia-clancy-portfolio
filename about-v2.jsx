@@ -18,8 +18,8 @@
         <section className="ab2-intro">
           <div className="ab2-intro-txt">
             <h1 className="ab2-h1">Hi, I&rsquo;m Sophia!</h1>
-            <p>I study cognitive science and data science at Berkeley. I learned frontend and full stack dev in my mobile dev club, then joined a design club and got hooked on design too. Now I do a bit of everything: research, design, and building.</p>
-            <p>I&rsquo;m really into the human mind and psychology. The summer after freshman year I worked as a behavior technician and I loved it. I&rsquo;ve also always been obsessed with AI, world building, and imagination, and I want more of that in my work.</p>
+            <p>I study cognitive science and data science at Berkeley. I started in frontend and full stack dev, got hooked on design, and now do a bit of everything: research, design, and building.</p>
+            <p>I&rsquo;m really into the human mind. I worked as a behavior technician the summer after freshman year and loved it. I&rsquo;ve also always been obsessed with AI, world building, and imagination.</p>
           </div>
           <figure className="ab2-photo">
             <span className="ab2-photo-frame">
@@ -30,11 +30,12 @@
         </section>
 
         <section className="ab2-sec">
-          <h2 className="ab2-h">Outside of work</h2>
-          <p>I&rsquo;m pretty adventurous. I love solo traveling, tandem biking, and a good dare or challenge. I grew up with one younger sister and now I have five more younger siblings (yes, five).</p>
-          <p>I love being active. I play soccer and pickleball and I dance Brazilian zouk. Music is my favorite thing though. Dancing to it, going to concerts, all of it. I also paint, and I want to get into music production and fine dining cooking next.</p>
-          <p>Big fan of Anthony Bourdain and Frank Ocean.</p>
-          <p>Right now I&rsquo;m working on a semester long side quest for my machine learning class. Stay tuned.</p>
+          <h2 className="ab2-h">Why bugs?</h2>
+          <p>Casper was a ghost mantis I got during quarantine. I&rsquo;ve collected mantises ever since.</p>
+          <p>Ants are how I think about people. One ant on its own doesn&rsquo;t do much, but a colony builds, farms, and finds food without anyone telling it what to do. All the smarts are in how they work together.</p>
+          <p>So when I look at a problem, I don&rsquo;t start with one person. I look at the group: what everyone is doing, what&rsquo;s pushing them to do it, and what happens when all those choices add up. Most of what goes wrong (and right) in products, schools, and society comes from small habits stacking up, not one big decision.</p>
+          <p>That&rsquo;s what I like designing for. Change one small thing in the environment and the whole colony can move differently.</p>
+          <p className="ab2-more"><a href="Why-Bugs.html">If you want to hear more in depth, I wrote about it here &rarr;</a></p>
         </section>
 
         <section className="ab2-sec">
@@ -48,6 +49,12 @@
               </li>
             ))}
           </ul>
+        </section>
+
+        <section className="ab2-sec">
+          <h2 className="ab2-h">Outside of work</h2>
+          <p>Solo travel, tandem biking, soccer, pickleball, Brazilian zouk, painting, and a lot of concerts. Next up: music production and fine dining cooking. Big fan of Anthony Bourdain and Frank Ocean.</p>
+          <p>Currently on a semester long side quest for my Mind, Machine, Meaning class. Stay tuned.</p>
         </section>
 
         {/* clancystuff photo dump: hidden for now (CLANCYSTUFF data kept above) */}

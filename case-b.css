@@ -204,18 +204,13 @@ body.cb main{padding-top:40px}
 .cb-asus{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
 .cb-asus-logo{width:52%;height:auto;filter:brightness(0) invert(1)}
 
-/* ===== 23.0 Structure pass: label column, hairlines, numbered sections, panels for key moments ===== */
-.cb main{counter-reset:sec}
-.cb main>section:not(#overview){counter-increment:sec}
-@media (min-width:1100px){
-  .cb main>section:not(#overview){display:grid;grid-template-columns:150px minmax(0,var(--cb-col));column-gap:56px;max-width:calc(var(--cb-col) + 206px);padding-top:56px;border-top:1px solid rgba(42,37,32,.1);margin-bottom:104px}
-  .cb main>section:not(#overview)>*{grid-column:2;min-width:0}
-  .cb main>section:not(#overview)>.cb-label{grid-column:1;grid-row:1/span 40;align-self:start;position:sticky;top:40px;margin:7px 0 0!important}
-  .cb main>section:not(#overview)>.cb-label+*{margin-top:0!important}
-}
-.cb main>section:not(#overview)>.cb-label{font-family:"Fragment Mono",ui-monospace,Menlo,monospace;font-size:11.5px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(42,37,32,.5)}
-.cb main>section:not(#overview)>.cb-label::before{content:counter(sec);display:block;margin-bottom:6px;font-size:22px;letter-spacing:-.02em;color:rgba(42,37,32,.22)}
+/* ===== 23.1 One column. The sidebar is the table of contents, so no label column or numbers.
+   Sections sit on the same 680px column as the title; a hairline separates them. ===== */
+.cb main>section:not(#overview){padding-top:48px;border-top:1px solid rgba(42,37,32,.1);margin-bottom:72px}
 .cb main>section:not(#overview) h2{font-size:30px;line-height:1.18}
+/* Section labels repeat the sidebar on desktop; show them as a small eyebrow only when the sidebar is hidden */
+@media (min-width:901px){.cb main>section:not(#overview)>.cb-label{display:none}}
+.cb main>section:not(#overview)>.cb-label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(42,37,32,.5)}
 
 /* Quotes + reframes become soft panels */
 .cb .cb-quote{padding:22px 26px;border-left:0;border-radius:14px;background:rgba(42,37,32,.045)}
@@ -235,3 +230,6 @@ body.cb main{padding-top:40px}
 /* What I got wrong first: an aside with a warm edge */
 .cb .cb-group.cb-aside{padding:22px 26px;border-radius:14px;background:#fff;box-shadow:inset 3px 0 0 #C9865B,0 0 0 1px rgba(42,37,32,.07)}
 .cb .cb-group.cb-aside>h3{border-top:0;padding-top:0;font-size:15px;font-weight:500}
+
+/* Contexto hero: frame matches the Mac screen (1512x982), so the prototype fills it with no black bars */
+.cb .cb-hero .device:has(iframe[src*="prototypes/contexto/"]){aspect-ratio:1512/982;border-radius:8px;box-shadow:0 0 0 1px rgba(255,255,255,.55),0 0 0 5px rgba(255,255,255,.22),0 18px 40px -26px rgba(20,36,60,.5)}
