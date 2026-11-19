@@ -528,34 +528,34 @@ function useGlassGlare() {
 
 function App() {
   return (
-    <div className="v12 sb-shell">
+    <div className="v12 tn-shell">
       {window.CustomCursor ? <window.CustomCursor /> : null}
-      <aside className="sb fh">
-        <section className="v12-hero sb-top is-mirror" aria-hidden="true"></section>
-        <div className="hero-left">
-          <HeroName />
-          <HeroRole />
-        </div>
-        <nav className="sb-nav" aria-label="Main">
+      <header className="tn">
+        <a className="tn-name" href={SB_NAV[0].href}>Sophia Clancy</a>
+        <nav className="tn-nav" aria-label="Main">
           {SB_NAV.map((it) => (
-            <a key={it.n} href={it.href} target={it.ext ? "_blank" : undefined} rel={it.ext ? "noopener" : undefined} className={it.on ? "is-active" : undefined} aria-current={it.on ? "page" : undefined}>
-              <span>{it.t}</span><span className="sb-arr" aria-hidden="true">&rarr;</span>
-            </a>
+            <a key={it.n} href={it.href} target={it.ext ? "_blank" : undefined} rel={it.ext ? "noopener" : undefined} className={it.on ? "is-active" : undefined} aria-current={it.on ? "page" : undefined}>{it.t}</a>
           ))}
         </nav>
-        <div className="sb-out">
-          <a href="https://www.linkedin.com/in/sophia-clancy-488970325/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V16.5M8 7.6v.1M11.5 16.5v-6M11.5 13.2a2.4 2.4 0 0 1 4.8 0v3.3"/></svg></a>
-          <a href="https://github.com/sophiaclancy" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
-          <a href="https://x.com/clancystufff" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4h4.5L20 20h-4.5zM20 4l-6.5 7.2M4 20l6.5-7.2"/></svg></a>
-          <a href="mailto:sophiaclancy@berkeley.edu" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></a>
-        </div>
-      </aside>
+      </header>
       {window.PAGE === "play" && window.PlayMain ? (
         <main className="sb-main is-play"><window.PlayMain /></main>
       ) : window.PAGE === "about" && window.AboutMain ? (
         <main className="sb-main is-about"><window.AboutMain /></main>
       ) : (
       <main className="sb-main" id="work">
+        <section className="tn-intro">
+          <h1 className="tn-tag">a <span className="tn-hl-a">product builder</span> who decides what AI should do, and what <span className="tn-hl-b">stays human</span>.</h1>
+          <div className="tn-meta">
+            <p>CogSci &amp; Data Science @ UC Berkeley</p>
+            <div className="sb-out">
+          <a href="https://www.linkedin.com/in/sophia-clancy-488970325/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V16.5M8 7.6v.1M11.5 16.5v-6M11.5 13.2a2.4 2.4 0 0 1 4.8 0v3.3"/></svg></a>
+          <a href="https://github.com/sophiaclancy" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+          <a href="https://x.com/clancystufff" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4h4.5L20 20h-4.5zM20 4l-6.5 7.2M4 20l6.5-7.2"/></svg></a>
+          <a href="mailto:sophiaclancy@berkeley.edu" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></a>
+        </div>
+          </div>
+        </section>
         <div className="da-grid">
           {WORK_LEFT.flatMap((w, i) => [w, WORK_RIGHT[i]]).filter(Boolean).map((w) => <Card key={w.id} item={w} />)}
         </div>

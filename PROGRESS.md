@@ -596,3 +596,18 @@ Branch: `design/direction-a`. All styling lives in `direction-a.css` (remove its
 - Risk: Low (copy only)
 - Status: ✅ Done
 - Review: [ ]
+
+### Milestone 13.0 — Top nav (branch `design/top-nav`)
+- What changed: Sidebar replaced by a thin sticky top bar (name left; Work / About / Play / Resume right, moss dot under the active page). Homepage opens with a two-line intro: the tagline at 26–34px, then "CogSci & Data Science @ UC Berkeley" and the social icons. Work grid now uses the full width. On phones under 420px, "Work" hides (the name links home) so Resume always fits.
+- Primary inspiration used: Sophia's direction; recruiter skim (tagline as headline, Resume always one click away)
+- Why this is better: The positioning is the first thing read, and the work gets about 25% more width.
+- Risk: Medium (layout change on index/About/Play; sidebar version kept on `design/nav-centered`, commit 0fecf8f)
+- Status: ✅ Done
+- Review: [ ]
+
+### Milestone 13.1 — Narrower page with wide side margins
+- What changed: Top bar contents and the page content are capped at 1040px and centered (at least 40px per side; 200px per side on a 1440px screen). Bar is 56px tall. Grid gaps 56px / 32px.
+- Primary inspiration used: Bao To (narrow centered column, generous margins)
+- Risk: Low (block 13.1 in `direction-a.css`; change `--tn-w` to adjust)
+- Status: ✅ Done
+- Review: [ ]
