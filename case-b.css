@@ -193,3 +193,45 @@ body.cb main>#overview>.cb-hero+.cb-label{margin-top:var(--s2)}
 :root{--s1:12px;--s2:24px;--s3:40px;--s4:88px}
 body.cb main{padding-top:40px}
 @media (max-width:900px){:root{--s1:12px;--s2:20px;--s3:32px;--s4:64px}body.cb main{padding-top:20px}}
+
+/* Terrarium fields in the hero: same field as the homepage card. Contained at rest, fills on hover. */
+.cb-hero.has-field{position:relative;background:transparent!important;overflow:hidden;isolation:isolate;border-radius:16px;padding:clamp(40px,10%,88px)!important}
+.cb-hero.has-field>.da-field{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none;
+  -webkit-mask-image:var(--blob);mask-image:var(--blob);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;
+  -webkit-mask-size:100% 100%;mask-size:100% 100%;transition:-webkit-mask-size 1.6s cubic-bezier(.33,0,.15,1),mask-size 1.6s cubic-bezier(.33,0,.15,1)}
+.cb-hero.has-field:hover>.da-field{-webkit-mask-size:175% 175%;mask-size:175% 175%}
+.cb-hero.has-field>:not(.da-field){position:relative;z-index:1}
+.cb-asus{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+.cb-asus-logo{width:52%;height:auto;filter:brightness(0) invert(1)}
+
+/* ===== 23.0 Structure pass: label column, hairlines, numbered sections, panels for key moments ===== */
+.cb main{counter-reset:sec}
+.cb main>section:not(#overview){counter-increment:sec}
+@media (min-width:1100px){
+  .cb main>section:not(#overview){display:grid;grid-template-columns:150px minmax(0,var(--cb-col));column-gap:56px;max-width:calc(var(--cb-col) + 206px);padding-top:56px;border-top:1px solid rgba(42,37,32,.1);margin-bottom:104px}
+  .cb main>section:not(#overview)>*{grid-column:2;min-width:0}
+  .cb main>section:not(#overview)>.cb-label{grid-column:1;grid-row:1/span 40;align-self:start;position:sticky;top:40px;margin:7px 0 0!important}
+  .cb main>section:not(#overview)>.cb-label+*{margin-top:0!important}
+}
+.cb main>section:not(#overview)>.cb-label{font-family:"Fragment Mono",ui-monospace,Menlo,monospace;font-size:11.5px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(42,37,32,.5)}
+.cb main>section:not(#overview)>.cb-label::before{content:counter(sec);display:block;margin-bottom:6px;font-size:22px;letter-spacing:-.02em;color:rgba(42,37,32,.22)}
+.cb main>section:not(#overview) h2{font-size:30px;line-height:1.18}
+
+/* Quotes + reframes become soft panels */
+.cb .cb-quote{padding:22px 26px;border-left:0;border-radius:14px;background:rgba(42,37,32,.045)}
+.cb .cb-quote p{font-size:20px;line-height:1.4}
+.cb .cb-question{display:grid;gap:10px;background:#fff;box-shadow:0 0 0 1px rgba(42,37,32,.08),0 12px 28px -18px rgba(42,37,32,.3)}
+.cb .cb-question p:not(.cb-old)::before{content:"→ ";color:rgba(42,37,32,.35)}
+.cb .cb-question .cb-old{font-size:16px}
+
+/* Sub-groups get a small rule above their heading */
+.cb main>section .cb-group>h3{padding-top:20px;border-top:1px dashed rgba(42,37,32,.14)}
+
+/* What I learned: tinted panel with large numbers */
+.cb .cb-take{padding:28px 28px 26px;border-radius:16px;background:rgba(42,37,32,.045);gap:22px!important}
+.cb .cb-take li{padding-left:52px}
+.cb .cb-take li::before{content:counter(t);top:-2px;font-family:"Fragment Mono",ui-monospace,Menlo,monospace;font-size:18px;color:rgba(42,37,32,.35)}
+.cb .cb-group:has(>.cb-take)>h3{border-top:0;padding-top:0}
+/* What I got wrong first: an aside with a warm edge */
+.cb .cb-group.cb-aside{padding:22px 26px;border-radius:14px;background:#fff;box-shadow:inset 3px 0 0 #C9865B,0 0 0 1px rgba(42,37,32,.07)}
+.cb .cb-group.cb-aside>h3{border-top:0;padding-top:0;font-size:15px;font-weight:500}

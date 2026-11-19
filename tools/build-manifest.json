@@ -405,6 +405,76 @@
       "out": "assets/thumbs/partake-cover.webp",
       "from": 1391496,
       "to": 44678
+    },
+    "assets/fields/bokeh.png": {
+      "src": "1225627:1795082920157.949",
+      "used": true,
+      "out": "assets/fields/bokeh.webp",
+      "from": 1225627,
+      "to": 169590
+    },
+    "assets/fields/flowers-pop.png": {
+      "src": "1555012:1795082920200.2651",
+      "used": true,
+      "out": "assets/fields/flowers-pop.webp",
+      "from": 1555012,
+      "to": 62016
+    },
+    "assets/fields/leaf-shadow.png": {
+      "src": "2910900:1795082920181.3696",
+      "used": true,
+      "out": "assets/fields/leaf-shadow.webp",
+      "from": 2910900,
+      "to": 230038
+    },
+    "assets/fields/water.png": {
+      "src": "766180:1795082920152.2979",
+      "used": true,
+      "out": "assets/fields/water.webp",
+      "from": 766180,
+      "to": 68884
+    },
+    "assets/fields/flowers-soft.png": {
+      "src": "501283:1795083309140.6265",
+      "used": true,
+      "out": "assets/fields/flowers-soft.webp",
+      "from": 501283,
+      "to": 27112
+    },
+    "assets/fields/green-grain.png": {
+      "src": "913267:1795083309153.0547",
+      "used": true,
+      "out": "assets/fields/green-grain.webp",
+      "from": 913267,
+      "to": 30660
+    },
+    "assets/fields/mitosis.png": {
+      "src": "542569:1795083309161.99",
+      "used": true,
+      "out": "assets/fields/mitosis.webp",
+      "from": 542569,
+      "to": 48474
+    },
+    "assets/fields/peach-blue.png": {
+      "src": "462651:1795083309134.814",
+      "used": true,
+      "out": "assets/fields/peach-blue.webp",
+      "from": 462651,
+      "to": 17034
+    },
+    "assets/notability/sky-field.png": {
+      "src": "319130:1795083493444.8633",
+      "used": true,
+      "out": "assets/notability/sky-field.webp",
+      "from": 319130,
+      "to": 22666
+    },
+    "assets/fields/clouds.png": {
+      "src": "1221446:1795083552316.0818",
+      "used": true,
+      "out": "assets/fields/clouds.webp",
+      "from": 1221446,
+      "to": 146884
     }
   },
   "outputs": {
@@ -424,7 +494,6 @@
     "_build/app-v13.js": "app-v13.jsx",
     "_build/motion.js": "motion.js",
     "_build/hero-field.js": "hero-field.js",
-    "_build/twinkle-trail.js": "twinkle-trail.js",
     "_build/styles.css": "styles.css",
     "_build/styles-v12.css": "styles-v12.css",
     "_build/type.css": "type.css",
@@ -452,7 +521,12 @@
     "_build/sand-ar-piece.js": "sand-ar-piece.jsx",
     "_build/direction-a.css": "direction-a.css",
     "_build/case-notability.js": "case-notability.js",
-    "_build/case-a.css": "case-a.css"
+    "_build/case-a.css": "case-a.css",
+    "_build/case-b.css": "case-b.css",
+    "_build/fields.js": "fields.js",
+    "_build/ants.js": "ants.js",
+    "_build/casper.js": "casper.js",
+    "_build/footer.js": "footer.js"
   },
   "fonts": {
     "vendor/fonts/e8c39833b2.css": "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400..700&family=Space+Grotesk:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&display=swap",
