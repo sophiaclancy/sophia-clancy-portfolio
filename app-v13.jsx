@@ -40,7 +40,7 @@ const STATUS_LONGEST = "looking to bring a creative lens to technical spaces";
 function HeroName() {
   return (
     <React.Fragment>
-      <h1 className="hero-head sb-name">Sophia Clancy</h1>
+      <h1 className="hero-head sb-name"><a className="sb-home" href={location.protocol === "file:" ? "index.html" : "./"} aria-label="Sophia Clancy, back to Work">Sophia Clancy</a></h1>
       <p className="sb-sub">CogSci &amp; Data Science<br /> @ UC Berkeley</p>
     </React.Fragment>
   );

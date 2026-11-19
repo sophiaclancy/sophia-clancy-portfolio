@@ -233,3 +233,32 @@ body.cb main{padding-top:40px}
 
 /* Contexto hero: frame matches the Mac screen (1512x982), so the prototype fills it with no black bars */
 .cb .cb-hero .device:has(iframe[src*="prototypes/contexto/"]){aspect-ratio:1512/982;border-radius:8px;box-shadow:0 0 0 1px rgba(255,255,255,.55),0 0 0 5px rgba(255,255,255,.22),0 18px 40px -26px rgba(20,36,60,.5)}
+
+/* case-study sidebar: no name under "Back to home" */
+.cb .owner{display:none!important}
+
+/* case-study rail: more air between Back to home, the case-study label, and the section list */
+.cb .rail .back{margin-bottom:44px!important}
+.cb .rail .p{margin-bottom:48px!important}
+
+/* At a glance: the 20-second read at the top of a case study */
+.cb .cb-glance{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:28px 0 0;padding:22px 24px;border-radius:14px;background:rgba(42,37,32,.045)}
+.cb .cb-glance b{display:block;margin-bottom:6px;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(42,37,32,.55)}
+.cb .cb-glance p{margin:0;font-size:15px;line-height:1.5;color:rgba(31,26,22,.85)}
+.cb .cb-thread{margin:18px 0 0;font-size:16px;line-height:1.55;color:rgba(31,26,22,.8)}
+.cb .cb-thread b{font-weight:500;color:#1f1a16}
+@media (max-width:760px){.cb .cb-glance{grid-template-columns:1fr;gap:16px}}
+
+/* At a glance v2: open, airy columns with hairlines instead of a filled box */
+.cb .cb-glance{gap:0!important;margin:56px 0 0!important;padding:28px 0 0!important;border-radius:0!important;background:none!important;border-top:1px solid rgba(42,37,32,.12)}
+.cb .cb-glance>div{padding:0 28px}
+.cb .cb-glance>div:first-child{padding-left:0}
+.cb .cb-glance>div:last-child{padding-right:0}
+.cb .cb-glance>div+div{border-left:1px solid rgba(42,37,32,.1)}
+.cb .cb-glance b{margin-bottom:10px!important}
+.cb .cb-glance p{font-size:15.5px!important;line-height:1.6!important}
+.cb .cb-thread{margin:36px 0 0!important;padding:22px 26px;border-radius:14px;background:rgba(42,37,32,.045);font-size:17px!important;line-height:1.55}
+@media (max-width:760px){.cb .cb-glance>div{padding:0!important;border-left:0!important}.cb .cb-glance>div+div{padding-top:20px!important;border-top:1px solid rgba(42,37,32,.08)!important}}
+
+/* case-study side rail: whole block sits a little lower */
+@media (min-width:901px){.cb .rail{padding-top:64px!important}}

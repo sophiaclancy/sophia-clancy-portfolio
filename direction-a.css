@@ -677,7 +677,7 @@ html body footer.sf.sf-farm .sf-by{margin-top:10px;font-family:"Satoshi","Hanken
 .sf-farm .sf-links{position:absolute;z-index:2;left:var(--l-x);top:var(--l-y);display:flex;gap:28px}
 .sf-farm .sf-col{gap:5px}
 .sf-farm .sf-col::before{display:block;margin:0 0 3px;font-family:var(--da-mono,ui-monospace,monospace);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(42,37,32,.45)}
-.sf-farm .sf-col:first-child::before{content:"Tunnels"}.sf-farm .sf-col:last-child::before{content:"Above ground"}
+.sf-farm .sf-col:first-of-type::before{content:"Pages"}.sf-farm .sf-col:nth-of-type(2)::before{content:"Contact"}
 html body footer.sf.sf-farm .sf-col a{width:fit-content;font-family:"Satoshi","Hanken Grotesk",system-ui,sans-serif!important;font-size:15px;letter-spacing:-.005em;text-transform:none;color:#1f1a16}
 html body .sf-farm .sf-col a.sf-top{margin-top:6px;font-size:12.5px;color:rgba(42,37,32,.55)}
 html body .sf-farm .sf-clock{position:absolute;z-index:2;left:3%;top:14px;margin:0;color:rgba(42,37,32,.55)}
@@ -778,3 +778,36 @@ html body .sb-now{margin-top:-22px}
 /* pop-out sidebar: same spacing as desktop */
 @media (max-width:1100px){html body .sb.fh{gap:48px!important}}
 @media (max-width:1100px){html body .sb-nav{align-self:stretch!important;align-items:stretch!important;width:auto!important}html body .sb-nav a{width:auto!important;align-self:stretch!important}}
+@media (max-width:1100px){html body .sb-nav a{margin-right:-10px!important}}
+
+/* 26.2 Berkeley time: under the icons, a little lower */
+html body .sb-now{margin-top:-4px!important}
+
+/* 24.2 Footer links: Pages / Contact, more room; Back to top on its own line below */
+.sf-farm .sf-links{gap:0 44px!important;flex-wrap:wrap}
+.sf-farm .sf-col{gap:9px!important}
+.sf-farm .sf-col::before{margin-bottom:6px!important}
+html body footer.sf.sf-farm .sf-col a.sf-top{display:inline-block;margin-top:18px!important;font-size:13px}
+/* cleaner footer links: no resting underline, it draws in on hover */
+html body footer.sf.sf-farm .sf-col a{background-image:linear-gradient(currentColor,currentColor)!important;background-size:0% 1px!important;background-position:0 100%!important;background-repeat:no-repeat!important;text-decoration:none!important;transition:background-size 360ms cubic-bezier(.5,0,0,1)!important}
+html body footer.sf.sf-farm .sf-col a:hover{background-size:100% 1px!important}
+.sf-farm .sf-toprow{flex-basis:100%;margin-top:22px}
+html body footer.sf.sf-farm .sf-toprow a.sf-top{margin-top:0!important;font-size:13px;color:rgba(42,37,32,.6)}
+html body footer.sf.sf-farm .sf-toprow a.sf-top{background-size:0% 1px!important;text-decoration:none!important}
+html body footer.sf.sf-farm .sf-toprow a.sf-top:hover{background-size:100% 1px!important}
+.sf-farm .sf-links{align-items:flex-start}
+/* 24.3 footer links a touch smaller so they sit comfortably in the chamber */
+.sf-farm .sf-links{gap:0 34px!important}
+.sf-farm .sf-col{gap:6px!important}
+html body footer.sf.sf-farm .sf-col a{font-size:14px!important}
+.sf-farm .sf-col::before{font-size:10.5px!important;margin-bottom:4px!important}
+.sf-farm .sf-toprow{margin-top:14px}
+html body footer.sf.sf-farm .sf-toprow a.sf-top{font-size:12.5px!important}
+/* links block sized to its content (so the chamber centers on it) */
+.sf-farm .sf-links{display:grid!important;grid-template-columns:auto auto;column-gap:34px;width:max-content}
+.sf-farm .sf-toprow{grid-column:1/-1}
+/* Back to top: a bit lower and bigger */
+.sf-farm .sf-toprow{margin-top:22px!important}
+html body footer.sf.sf-farm .sf-toprow a.sf-top{font-size:14px!important}
+html body .sb .sb-name a.sb-home{all:unset;display:inline;cursor:pointer;font:inherit!important;letter-spacing:inherit!important;text-transform:inherit!important;color:inherit!important}
+html body .sb .sb-name a.sb-home:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:2px}
