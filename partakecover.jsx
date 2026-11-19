@@ -1,8 +1,10 @@
-// partakecover.jsx — Partake cover: static engagement-chart artwork
+// partakecover.jsx: Partake cover, the three TikTok concepts the team posted
 function PartakeCover() {
   return (
-    <div className="flip-cover pk-cover" style={{position: 'absolute', inset: 0, overflow: 'hidden', background: '#0C3B27'}}>
-      <img src="assets/thumbs/partake-cover.png" alt="" loading="lazy" style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block'}} />
+    <div className="pk-posts">
+      <img className="pk-post is-left" src="assets/partake/everywhere.webp" alt="" loading="lazy" />
+      <img className="pk-post is-right" src="assets/partake/carousel.webp" alt="" loading="lazy" />
+      <img className="pk-post is-mid" src="assets/partake/latte.webp" alt="" loading="lazy" />
     </div>
   );
 }

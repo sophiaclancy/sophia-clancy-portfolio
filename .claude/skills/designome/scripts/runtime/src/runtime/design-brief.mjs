@@ -1,0 +1,321 @@
+import { designValue } from './documentation.mjs';
+
+// The brief is the dossier's entry point and the generator's only required read:
+// every accepted artifact's statement, status, measures, relationships, scope,
+// exceptions and screenshot evidence. Confidence, routing and validation details
+// stay in the topic files, where each artifact is rendered in full once.
+
+const statusTag = (status) => `\`${status ?? 'unknown'}\``;
+const sentence = (text) => String(text ?? '').trim();
+const joined = (values = [], separator = '; ') =>
+  values.map(sentence).filter(Boolean).join(separator);
+
+// Scope, exceptions and evidence keep a statement tied to what was seen.
+function claimContext(claim) {
+  const scope = joined(claim?.scope, ', ');
+  const exceptions = joined(claim?.exceptions);
+  const evidence = (claim?.evidenceRefs ?? []).map((id) => `\`${id}\``);
+  return [
+    scope ? ` Scope: ${scope}.` : '',
+    exceptions ? ` Except: ${exceptions}.` : '',
+    evidence.length ? ` Seen in: ${evidence.join(', ')}.` : '',
+  ].join('');
+}
+
+function qualitiesSection(dna) {
+  const qualities = dna.fidelity?.qualities ?? [];
+  if (qualities.length === 0) return [];
+  return [
+    '## Signature qualities',
+    '',
+    'Preserve these first; they make the interface recognizable.',
+    '',
+    ...qualities.map((quality, index) => {
+      const failures = joined(quality.failureModes);
+      return `${index + 1}. **${quality.name}** (${quality.priority}) ${statusTag(quality.claim.epistemicStatus)} ${sentence(quality.claim.statement)}${failures ? ` Breaks when: ${failures}.` : ''}${claimContext(quality.claim)}`;
+    }),
+    '',
+  ];
+}
+
+// What the screenshots show, in the extractor's words: the concrete look that a
+// statement alone loses. Names, copy and data stay out of claims, so these
+// summaries describe regions, not content to reuse.
+function evidenceSection(dna) {
+  const evidence = dna.evidence ?? [];
+  if (evidence.length === 0) return [];
+  const sources = new Map(
+    (dna.sources ?? []).map((source) => [source.id, source]),
+  );
+  const bySource = new Map();
+  for (const entry of evidence) {
+    if (!bySource.has(entry.sourceRef)) bySource.set(entry.sourceRef, []);
+    bySource.get(entry.sourceRef).push(entry);
+  }
+  return [
+    '## What the screenshots show',
+    '',
+    'The regions the entries below were read from. Use them to see how a rule looks on screen, then apply the rule to your own content: names, copy, data, logos and pictures in the sources are replaceable. Presentation material around a screenshot, such as a backdrop, padding, frame or drop shadow, is not part of the design.',
+    '',
+    ...[...bySource].flatMap(([sourceRef, entries]) => {
+      const limits = joined(sources.get(sourceRef)?.limitations);
+      return [
+        `### \`${sourceRef}\``,
+        '',
+        ...(limits ? [`Limits: ${limits}.`, ''] : []),
+        ...entries.map((entry) => {
+          const entryLimits = joined(entry.limitations);
+          return `- \`${entry.id}\` ${sentence(entry.region)}: ${sentence(entry.visibleSummary)}${entryLimits ? ` Limits: ${entryLimits}.` : ''}`;
+        }),
+        '',
+      ];
+    }),
+  ];
+}
+
+function tokensSection(dna) {
+  if (dna.tokens.length === 0) return [];
+  const categories = new Map();
+  for (const token of dna.tokens) {
+    if (!categories.has(token.category)) categories.set(token.category, []);
+    categories.get(token.category).push(token);
+  }
+  return [
+    '## Tokens',
+    '',
+    ...[...categories].flatMap(([category, tokens]) => [
+      `### ${category}`,
+      '',
+      ...tokens.flatMap((token) => {
+        const value = sentence(designValue(token.value));
+        const statement = sentence(token.claim.statement);
+        const extra =
+          statement && !statement.includes(value) && !value.includes(statement)
+            ? ` ${statement}`
+            : '';
+        return [
+          `- \`${token.id}\` ${statusTag(token.claim.epistemicStatus)} ${value}${extra}${token.role ? ` Role: ${sentence(token.role)}.` : ''}${claimContext(token.claim)}`,
+          ...(token.relationships ?? []).map(
+            (relation) =>
+              `  - ${relation.kind}${relation.targetRef ? ` \`${relation.targetRef}\`` : ''}: ${sentence(relation.expression)}`,
+          ),
+        ];
+      }),
+      '',
+    ]),
+  ];
+}
+
+function rulesSection(dna) {
+  if (dna.rules.length === 0) return [];
+  const categories = new Map();
+  for (const rule of dna.rules) {
+    if (!categories.has(rule.category)) categories.set(rule.category, []);
+    categories.get(rule.category).push(rule);
+  }
+  return [
+    '## Rules',
+    '',
+    ...[...categories].flatMap(([category, rules]) => [
+      `### ${category}`,
+      '',
+      ...rules.flatMap((rule) => {
+        const failures = joined(rule.failureModes);
+        return [
+          `- **${rule.name}** (${rule.strength}) ${statusTag(rule.claim.epistemicStatus)} ${sentence(rule.claim.statement)}${claimContext(rule.claim)}`,
+          ...(rule.requirements ?? []).map(
+            (requirement) => `  - ${sentence(requirement)}`,
+          ),
+          ...(failures ? [`  - Breaks when: ${failures}.`] : []),
+          ...(rule.rationale &&
+          sentence(rule.rationale) !== sentence(rule.claim.statement)
+            ? [`  - Why: ${sentence(rule.rationale)}`]
+            : []),
+          ...((rule.dependsOn ?? []).length
+            ? [
+                `  - Depends on: ${rule.dependsOn.map((id) => `\`${id}\``).join(', ')}.`,
+              ]
+            : []),
+        ];
+      }),
+      '',
+    ]),
+  ];
+}
+
+function componentLines(component) {
+  const refs = (values = []) =>
+    values.length ? ` [${values.map((id) => `\`${id}\``).join(', ')}]` : '';
+  const anatomy = (component.anatomy ?? []).map((part) => {
+    if (typeof part === 'string') return sentence(part);
+    const constraints = joined(part.contentConstraints);
+    return `${part.name} (${part.requirement})${part.purpose ? `: ${sentence(part.purpose)}` : ''}${constraints ? `; ${constraints}` : ''}${refs(part.tokenRefs)}`;
+  });
+  const variants = (component.variants ?? []).map((variant) => {
+    if (typeof variant === 'string') return sentence(variant);
+    const conditions = joined(variant.conditions);
+    return `${variant.name} ${statusTag(variant.epistemicStatus)}${conditions ? ` when ${conditions}` : ''}${variant.differences?.length ? `: ${joined(variant.differences)}` : ''}`;
+  });
+  const states = (component.states ?? []).map(
+    (state) =>
+      `${state.name} ${statusTag(state.epistemicStatus)}${state.feedback ? `: ${sentence(state.feedback)}` : ''}`,
+  );
+  const list = (label, values) =>
+    values.length ? [`- ${label}: ${values.join(' | ')}`] : [];
+  const purpose = sentence(component.purpose ?? component.claim.statement);
+  const statement = sentence(component.claim.statement);
+  return [
+    `### ${component.name} ${statusTag(component.claim.epistemicStatus)}`,
+    '',
+    `${purpose}${statement && statement !== purpose ? ` ${statement}` : ''}${claimContext(component.claim)}`.trim(),
+    '',
+    ...list(
+      'Tokens',
+      (component.tokenRefs ?? []).map((id) => `\`${id}\``),
+    ),
+    ...list('Anatomy', anatomy),
+    ...list('Variants', variants),
+    ...list('States', states),
+    ...list('Composition', component.compositionRules ?? []),
+    ...list('Content', component.contentConstraints ?? []),
+    ...list('Adaptation', component.adaptationRules ?? []),
+    ...list('Accessibility', component.accessibilityRequirements ?? []),
+    ...list('Avoid', component.antiPatterns ?? []),
+    '',
+  ];
+}
+
+function componentsSection(dna) {
+  const components = dna.componentPatterns ?? [];
+  if (components.length === 0) return [];
+  return [
+    '## Components',
+    '',
+    'Reach for a recipe whenever the product has the need its purpose names, including on screens the sources never showed. Change its content, never its anatomy.',
+    '',
+    ...components.flatMap(componentLines),
+  ];
+}
+
+function constraintsSection(dna) {
+  const constraints = dna.fidelity?.constraints ?? [];
+  if (constraints.length === 0) return [];
+  return [
+    '## Calibration bounds',
+    '',
+    'Reproduction targets to check in a rendered browser. Their acceptance status is shown; a pending bound is diagnostic, not a source measurement.',
+    '',
+    ...constraints.map((constraint) => {
+      const { measurement } = constraint;
+      const relative = measurement.relativeTo
+        ? ` relative to ${measurement.relativeTo.target} ${measurement.relativeTo.property}`
+        : '';
+      return `- **${constraint.name}** ${statusTag(constraint.claim.epistemicStatus)} \`${constraint.acceptance.status}\`: ${measurement.target} ${measurement.property}${relative} — ${sentence(designValue(measurement.expected))}; tolerance ${measurement.tolerance}.`;
+    }),
+    '',
+  ];
+}
+
+function unknownsSection(dna) {
+  if (dna.unknowns.length === 0) return [];
+  return [
+    '## Unknowns',
+    '',
+    'Do not invent these; follow a proposed rule when one exists, otherwise keep the choice neutral and easy to change.',
+    '',
+    ...dna.unknowns.map((unknown) => `- ${sentence(unknown.question)}`),
+    '',
+  ];
+}
+
+// Product defaults, not source evidence: they rank below the person's request
+// and below every rule measured on the screenshots.
+function guardrailsSection() {
+  return [
+    '## Precedence, guardrails and budgets',
+    '',
+    'When instructions disagree, follow this order:',
+    '',
+    "1. The person's explicit request for this project, even when it contradicts an entry of this brief.",
+    '2. Entries of this brief: `observed` and `inferred` ones were measured on the screenshots.',
+    '3. The Designome defaults below, only where neither speaks.',
+    '',
+    '### Quality guardrails',
+    '',
+    'Defects, not taste. Apply them on every screen unless the person explicitly asks otherwise.',
+    '',
+    '- **One recipe per repeated component.** A component that repeats across screens, such as a KPI tile, list row, card, chip or badge, keeps the same parts, order and proportions everywhere. Add a second variant only when this brief records one with its selection condition.',
+    '- **One recipe per chart family.** Sibling charts of one family, such as columns, bars, progress or segmented indicators, share mark thickness relative to their pitch, gap ratio, corners, gridlines and tone assignment on every screen.',
+    '- **One screen skeleton.** Every screen keeps the band order and the primary-action position this brief records. A screen may omit an optional band; it never reorders bands or moves the primary action.',
+    '- **Content stays in its container.** Text, chips, badges and marks never overflow the cell, card, row or control that holds them, and no bar or overlay covers content. Past the available width, first drop the optional part the slot rule names, then truncate with an ellipsis or collapse the excess into a "+N" count, never below the minimum visible characters the rule records.',
+    '- **Proportions hold at every width.** Apply ratios and minimums at each viewport. When space shrinks, stack or wrap regions in their recorded order instead of squeezing components below their measured proportions, and never scroll the page sideways.',
+    '- **A measured ratio is never capped away.** Do not add a maximum, minimum or clamp that changes a ratio this brief records, such as mark thickness to pitch or a height to the body text, at the viewport you build for. When a ratio cannot hold, change the layout around it and keep the ratio.',
+    '- **Faint cues are built, not dropped.** Implement every subtle cue this brief records, such as a control fill a few percent off the canvas, a 1px bottom edge or soft shadow, a second border tone or a heavier weight band, at its recorded strength. Use the most likely value of a band, not its lighter or flatter end.',
+    '- **Sibling panels are filled.** Panels in one row share their height and each is filled by its content. Rather than leave more than about a quarter of a panel empty, add content the product needs or let the row take the height of its tallest natural content.',
+    '- **Finish pass before delivery.** Re-read every screen against the finish entries of this brief: shell tones, border tiers, control fills and elevation cues, text tone ladder, weight steps, gaps between stacked text, glyph styles, mark ratios, panel fill and the scale anchor. Fix each one the build flattened or dropped.',
+    '- **The typeface follows the observed character.** When the brief leaves the font family `unknown`, use a font stack of the recorded character, such as `ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif` for a sans-serif, and set it on the root so no text falls back to the browser default. Use a serif or monospace stack only where the brief records that character.',
+    "- **Location is always visible.** Every screen marks its active navigation item, and its title repeats that item's term. A page below it, such as an object's detail, takes the object's name as its title and shows the way back with a breadcrumb or back control that uses the parent's term.",
+    '- **One name per thing.** An object, action or destination keeps one term in navigation, titles, buttons, messages and empty states on every screen.',
+    '- **Actions name their result.** A button or menu item says what it does, such as "Archive project", never only "OK", "Yes" or "Submit", and a confirmation repeats the verb of the action that opened it. Every icon-only control has an accessible name and a tooltip.',
+    '- **Disclosure never hides the task.** The primary action, required fields, errors and the current status stay visible. Only secondary, optional or advanced content goes behind a menu, "View all" link, expandable section, tab or drawer, and the trigger says what it reveals with a label, a count or a chevron. Opening and closing it keeps the selection, the scroll position and entered input.',
+    '',
+    '### Budget defaults',
+    '',
+    'Use the count, order or share that the rules below measured. These defaults apply only when this brief records none for a budget, and they carry the status `proposed`.',
+    '',
+    '- **Status colors:** at most 4 saturated status hues, in a fixed order such as neutral, in progress, attention, done. Further statuses reuse one of them or stay neutral; no per-category hue families.',
+    '- **Chart series:** data series use one neutral tone; the accent marks at most one highlighted series or mark per chart.',
+    '- **Text slots:** a chip, badge or table cell shows at least 12 characters of its main text, and a title is never truncated while its container has free space that could hold it.',
+    '- **Actions:** one primary action per screen, dialog or form. A row or card shows at most 2 inline actions and moves the rest into one overflow menu. A destructive action is never the primary action outside its own confirmation and sits apart from the other actions.',
+    '- **Navigation:** at most 7 destinations per navigation group and 5 in a mobile tab bar; add a labeled group rather than lengthening one. One local level, such as tabs, sits below a global destination; deeper levels open from the content and show a breadcrumb or back control.',
+    '- **Disclosure:** a preview of a longer collection shows at most 5 items, then a "View all" link with the total count. Advanced or rarely changed settings sit in one labeled section after the common ones.',
+    '- **Labels:** sentence case. Navigation items are one- or two-word nouns; actions start with a verb and stay within 3 words. Icons carry a visible label, except close, search and overflow-menu controls and the places this brief records icon-only controls.',
+    '- **Accent:** reserved for the primary action, the active navigation item and the one highlighted chart mark. Progress bars, segmented bars and meters fill with a neutral grey or the body-text ink on a lighter track, never the accent.',
+    '',
+  ];
+}
+
+function referenceSection(matrix) {
+  const groups = new Map();
+  for (const entry of matrix.documentationProjection) {
+    const directory = entry.path.split('/')[0];
+    if (!groups.has(directory)) groups.set(directory, []);
+    groups.get(directory).push(entry);
+  }
+  return [
+    '## Reference files',
+    '',
+    'This brief carries every measure, ratio, relationship and recipe of the Design DNA. Open a topic file only when you need the confidence, routing, coverage or validation behind an entry.',
+    '',
+    ...[...groups].flatMap(([directory, entries]) => [
+      `### ${directory[0].toUpperCase()}${directory.slice(1)}`,
+      '',
+      ...entries.map(
+        (entry) => `- [${entry.title}](./${entry.path}) — ${entry.purpose}`,
+      ),
+      '',
+    ]),
+  ];
+}
+
+export function renderDesignBrief(dna, matrix, { fidelityStatus }) {
+  return [
+    `# Design brief: ${dna.name}`,
+    '',
+    `Design DNA \`${dna.documentId}\`, revision ${dna.revision.number}, status \`${dna.status}\`. Documentation layout \`${matrix.documentationLayoutVersion}\`. Fidelity readiness \`${fidelityStatus}\`; this projection does not establish visual fidelity.`,
+    '',
+    'Read this file completely before generating UI. It lists every token, rule, component and reproduction bound of the Design DNA with the screenshot regions they come from. Each entry carries one epistemic status: `observed` and `inferred` come from the supplied screenshots; `proposed` is a recommendation not visible in them; `unknown` must not be invented.',
+    '',
+    'These files are checksum-managed by Designome. Put manual additions in repository-owned documentation or Designome override files.',
+    '',
+    ...guardrailsSection(),
+    ...qualitiesSection(dna),
+    ...evidenceSection(dna),
+    ...tokensSection(dna),
+    ...rulesSection(dna),
+    ...componentsSection(dna),
+    ...constraintsSection(dna),
+    ...unknownsSection(dna),
+    ...referenceSection(matrix),
+  ].join('\n');
+}

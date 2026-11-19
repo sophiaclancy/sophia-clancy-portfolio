@@ -8,11 +8,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=2" />
 <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png?v=2" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=2" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="vendor/fonts/5268de063b.css?v=c34213f2a4" />
+<link rel="stylesheet" href="vendor/fonts/079ef9fa6a.css?v=5db2dd15cd" />
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.1/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.1/examples/jsm/"}}</script>
 <style>
 :root{--bg:#1F2940;--navy:#3A4766;--pale:#C9D1E0;--pink:#FF5F9E;--lime:#A6FF00;--orange:#FF6A00;--mono:"JetBrains Mono",ui-monospace,monospace;--sans:"Satoshi",system-ui,sans-serif;--t-hover:130ms;--t-select:250ms;--t-cam:450ms;--t-entry:900ms;--ease:cubic-bezier(.22,.61,.36,1);--snap:cubic-bezier(.34,1.42,.64,1)}
@@ -94,6 +91,18 @@ body.is-entered #brain-canvas{opacity:1}
   #brain-canvas,#brain-overlay{transition-duration:120ms!important}
 }
 </style>
+<style id="perf-vt">
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(root){animation:vt-out .18s cubic-bezier(.4,0,1,1) both}
+::view-transition-new(root){animation:vt-in .32s cubic-bezier(.2,.8,.2,1) both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0;transform:translateY(6px)}}
+.sb{view-transition-name:sb}
+::view-transition-group(sb),::view-transition-old(sb),::view-transition-new(sb){animation:none}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+</style>
+<script type="speculationrules" id="perf-spec">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"eager"}]}</script>
 </head>
 <body>
 <canvas id="brain-canvas"></canvas>
@@ -125,6 +134,6 @@ body.is-entered #brain-canvas{opacity:1}
   <p class="ep-cue">:: click to enter ::</p>
 </div>
 
-<script type="module" src="brain/main.js?v=2"></script>
+<script type="module" src="_build/brain/main.js?v=030bbf54f3"></script>
 </body>
 </html>

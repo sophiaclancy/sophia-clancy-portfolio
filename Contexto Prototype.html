@@ -12,7 +12,19 @@
 <style>
   :root{ --wall:url("assets/contexto/desktop-bg.png"); }
 </style>
-<link rel="stylesheet" href="proto/styles.css?v=7" />
+<link rel="stylesheet" href="_build/proto/styles.css?v=b24076238b" />
+<style id="perf-vt">
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(root){animation:vt-out .18s cubic-bezier(.4,0,1,1) both}
+::view-transition-new(root){animation:vt-in .32s cubic-bezier(.2,.8,.2,1) both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0;transform:translateY(6px)}}
+.sb{view-transition-name:sb}
+::view-transition-group(sb),::view-transition-old(sb),::view-transition-new(sb){animation:none}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+</style>
+<script type="speculationrules" id="perf-spec">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"eager"}]}</script>
 </head>
 <body>
 <template id="__bundler_thumbnail">
@@ -25,13 +37,13 @@
 </template>
 <div id="root"></div>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="vendor/react.production.min.js"></script>
+<script src="vendor/react-dom.production.min.js"></script>
+<script id="perf-sync-mount">(function(){var D=window.ReactDOM;if(!D||!D.flushSync||D.__sync)return;var c=D.createRoot;D.createRoot=function(e,o){var r=c.call(D,e,o),f=r.render.bind(r);r.render=function(x){D.flushSync(function(){f(x)})};return r};D.__sync=1})();</script>
 
-<script type="text/babel" src="proto/data.jsx?v=3"></script>
-<script type="text/babel" src="proto/chrome.jsx?v=3"></script>
-<script type="text/babel" src="proto/screens.jsx?v=7"></script>
-<script type="text/babel" src="proto/app.jsx?v=8"></script>
+<script src="_build/proto/data.js?v=82f3cb8443"></script>
+<script src="_build/proto/chrome.js?v=4437e5dd30"></script>
+<script src="_build/proto/screens.js?v=77c7261b7e"></script>
+<script src="_build/proto/app.js?v=e3312164dc"></script>
 </body>
 </html>

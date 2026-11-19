@@ -1,3 +1,4 @@
+var HOMEW = location.protocol === "file:" ? "index.html#work" : "./#work";
 // casestudy-v13.jsx — windowed case study shell; card view + expanded (full) view
 const { useState, useEffect, useRef, useCallback } = React;
 
@@ -77,7 +78,7 @@ function Page() {
   }, []);
 
   const blocks = (p.blocks || []).map((b, i) => <window.CaseBlock b={b} accent={p.color} key={i} />);
-  const close = () => { location.href = "./#work"; };
+  const close = () => { location.href = HOMEW; };
 
   useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") { if (full) setFull(false); else close(); } };
@@ -89,14 +90,14 @@ function Page() {
     <div className="page v12 cs-page">
       {window.CustomCursor ? <window.CustomCursor /> : null}
       <div className="cs-backdrop" aria-hidden="true" onClick={close}>
-        <iframe src="./" title="" tabIndex="-1" scrolling="no" loading="lazy"></iframe>
+        <iframe src={location.protocol === "file:" ? "index.html" : "./"} title="" tabIndex="-1" scrolling="no" loading="lazy"></iframe>
         <div className="cs-scrim"></div>
       </div>
       <header className="v12-top">
         <div className="wrap top-inner">
-          <a className="mark" href="./" aria-label="Sophia — home"><img src="assets/logo-mark.png" alt="" /></a>
+          <a className="mark" href={location.protocol === "file:" ? "index.html" : "./"} aria-label="Sophia — home"><img src="assets/logo-mark.png" alt="" /></a>
           <nav className="v12-nav">
-            <a href="./#work">work</a>
+            <a href={HOMEW}>work</a>
             <a href="About.html">about</a>
             <a href="https://drive.google.com/file/d/1oPp-S96QerNcEBSoBz0-ZevHmxsRBRNT/view?usp=sharing" target="_blank" rel="noopener">resume</a>
           </nav>
@@ -106,7 +107,7 @@ function Page() {
       <div className={"cs-stage" + (full ? " is-full" : "")} onClick={(e) => { if (e.target === e.currentTarget && !full) close(); }}>
         <div className="cs-window">
           <div className="cs-bar">
-            <a className="cs-btn" href="./#work" aria-label="Back to work" title="Back to work">
+            <a className="cs-btn" href={HOMEW} aria-label="Back to work" title="Back to work">
               <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 9.2 10 3.8l6.5 5.4V16a.8.8 0 0 1-.8.8h-3.4v-4.5H7.7v4.5H4.3a.8.8 0 0 1-.8-.8z" /></svg>
             </a>
             <span className="cs-bar-name">{p.kicker || <React.Fragment>{p.title} <i>·</i> {p.discipline} {p.year}</React.Fragment>}</span>
@@ -121,7 +122,7 @@ function Page() {
             {full ? (
               <div className="cs-full">
                 <aside className="cs-toc">
-                  <a className="cs-back" href="./#work">&larr; Back</a>
+                  <a className="cs-back" href={HOMEW}>&larr; Back</a>
                   <nav>
                     {heads.map((h) => (
                       <button key={h.id} className={"cs-toc-link" + (active === h.id ? " is-active" : "")} onClick={() => go(h.id)}>{h.nav || h.eyebrow}</button>

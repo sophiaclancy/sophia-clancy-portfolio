@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contexto Prototype</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="v4">
+<!-- prototype chrome (outside the Mac) -->
+<nav id="scenes">
+  <b>Contexto</b>
+  <div class="sc" id="scSeg">
+    <button data-s="views" class="on">Day one: organized</button>
+    <button data-s="search">Find any file</button>
+    <button data-s="mail">Email a professor</button>
+    <button data-s="notes">Study notes</button>
+    <button data-s="form">Upload a file</button>
+  </div>
+  <button id="replay">Replay</button>
+  <span id="scNext"></span>
+</nav>
+<div id="stage">
+<div id="mac">
+  <img class="wall" src="img/wallpaper.jpg" alt="">
+  <header class="menubar">
+    <div class="mb-l">
+      <span class="mi apple"><svg viewBox="0 0 17 20" width="15" height="18"><path fill="currentColor" d="M14.1 10.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9C3.6 4.8 1.9 5.8 1 7.4c-1.9 3.3-.5 8.1 1.3 10.8.9 1.3 2 2.7 3.4 2.7 1.4-.1 1.9-.9 3.5-.9s2.1.9 3.5.9c1.4 0 2.4-1.3 3.2-2.6 1-1.5 1.4-2.9 1.4-3-.1 0-2.7-1-2.7-4.1zM11.6 3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.2 1.1.1 2.3-.6 3-1.5z"/></svg></span>
+      <span class="mi app" id="mbApp">Safari</span>
+      <span class="mi">File</span><span class="mi">Edit</span><span class="mi">View</span><span class="mi">Format</span><span class="mi">Window</span><span class="mi">Help</span>
+    </div>
+    <div class="mb-r">
+      <span class="mi"><svg viewBox="0 0 24 24" width="17" height="17"><path fill="currentColor" d="M12 18.5a1.6 1.6 0 110 3.2 1.6 1.6 0 010-3.2zm0-5.2c2 0 3.8.8 5.1 2.1l-1.4 1.4a5.2 5.2 0 00-7.4 0l-1.4-1.4A7.2 7.2 0 0112 13.3zm0-5.1c3.4 0 6.5 1.4 8.8 3.6l-1.4 1.4A10.4 10.4 0 0012 10.2c-2.9 0-5.5 1.2-7.4 3l-1.4-1.4A12.4 12.4 0 0112 8.2z"/></svg></span>
+      <span class="mi"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+      <span class="mi"><svg viewBox="0 0 24 24" width="17" height="17"><rect x="2.5" y="4.5" width="19" height="6" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="7.5" cy="7.5" r="1.8" fill="currentColor"/><rect x="2.5" y="13.5" width="19" height="6" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="16.5" cy="16.5" r="1.8" fill="currentColor"/></svg></span>
+      <span class="mi clock" id="clock">Tue Nov 18&nbsp;&nbsp;9:41 AM</span>
+    </div>
+  </header>
+
+  <!-- Mail compose -->
+  <section class="win app mail" id="w-mail" hidden>
+    <div class="m-tb">
+      <div class="lights"><i class="c"></i><i class="m"></i><i class="z"></i></div>
+      <div class="gl circ send" title="Send"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg></div>
+      <b class="m-title">Recommendation letter</b>
+      <div class="gl pill"><span>Aa</span><span>📎</span></div>
+    </div>
+    <div class="m-fields">
+      <div class="mf"><span>To:</span><b class="tok">Prof. Elena Rivera</b></div>
+      <div class="mf"><span>Subject:</span>Recommendation letter for summer research</div>
+    </div>
+    <div class="editor" id="ed-mail"></div>
+    <div class="atts" id="att-mail"></div>
+    <div class="badge" id="bd-mail"></div>
+  </section>
+
+  <!-- Notes -->
+  <section class="win app notes" id="w-notes" hidden>
+    <aside class="n-side"><div class="lights"><i class="c"></i><i class="m"></i><i class="z"></i></div>
+      <div class="n-fold">iCloud</div>
+      <div class="n-it sel"><b>ECON 100B · Midterm review</b><small>Today · Elasticity, surplus…</small></div>
+      <div class="n-it"><b>CS 61B · Project 2 ideas</b><small>Yesterday</small></div>
+      <div class="n-it"><b>Groceries</b><small>Sun</small></div>
+    </aside>
+    <div class="n-main">
+      <div class="n-tb"><span class="n-date">November 18, 2026 at 9:41 AM</span></div>
+      <div class="editor" id="ed-notes"></div>
+      <div class="badge" id="bd-notes"></div>
+    </div>
+  </section>
+
+  <!-- Safari form -->
+  <section class="win app form" id="w-form" hidden>
+    <div class="tb">
+      <div class="lights"><i class="c"></i><i class="m"></i><i class="z"></i></div>
+      <div class="gl url">apply.berkeley.edu/urap</div>
+    </div>
+    <div class="fpage">
+      <p class="co">Undergraduate Research Apprentice Program</p>
+      <h1>Application · Spring 2027</h1>
+      <label>Full name<input value="Maya Chen" readonly></label>
+      <label>Why this lab? <textarea readonly>I'm interested in human-computer interaction research…</textarea></label>
+      <div class="fld"><span class="lbl">Unofficial transcript (PDF)</span>
+        <div class="drop" id="drop-form"><span>Drop a file here or</span><button class="attach">Browse…</button></div>
+        <div class="up-ok" id="ok-form" hidden></div>
+      </div>
+      <button class="submit" id="sub-form" disabled>Submit</button>
+    </div>
+  </section>
+
+  <!-- Finder · Organized views (virtual, read-only: nothing moves) -->
+  <section class="win app views" id="w-views" hidden>
+    <aside class="side fside">
+      <div class="lights"><i class="c"></i><i class="m"></i><i class="z"></i></div>
+      <div class="sh">Favorites</div>
+      <div class="it" data-v="dl"><span class="si">⌂</span>Downloads</div>
+      <div class="it"><span class="si">▭</span>Desktop</div>
+      <div class="it"><span class="si">▤</span>Documents</div>
+      <div class="sh ctxh"><span class="ctx-mark sm"></span>Organized by Contexto <em id="orgPct"></em></div>
+      <div id="orgSide"></div>
+      <div class="sh">Locations</div>
+      <div class="it"><span class="si">☁</span>iCloud Drive</div>
+    </aside>
+    <div class="fm">
+      <div class="f-tb">
+        <div class="gl pill"><span>‹</span><span class="dim">›</span></div>
+        <div class="f-title"><b id="vTitle">Downloads</b><small id="vSub">47 items</small></div>
+        <div class="gl segc" id="vSeg"><button class="on" data-m="folders">Folders</button><button data-m="org">Organized</button></div>
+        <div class="gl search2">Search</div>
+      </div>
+      <div class="vbanner" id="vBanner" hidden></div>
+      <div class="vcols"><span>Name</span><span>Kind</span><span>Where it really is</span><span>Date</span></div>
+      <div class="vlist" id="vList"></div>
+      <div class="vfoot" id="vFoot"></div>
+    </div>
+  </section>
+
+  <!-- Find any file: Finder search vs. Contexto ⌥Space -->
+  <section class="win app fsearch" id="w-search" hidden>
+    <div class="fs-tb">
+      <div class="lights"><i class="c"></i><i class="m"></i><i class="z"></i></div>
+      <div class="gl pill"><span>‹</span><span class="dim">›</span></div>
+      <b class="fs-title">Searching “This Mac”</b>
+      <div class="gl fs-field" id="fsearch"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg><span id="fq"></span><i class="caret2"></i></div>
+    </div>
+    <div class="fs-scope"><span class="on">This Mac</span><span>“Downloads”</span><span class="grow"></span><span class="lbl">Name ▾</span></div>
+    <div class="fs-body" id="fbody"></div>
+  </section>
+  <div class="cpanel" id="cpanel" hidden>
+    <div class="cp-field"><span class="ctx-mark"></span><span id="cq"></span><i class="caret2"></i><span class="cp-k">⌥ Space</span></div>
+    <div class="cp-meta"><span>Files</span><span id="cmeta"></span></div>
+    <div class="cp-res" id="cres"></div>
+    <div class="cp-ft"><span><kbd>↩</kbd> Open</span><span><kbd>⌘↩</kbd> Show in Finder</span><span><kbd>⌘C</kbd> Copy file</span><span class="grow"></span><span>Finds any part of a name, typos too</span></div>
+  </div>
+
+  <!-- suggestion card (Grammarly-style, anchored to the underline) -->
+  <div class="sug" id="sug" hidden></div>
+
+  <nav class="dock" id="dock"></nav>
+  <div class="cursor" id="cursor" hidden></div>
+  <div class="hint" id="hint" hidden></div>
+</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

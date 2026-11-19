@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sand · Helping People Feel Time | Sophia Clancy</title>
+<meta name="description" content="Case study: Sand, a speculative AR glasses, ring, and app system that helps people sense focus and fatigue in real time. FigBuild 2026." />
+<link rel="icon" href="favicon.ico?v=2" sizes="any" />
+<link rel="stylesheet" href="vendor/fonts/2b1e607304.css?v=a104d2598e" />
+<link rel="stylesheet" href="_build/case-a.css?v=d9eeae5e74" />
+<link rel="stylesheet" href="case-b.css?v=7" />
+<style id="perf-vt">
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(root){animation:vt-out .18s cubic-bezier(.4,0,1,1) both}
+::view-transition-new(root){animation:vt-in .32s cubic-bezier(.2,.8,.2,1) both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0;transform:translateY(6px)}}
+.sb{view-transition-name:sb}
+::view-transition-group(sb),::view-transition-old(sb),::view-transition-new(sb){animation:none}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+</style>
+<script type="speculationrules" id="perf-spec">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"eager"}]}</script>
+</head>
+<body class="cs-min cb">
+
+<aside class="rail">
+  <a class="back" href="./" data-home><svg viewBox="0 0 13 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 3 3 9l6 6"/></svg>BACK TO HOME</a>
+  <a class="owner" href="./" data-home>Sophia Clancy</a>
+  <p class="k">Case Study</p>
+  <p class="p">Sand</p>
+  <ul class="toc">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#solution">The Solution</a></li>
+    <li><a href="#moments">Three Moments</a></li>
+    <li><a href="#app">The App</a></li>
+    <li><a href="#edge">Edge Cases</a></li>
+    <li><a href="#reflection">Reflection</a></li>
+  </ul>
+</aside>
+
+<main>
+<section id="overview">
+  <figure class="cb-hero cb-frame"><div class="device" style="aspect-ratio:16/10"><iframe src="prototypes/sand-ar/index.html" title="Sand AR prototype: calibrate, focus, and be present" loading="eager"></iframe></div></figure>
+  <p class="cb-label">Sand · FigBuild 2026</p>
+  <h1>AR glasses, a ring, and an app that help you feel time.</h1>
+  <p class="cb-lede">Sand is a speculative system that helps busy people sense their focus and fatigue as they happen, instead of reading about them the next morning.</p>
+  <dl class="cb-meta"><div><dt>Role</dt><dd>App + AR design and prototyping</dd></div><div><dt>Timeline</dt><dd>One weekend · FigBuild 2026</dd></div><div><dt>Skills</dt><dd>AR prototyping, interaction design, speculative design</dd></div><div><dt>Team</dt><dd>Avery Roslansky, Neha Haresh, Dylan Hoan</dd></div></dl>
+</section>
+
+<section id="problem">
+  <p class="cb-label">The problem</p>
+  <h2>Time rules our lives, and we’re bad at sensing it.</h2>
+  <p>It started when a 10-minute scroll break turned into two hours. Meet Andy, an architecture student with a building to model by Friday. Friday is also the season finale she always watches with her roommates. Seven hours into a studio session, she feels like she has barely started.</p><blockquote class="cb-quote"><p>The sense Andy is losing has a name: chronoception, our subjective perception of time. It’s why hours can vanish during flow and minutes can drag when we’re bored.</p></blockquote>
+</section>
+
+<section id="research">
+  <p class="cb-label">Research</p>
+  <h2>People didn’t want more data. They wanted it in time to act.</h2>
+  <p>We surveyed 36 ambitious students and professionals. Their stories kept landing on the same moment: realizing too late.</p><div class="cb-cols three"><div><b style="font-size:var(--t-head);letter-spacing:-.02em">70%</b><p>preferred real-time support built into their environment.</p></div><div><b style="font-size:var(--t-head);letter-spacing:-.02em">41%</b><p>disliked getting data after they could do anything with it.</p></div><div><b style="font-size:var(--t-head);letter-spacing:-.02em">43%</b><p>were unhappy with how smart trackers feel or look.</p></div></div><blockquote class="cb-quote"><p>“My smartwatch tells me I have a low readiness score after I’ve already woken up tired.”</p><cite>Survey respondent</cite></blockquote>
+</section>
+
+<section id="solution">
+  <p class="cb-label">The solution</p>
+  <h2>Make time something you can feel again.</h2>
+  <p>Another dashboard would repeat the problem, so we rejected a readiness score and moved the experience into the room around you. If Sand can act in the moment, it doesn’t need to grade you.</p><div class="cb-cols three cb-sys"><div><img src="assets/sand/glasses.webp" alt="" loading="lazy"><b>Sand Shades</b><p>AR glasses read light and attention, then shift the ambiance around you.</p></div><div><img src="assets/sand/ring.webp" alt="" loading="lazy"><b>Ring</b><p>Tracks sleep pressure, HRV, and vagal tone overnight, when glasses come off.</p></div><div><img class="tall" src="assets/sand/home.webp" alt="" loading="lazy"><b>Sand app</b><p>Explains what Sand is doing and lets you change or turn off any of it.</p></div></div>
+</section>
+
+<section id="moments">
+  <p class="cb-label">Three moments</p>
+  <h2>One week with Sand.</h2>
+  <div class="cb-group"><h3>First, learn her clock.</h3><p>Andy estimates when 10 minutes have passed. Comparing that feeling with real time gives Sand a personal baseline.</p><figure class="cb-media cb-frame"><div class="device" style="aspect-ratio:16/10"><iframe data-src="prototypes/sand-ar/index.html?scene=calib" title="Calibrating an internal clock"></iframe></div></figure></div><div class="cb-group"><h3>Then, protect her focus.</h3><p>When Andy sits down to work, Sand offers deep focus. Distractions dim and notifications dissolve into mist, but she chooses when it starts.</p><figure class="cb-media cb-frame"><div class="device" style="aspect-ratio:16/10"><iframe data-src="prototypes/sand-ar/index.html?scene=focus" title="Entering deep focus"></iframe></div></figure></div><div class="cb-group"><h3>Finally, bring her back.</h3><p>On Friday, Sand recognizes she’s with friends. Light warms and messages wait, so she can actually be there for the finale.</p><figure class="cb-media cb-frame"><div class="device" style="aspect-ratio:16/10"><iframe data-src="prototypes/sand-ar/index.html?scene=social" title="Staying present with friends"></iframe></div></figure></div>
+</section>
+
+<section id="app">
+  <p class="cb-label">The app</p>
+  <h2>An ambient system still has to explain itself.</h2>
+  <p>When technology changes your surroundings, trust depends on knowing why. The app follows one day with Sand, from the first calibration to the moment you decide how much it should know.</p><figure class="cb-media cb-wide cb-film"><iframe data-src="prototypes/sand-app/index.html?view=flow" title="Sand app flow, moving phone to phone from onboarding through modes"></iframe></figure><div class="cb-group"><h3>Try the key interactions</h3><div class="cb-wide cb-try"><div><h3>Sand suggests. You decide.</h3><p>Swipe between modes. If you need rest, Sand won’t let you push into Peak.</p><iframe data-src="prototypes/sand-app/index.html?view=one&screen=mode" title="Sand suggests. You decide. Interactive Sand app screen"></iframe></div><div><h3>Step back from your data.</h3><p>Hide your numbers, or turn off any signal Sand reads.</p><iframe data-src="prototypes/sand-app/index.html?view=one&screen=mist" title="Step back from your data. Interactive Sand app screen"></iframe></div><div><h3>Reset your rhythm.</h3><p>Drag bedtime and wake time around the dial.</p><iframe data-src="prototypes/sand-app/index.html?view=one&screen=circ" title="Reset your rhythm. Interactive Sand app screen"></iframe></div><div><h3>See every decision.</h3><p>Drag across the day to find out what Sand changed and why.</p><iframe data-src="prototypes/sand-app/index.html?view=one&screen=log" title="See every decision. Interactive Sand app screen"></iframe></div></div></div><div class="cb-group cb-wide cb-whole"><div><h3>Use the whole app.</h3><p>Everything in this phone works, so you can move through it the way Andy would.</p><ul><li>Calibrate your sense of ten minutes</li><li>Tap the wave to change modes</li><li>Tap the sun to change the ambience</li><li>Begin a session, then read the recap</li><li>Open the menu to find Mist and Circadian Mode</li></ul><a class="cb-link" href="prototypes/sand-app/index.html" target="_blank" rel="noopener">Open full screen ↗</a></div><iframe data-src="prototypes/sand-app/index.html" title="Fully interactive Sand app"></iframe></div>
+</section>
+
+<section id="edge">
+  <p class="cb-label">Edge cases</p>
+  <h2>Designing for the people a wearable can hurt.</h2>
+  <div class="cb-cols three"><div><b>No universal cycle</b><p>People with ADHD or sleep disorders get a baseline learned from their own signals.</p></div><div><b>Burnout gets a limit</b><p>If rest is needed, Sand blocks Peak mode instead of rewarding overwork.</p></div><div><b>Mist Mode</b><p>People who find biometrics harmful can hide the numbers and keep the benefits.</p></div></div>
+</section>
+
+<section id="reflection">
+  <p class="cb-label">Reflection</p>
+  <h2>The best interface may be the room you’re already in.</h2>
+  <p>Most wearables turn how you feel into a score, and the score starts to define you. So every feature had to answer one question: does this give people agency, or does it quietly watch them? That question led us to Mist Mode, and to a wearable that disappears into your day instead of grading it.</p>
+</section>
+
+  <footer>
+    <p class="eyebrow">Connect with me</p>
+    <p>Built for FigBuild 2026 with Avery Roslansky, Neha Haresh, and Dylan Hoan. Say hi at <a href="mailto:sophiaclancy@berkeley.edu">sophiaclancy@berkeley.edu</a></p>
+    <div class="nextcs"><a href="Play.html">← All play</a><a href="Baro.html">Next: Baro →</a></div>
+  </footer>
+</main>
+<script src="_build/case-notability.js?v=56885b59ae"></script>
+</body>
+</html>
