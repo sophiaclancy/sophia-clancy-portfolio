@@ -2,76 +2,65 @@
 // black ants commuting through them, grass on the ground line. Quote of the day sits in one chamber,
 // the links in another. Quote changes once per day (same for everyone that day).
 (function () {
-  // Wise or a little funny, all well-documented attributions (verify before adding more).
+  
+  // Rappers and tough figures everyone knows; short, clean, well-documented lines (lyrics, speeches, famous quotes).
   var QUOTES = [
-    [
-        "Imagination is more important than knowledge.",
-        "Albert Einstein"
-    ],
-    [
-        "Life is like riding a bicycle. To keep your balance you must keep moving.",
-        "Albert Einstein"
-    ],
-    [
-        "Everything I'm not made me everything I am.",
-        "Kanye West"
-    ],
-    [
-        "We are all in the gutter, but some of us are looking at the stars.",
-        "Oscar Wilde"
-    ],
-    [
-        "When you come to a fork in the road, take it.",
-        "Yogi Berra"
-    ],
-    [
-        "“You miss 100% of the shots you don't take.” — Wayne Gretzky",
-        "Michael Scott"
-    ],
-    [
-        "Life moves pretty fast. If you don't stop and look around once in a while, you could miss it.",
-        "Ferris Bueller"
-    ],
-    [
-        "Travel isn't always pretty. It isn't always comfortable. Sometimes it hurts, it even breaks your heart. But that's okay.",
-        "Anthony Bourdain"
-    ],
-    [
-        "If you want the rainbow, you gotta put up with the rain.",
-        "Dolly Parton"
-    ],
-    [
-        "You can't use up creativity. The more you use, the more you have.",
-        "Maya Angelou"
-    ],
-    [
-        "We don't make mistakes, just happy little accidents.",
-        "Bob Ross"
-    ],
-    [
-        "Without music, life would be a mistake.",
-        "Friedrich Nietzsche"
-    ],
-    [
-        "Hard work beats talent when talent doesn't work hard.",
-        "Tim Notke"
-    ],
-    [
-        "The marathon continues.",
-        "Nipsey Hussle"
-    ],
-    [
-        "Started from the bottom, now we're here.",
-        "Drake"
-    ],
-    [
-        "Speak yourself.",
-        "RM of BTS"
-    ],
-    [
-        "Is it me, or is everything a little blurry?",
-        "Casper, resident mantis"
-    ]
+      [
+          "Everything I'm not made me everything I am.",
+          "Kanye West"
+      ],
+      [
+          "Started from the bottom, now we're here.",
+          "Drake"
+      ],
+      [
+          "The marathon continues.",
+          "Nipsey Hussle"
+      ],
+      [
+          "The most important thing is to try and inspire people so that they can be great in whatever they want to do.",
+          "Kobe Bryant"
+      ],
+      [
+          "We gon' be alright.",
+          "Kendrick Lamar"
+      ],
+      [
+          "It was all a dream.",
+          "The Notorious B.I.G."
+      ],
+      [
+          "Keep ya head up.",
+          "Tupac Shakur"
+      ],
+      [
+          "The world is yours.",
+          "Nas"
+      ],
+      [
+          "I'm not a businessman, I'm a business, man.",
+          "Jay-Z"
+      ],
+      [
+          "I want to thank me for believing in me.",
+          "Snoop Dogg"
+      ],
+      [
+          "Float like a butterfly, sting like a bee.",
+          "Muhammad Ali"
+      ],
+      [
+          "I've failed over and over and over again in my life. And that is why I succeed.",
+          "Michael Jordan"
+      ],
+      [
+          "The first step is you have to say that you can.",
+          "Will Smith"
+      ],
+      [
+          "I really think a champion is defined not by their wins but by how they can recover when they fall.",
+          "Serena Williams"
+      ]
   ];
   var day = Math.floor((Date.now() - new Date().getTimezoneOffset() * 6e4) / 864e5);
   var m = /[?&]sf=(\d+)/.exec(location.search), pick = m ? +m[1] : day; // ?sf=N previews day N

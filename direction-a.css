@@ -811,3 +811,30 @@ html body footer.sf.sf-farm .sf-toprow a.sf-top{font-size:12.5px!important}
 html body footer.sf.sf-farm .sf-toprow a.sf-top{font-size:14px!important}
 html body .sb .sb-name a.sb-home{all:unset;display:inline;cursor:pointer;font:inherit!important;letter-spacing:inherit!important;text-transform:inherit!important;color:inherit!important}
 html body .sb .sb-name a.sb-home:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:2px}
+
+/* 28.0 Handwritten wordmark in the sidebar (version B). SVG drawing + transparent real text on top */
+html body .sb .sb-name-wm{position:relative;margin:0;line-height:0}
+html body .sb .sb-name-wm .sb-home{position:relative;display:inline-block}
+.sb-wm{display:block;width:200px}
+.sb-wm svg{display:block;width:100%;height:auto;overflow:visible}
+.sb-wm svg path{fill:none;stroke:#2a2520;stroke-linecap:round;stroke-linejoin:round}
+html body .sb .sb-wm-txt{position:absolute;inset:0;display:flex;align-items:center;color:transparent!important;font-size:34px!important;line-height:1;letter-spacing:.01em!important;text-transform:none!important;white-space:nowrap;font-weight:500}
+.sb-wm-txt::selection{background:rgba(255,214,90,.55);color:transparent}
+@media (min-width:1101px){html body .sb.fh{padding-top:96px!important}}
+
+/* 25.1 Drawer: always solid (Safari), above the dim layer */
+@media (max-width:1100px){
+  html body .sb.fh{background-color:#EFEBE5!important;background-image:none!important;opacity:1!important;isolation:isolate;-webkit-backface-visibility:hidden;backface-visibility:hidden;will-change:transform;z-index:90!important}
+  .sb-scrim{z-index:85!important}
+  /* small-screen header uses the handwritten wordmark */
+  .sb-mhead .sb-mwm{position:relative;display:inline-block;margin-bottom:6px;text-decoration:none}
+  .sb-mhead .sb-mwm .sb-wm{width:190px}
+  .sb-mhead .sb-mwm .sb-wm-txt{position:absolute;inset:0;display:flex;align-items:center;color:transparent;font-size:32px;line-height:1;white-space:nowrap;margin:0}
+  .sb-mhead .sb-mwm + span{display:block;margin-top:4px;font-size:14px;line-height:1.45;color:rgba(42,37,32,.6)}
+}
+/* while the drawer is open, lift the whole sidebar shell above the page (incl. the footer) */
+@media (max-width:1100px){html.sb-open body .sb-shell{position:relative;z-index:200}}
+@media (max-width:1100px){.sb-scrim{z-index:199!important}}
+/* wordmark sits as close to the subtitle as the old heading did */
+html body .sb .sb-name-wm{margin-bottom:-10px!important}
+.sb-wm svg{margin-top:-6px}
