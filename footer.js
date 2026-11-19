@@ -83,7 +83,7 @@
     wide: { h: 480, ground: 0,
       tunnels: [[[.04,0],[.1,.24],[.07,.5],[.18,.68]], [[.18,.68],[.32,.6],[.44,.7],[.58,.62]], [[.58,.62],[.66,.36],[.78,.22],[.86,0]], [[.44,.7],[.5,.88],[.66,.9],[.8,.82]]],
       chambers: [[.24,.42,.13,.16], [.79,.6,.1,.19], [.6,.9,.035,.035], [.93,.86,.025,.03], [.1,.86,.03,.03]],
-      quote: [14.6, 26, 19], links: [72.8, 43] },
+      quote: [12.2, 26, 19], links: [68.9, 41] },
     narrow: { h: 740, ground: 0,
       tunnels: [[[.08,0],[.06,.14],[.14,.26]], [[.86,.32],[.93,.46],[.8,.55],[.5,.56],[.25,.6],[.09,.7]], [[.09,.7],[.08,.87],[.5,.95],[.86,.9]]],
       chambers: [[.5,.3,.44,.14], [.56,.74,.4,.12], [.12,.93,.06,.03]],
@@ -165,7 +165,7 @@
     var fr = f.getBoundingClientRect(), W = fr.width, H = fr.height, out = JSON.parse(JSON.stringify(lay));
     [f.querySelector(".sf-q"), f.querySelector(".sf-links")].forEach(function (el, k) {
       if (!el) return; var r = el.getBoundingClientRect(), a = r.width / 2, b = r.height / 2;
-      out.chambers[k] = [(r.left - fr.left + a) / W, (r.top - fr.top + b) / H, (a * 1.3 + 22) / W, (b * 1.3 + 26) / H];
+      out.chambers[k] = [(r.left - fr.left + a) / W, (r.top - fr.top + b) / H, (a * 1.35 + 44) / W, (b * 1.3 + 40) / H];
     });
     return out;
   }
@@ -177,7 +177,7 @@
     f.querySelector(".sf-by").textContent = "— " + q[1];
     var old = f.querySelector(".sf-dots"); if (old) old.remove();
     f.insertAdjacentHTML("afterbegin", '<canvas class="sf-soil" aria-hidden="true"></canvas><svg class="sf-life" aria-hidden="true"></svg>');
-    var links = document.createElement("div"); links.className = "sf-links"; f.querySelectorAll(".sf-col").forEach(function (n) { links.appendChild(n); }); f.appendChild(links);
+    var links = document.createElement("div"); links.className = "sf-links"; f.querySelectorAll(".sf-col").forEach(function (n) { links.appendChild(n); }); f.appendChild(links); var top = f.querySelector(".sf-top"); if (top) { var tr = document.createElement("div"); tr.className = "sf-toprow"; tr.appendChild(top); links.appendChild(tr); }
     var st = { ants: [], vis: false, lay: null, w: 0 };
     function layout() {
       var lay = f.clientWidth < 760 ? LAYOUT.narrow : LAYOUT.wide; st.lay = lay;
