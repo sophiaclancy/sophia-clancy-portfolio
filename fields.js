@@ -1,7 +1,7 @@
 // fields.js: Terrarium covers. A photo is cropped, color-pushed, smeared and blurred into an
 // almost-abstract "field" behind the work (canvas.da-field[data-field]). At rest the field shows
 // through a soft blob mask; on hover the mask grows past the card so the field fills it (see CSS 15.0).
-// Photos live in assets/fields/ (git-ignored until they're replaced with Sophia's own photos).
+// Photos live in assets/fields/ (Sophia's own photos, from clancystuff).
 (function () {
   var FIELDS = {
     asus:       { file: "assets/fields/water.png",       crop: [0, 0, 688, 470],      sat: 1.1,  con: 1.1 },
