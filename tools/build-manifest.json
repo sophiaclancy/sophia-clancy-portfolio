@@ -526,7 +526,12 @@
     "_build/fields.js": "fields.js",
     "_build/ants.js": "ants.js",
     "_build/casper.js": "casper.js",
-    "_build/footer.js": "footer.js"
+    "_build/footer.js": "footer.js",
+    "_build/motion-v2.js": "motion-v2.js",
+    "_build/motion-v2.css": "motion-v2.css",
+    "_build/mock-next.js": "mock-next.js",
+    "_build/mock-next.css": "mock-next.css",
+    "_build/writing.js": "writing.jsx"
   },
   "fonts": {
     "vendor/fonts/e8c39833b2.css": "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400..700&family=Space+Grotesk:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&display=swap",
@@ -539,6 +544,7 @@
     "vendor/fonts/08b099d786.css": "https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Hanken+Grotesk:wght@400;500&display=swap",
     "vendor/fonts/5abba3fc30.css": "https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Hanken+Grotesk:wght@400;500;600;700&display=swap",
     "vendor/fonts/c685ac4459.css": "https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Geist:wght@400;500;600;700&display=swap",
-    "vendor/fonts/2b1e607304.css": "https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Figtree:wght@400;500;600;700&display=swap"
+    "vendor/fonts/2b1e607304.css": "https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Figtree:wght@400;500;600;700&display=swap",
+    "vendor/fonts/7443bf6c91.css": "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
   }
 }

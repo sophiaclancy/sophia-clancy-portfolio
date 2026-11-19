@@ -74,7 +74,7 @@
   - Non-downloaded iCloud files, excluded folders, or a stale index.
 
 ### E4 · Our own evidence (earlier rounds)
-- **v1 testing (6–9 students):**
+- **v1 testing (6 students):**
   - Loved automatic surfacing and the widget.
   - Manual tagging = "dealbreaker."
   - "If it's just buried in Finder, I might not remember to check it."

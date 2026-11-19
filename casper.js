@@ -19,6 +19,10 @@
     "sorry, I'm mid-prayer.",
     "pacing is how I think.",
     "click me again. I'm not going anywhere. I'm very slow.",
+    "careful, she might start psychoanalyzing you.",
+    "there's levels to this. keep scrolling.",
+    "don't worry, she only psychoanalyzes on the second visit.",
+    "she started with bugs. now it's people. you're next.",
     "is it me, or is everything a little blurry?"
   ];
 

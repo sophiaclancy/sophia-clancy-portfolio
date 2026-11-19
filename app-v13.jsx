@@ -439,7 +439,8 @@ const SB_NAV = [
   { n: "01", t: "Work", href: location.protocol === "file:" ? "index.html" : "./", on: (window.PAGE || "work") === "work" },
   { n: "02", t: "About", href: "About.html", on: window.PAGE === "about" },
   { n: "03", t: "Play", href: "Play.html", on: window.PAGE === "play" },
-  { n: "04", t: "Resume", href: "https://drive.google.com/file/d/1xUUJODBYS7LKQRSLNRIj3dxtsqX9ORgb/view?usp=sharing", ext: true },
+  { n: "04", t: "Writing", href: "Writing.html", on: window.PAGE === "writing" },
+  { n: "05", t: "Resume", href: "https://drive.google.com/file/d/1xUUJODBYS7LKQRSLNRIj3dxtsqX9ORgb/view?usp=sharing", ext: true },
 ];
 
 function AsusBar() {
@@ -543,6 +544,25 @@ function FooterClock() {
   return <p className="sf-clock"><span className="sf-dot" aria-hidden="true"></span>Berkeley · <time>{parts[0]}<span className="sf-colon">:</span>{parts[1]}</time> · {mood}</p>;
 }
 
+
+// Sidebar "now": Berkeley time with a sun or moon (her local time; ticks once a minute).
+function SbNow() {
+  const fmt = React.useMemo(() => new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", minute: "2-digit" }), []);
+  const hr = React.useMemo(() => new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", hour12: false }), []);
+  const [now, setNow] = React.useState(() => new Date());
+  React.useEffect(() => { const t = setInterval(() => setNow(new Date()), 30000); return () => clearInterval(t); }, []);
+  const h = +hr.format(now) % 24, day = h >= 6 && h < 19;
+  const part = h < 5 ? "late night" : h < 12 ? "morning" : h < 17 ? "afternoon" : h < 21 ? "evening" : "night";
+  return (
+    <p className={"sb-now " + (day ? "is-day" : "is-night")} title="Sophia's local time">
+      <span className="sb-now-ic" aria-hidden="true">{day
+        ? <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.6"/><g className="sb-rays">{[0,45,90,135,180,225,270,315].map((a) => <rect key={a} x="11" y="1.8" width="2" height="3.6" rx="1" transform={"rotate(" + a + " 12 12)"} />)}</g></svg>
+        : <svg viewBox="0 0 24 24"><path d="M19.5 14.6A7.8 7.8 0 0 1 9.4 4.5a7.8 7.8 0 1 0 10.1 10.1z"/><circle className="sb-star" cx="18" cy="5.5" r="1.3"/></svg>}</span>
+      <span className="sb-now-t"><b>Berkeley, CA</b><span>{fmt.format(now)} · {part}</span></span>
+    </p>
+  );
+}
+
 function SiteFooter() {
   // Filled by footer.js: quote of the day + dot-matrix scene of the day
   return (
@@ -559,7 +579,6 @@ function SiteFooter() {
         <a href="https://x.com/clancystufff" target="_blank" rel="noopener">X</a>
         <a href="#top" className="sf-top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>✦ Back to top</a>
       </nav>
-      <FooterClock />
     </footer>
   );
 }
@@ -582,9 +601,9 @@ function App() {
             </a>
           ))}
         </nav>
-        <div className="sb-outbound" aria-label="Outbound">
-          <p className="sb-ob-h">Outbound</p>
-          <p className="sb-ob-links"><a href="mailto:sophiaclancy@berkeley.edu">Email</a>, <a href="https://www.linkedin.com/in/sophia-clancy-488970325/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://github.com/sophiaclancy" target="_blank" rel="noopener">GitHub</a>, <a href="https://x.com/clancystufff" target="_blank" rel="noopener">X</a>, <a href={SB_NAV[3].href} target="_blank" rel="noopener">Resume</a></p>
+        <div className="sb-outbound" aria-label="Find me">
+          <p className="sb-ob-h">Find me</p>
+          <p className="sb-ob-links"><a href="mailto:sophiaclancy@berkeley.edu">Email</a>, <a href="https://www.linkedin.com/in/sophia-clancy-488970325/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://github.com/sophiaclancy" target="_blank" rel="noopener">GitHub</a>, <a href="https://x.com/clancystufff" target="_blank" rel="noopener">X</a>, <a href={SB_NAV[4].href} target="_blank" rel="noopener">Resume</a></p>
         </div>
         <div className="sb-out">
           <a href="https://www.linkedin.com/in/sophia-clancy-488970325/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V16.5M8 7.6v.1M11.5 16.5v-6M11.5 13.2a2.4 2.4 0 0 1 4.8 0v3.3"/></svg></a>
@@ -592,9 +611,12 @@ function App() {
           <a href="https://x.com/clancystufff" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4h4.5L20 20h-4.5zM20 4l-6.5 7.2M4 20l6.5-7.2"/></svg></a>
           <a href="mailto:sophiaclancy@berkeley.edu" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></a>
         </div>
+        <SbNow />
       </aside>
       {window.PAGE === "play" && window.PlayMain ? (
         <main className="sb-main is-play"><window.PlayMain /></main>
+      ) : window.PAGE === "writing" && window.WritingMain ? (
+        <main className="sb-main is-writing"><window.WritingMain /></main>
       ) : window.PAGE === "about" && window.AboutMain ? (
         <main className="sb-main is-about"><window.AboutMain /></main>
       ) : (

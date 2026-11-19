@@ -59,7 +59,16 @@
     });
   }
 
-  function run() { document.querySelectorAll("canvas.da-field").forEach(paint); }
+  // Runtime: show the pre-baked field (assets/fields/baked/<name>.webp, made by tools/bake-fields.mjs).
+  // Painting from the full photo only happens on the bake page (?bake), so visitors download ~60KB, not ~1.5MB, per field.
+  var BAKE = /[?&]bake\b/.test(location.search);
+  function show(cv) {
+    if (cv.dataset.done || !FIELDS[cv.dataset.field]) return; cv.dataset.done = "1";
+    cv.style.setProperty("--blob", BLOB);
+    cv.style.background = "url(assets/fields/baked/" + cv.dataset.field + ".webp) center/cover no-repeat";
+  }
+  function run() { document.querySelectorAll("canvas.da-field").forEach(BAKE ? paint : show); }
   var tries = 0; (function wait() { run(); if (++tries < 40 && !document.querySelector("canvas.da-field[data-done]")) setTimeout(wait, 150); })();
+  if (!BAKE) return;
   var t; addEventListener("resize", function () { clearTimeout(t); t = setTimeout(function () { document.querySelectorAll("canvas.da-field").forEach(function (c) { delete c.dataset.done; }); run(); }, 200); });
 })();
