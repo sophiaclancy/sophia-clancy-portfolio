@@ -3,7 +3,7 @@
   const ITEMS = [
     { id: "sand", cat: "Designathon", title: "Sand: helping people feel time", sub: "AR glasses, ring, and app · FigBuild 2026", href: "Sand.html", img: "assets/sand/cover.webp", ratio: "4 / 5" },
     { id: "baro", cat: "Product", title: "Baro: behavior support for classrooms", sub: "Project Manager · 0-to-1 product with 5 engineers", href: "Baro.html", img: "assets/baro/cover.webp", ratio: "1 / 1" },
-    { id: "circuit", cat: "Front-end", title: "Circuit: virtual speed dating", sub: "Front-end implementation · Live site ↗", href: "https://www.circuitspeeddating.com/", ext: true, img: "assets/circuit/cover.webp", ratio: "1 / 1" },
+    { id: "circuit", cat: "Front-end", title: "Circuit: virtual speed dating", sub: "Front-end implementation · 1,000+ users · Live site ↗", href: "https://www.circuitspeeddating.com/", ext: true, img: "assets/circuit/cover.webp", ratio: "1 / 1" },
     { id: "brain", cat: "Experiment", title: "Pick at my brain", sub: "Interactive experiment", href: "Pick%20at%20My%20Brain.html", art: "brain", ratio: "1 / 1" },
   ];
   const CATS = ["All", ...Array.from(new Set(ITEMS.map((i) => i.cat)))];

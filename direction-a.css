@@ -390,3 +390,13 @@ html body .sb-main .card-plate.sc-p2 .card-art{inset:0!important;border-radius:i
 .wcard:hover .pk-post.is-right{transform:translate(42%,-48%) rotate(9deg)}
 .wcard:hover .pk-post.is-mid{transform:translate(-50%,-52%) scale(1.03)}
 @media (prefers-reduced-motion:reduce){.pk-post,.cx-mail-live{transition:none}}
+
+/* 12.0 Sidebar: "Currently" removed; left-aligned stack, vertically centered, even spacing */
+html body .sb.fh{align-items:flex-start!important;text-align:left;gap:48px!important;padding:56px 40px!important}
+html body .sb>*{align-self:flex-start!important}
+html body .sb .hero-left,html body .sb .hero-roleset,html body .sb .sb-nav,html body .sb .sb-out{margin:0!important}
+html body .sb .hero-roleset{margin-top:20px!important;max-width:30ch}
+html body .sb-nav{align-items:flex-start!important;gap:14px!important}
+html body .sb-out{justify-content:flex-start!important;gap:20px!important}
+@media (min-width:901px){html body .sb.fh{justify-content:center!important}}
+@media (max-width:900px){html body .sb.fh{gap:32px!important;padding:40px 20px 32px!important}}

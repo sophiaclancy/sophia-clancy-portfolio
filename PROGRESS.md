@@ -579,3 +579,20 @@ Branch: `design/direction-a`. All styling lives in `direction-a.css` (remove its
 - What changed: on all six case studies the live prototype/work leads the page again, then the label, specific title, lede, and meta.
 - Status: ✅ Done
 - Review: [ ]
+
+### Milestone 12.0 — Centered sidebar, "Currently" removed
+- What changed: Removed the "Currently" list from the sidebar. The name, role line, nav and social icons stay left-aligned and sit in the vertical middle of the sidebar on desktop, with an even 48px gap between groups (32px on phone). Nav links have 14px between them; social icons have 20px.
+- Primary inspiration used: Sophia's direction
+- Why this is better: The sidebar has fewer elements and reads as one calm, balanced column.
+- Anti-slop decision: Spacing only; no new elements.
+- Risk: Low (revert = restore the `da-now` block in `app-v13.jsx` and remove block 12.0 in `direction-a.css`)
+- Status: ✅ Done
+- Review: [ ]
+
+### Milestone 12.1 — New tagline + proof from the resume
+- What changed: Sidebar tagline is now "a product builder who decides what AI should do, and what stays human." (from the resume summary). Homepage meta descriptions match. Added proof from the resume: Notability (2 concepts later appeared in the app; status meta + outcome), Partake (concepts went live on Instagram), Circuit on Play (1,000+ users).
+- Primary inspiration used: Sophia's product resume (Drive)
+- Why this is better: One positioning across resume and site; adds the outcomes the audit graded C+.
+- Risk: Low (copy only)
+- Status: ✅ Done
+- Review: [ ]

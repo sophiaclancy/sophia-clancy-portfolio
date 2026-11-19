@@ -49,7 +49,7 @@ function HeroName() {
 function HeroRole() {
   return (
     <div className="hero-roleset">
-      <p className="hero-role">a <i className="hl hl-pink" data-text="technical">technical</i> product designer with a background in <i className="hl hl-orange" data-text="mobile development">mobile development</i>.</p>
+      <p className="hero-role">a <i className="hl hl-pink" data-text="product builder">product builder</i> who decides what AI should do, and what <i className="hl hl-orange" data-text="stays human">stays human</i>.</p>
     </div>
   );
 }
@@ -535,10 +535,6 @@ function App() {
         <div className="hero-left">
           <HeroName />
           <HeroRole />
-        </div>
-        <div className="da-now">
-          <p className="da-now-label da-mono">Currently</p>
-          <ul className="da-now-list">{STATUS_PHRASES.map((p) => <li key={p}>{p}</li>)}</ul>
         </div>
         <nav className="sb-nav" aria-label="Main">
           {SB_NAV.map((it) => (

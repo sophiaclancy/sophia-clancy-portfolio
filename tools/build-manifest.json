@@ -452,7 +452,8 @@
     "_build/sand-ar-piece.js": "sand-ar-piece.jsx",
     "_build/direction-a.css": "direction-a.css",
     "_build/case-notability.js": "case-notability.js",
-    "_build/case-a.css": "case-a.css"
+    "_build/case-a.css": "case-a.css",
+    "_build/case-b.css": "case-b.css"
   },
   "fonts": {
     "vendor/fonts/e8c39833b2.css": "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400..700&family=Space+Grotesk:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&display=swap",
