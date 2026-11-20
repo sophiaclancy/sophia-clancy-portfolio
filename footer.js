@@ -89,22 +89,46 @@
   }
 
   // Paint soil + stippled tunnels once per size (about 40ms at desktop width; skipped until the footer is near view).
+
+  // Canvas blur that works everywhere (Safari ignores ctx.filter): 3 box-blur passes ≈ gaussian.
+  // ch = which channels to blur (alpha only for masks, rgb for the soil photo).
+  function boxBlur(data, w, h, r, ch) {
+    r = Math.max(1, Math.round(r)); var tmp = new Float32Array(w * h), n = ch.length;
+    for (var pass = 0; pass < 3; pass++) for (var q = 0; q < n; q++) {
+      var o = ch[q], x, y, acc, i;
+      for (y = 0; y < h; y++) { acc = 0; var row = y * w;
+        for (x = -r; x <= r; x++) acc += data[(row + Math.min(w - 1, Math.max(0, x))) * 4 + o];
+        for (x = 0; x < w; x++) { tmp[row + x] = acc / (2 * r + 1);
+          acc += data[(row + Math.min(w - 1, x + r + 1)) * 4 + o] - data[(row + Math.max(0, x - r)) * 4 + o]; } }
+      for (x = 0; x < w; x++) { acc = 0;
+        for (y = -r; y <= r; y++) acc += tmp[Math.min(h - 1, Math.max(0, y)) * w + x];
+        for (y = 0; y < h; y++) { data[(y * w + x) * 4 + o] = acc / (2 * r + 1);
+          acc += tmp[Math.min(h - 1, y + r + 1) * w + x] - tmp[Math.max(0, y - r) * w + x]; } }
+    }
+  }
+
   function paint(f, lay) {
     var W = f.clientWidth, H = f.clientHeight, S = Math.min(1, 1400 / W), w = Math.round(W * S), h = Math.round(H * S), gy = lay.ground * h;
     var cv = f.querySelector(".sf-soil"); cv.width = w; cv.height = h; var c = cv.getContext("2d");
     var soil = document.createElement("canvas"); soil.width = w; soil.height = h; var sc = soil.getContext("2d");
-    sc.filter = "blur(" + Math.round(w * .006) + "px) saturate(1.15) contrast(1.05)";
     sc.drawImage(soilImg, 0, 0, soilImg.width, soilImg.height * .82, -w * .02, gy - h * .02, w * 1.04, (h - gy) * 1.05);
+    var simg = sc.getImageData(0, 0, w, h), sdat = simg.data;
+    boxBlur(sdat, w, h, w * .006 / 1.7, [0, 1, 2]);
+    for (var si = 0; si < sdat.length; si += 4) { // saturate(1.15) contrast(1.05), by hand
+      var r0 = sdat[si], g0 = sdat[si + 1], b0 = sdat[si + 2], L = .2126 * r0 + .7152 * g0 + .0722 * b0;
+      sdat[si] = ((L + (r0 - L) * 1.15) - 128) * 1.05 + 128; sdat[si + 1] = ((L + (g0 - L) * 1.15) - 128) * 1.05 + 128; sdat[si + 2] = ((L + (b0 - L) * 1.15) - 128) * 1.05 + 128; }
+    sc.putImageData(simg, 0, 0);
     function mask(blur, grow) {
       var mk = document.createElement("canvas"); mk.width = w; mk.height = h; var mc = mk.getContext("2d");
-      mc.filter = "blur(" + blur + "px)"; mc.strokeStyle = mc.fillStyle = "#fff"; mc.lineCap = mc.lineJoin = "round"; mc.lineWidth = 32 * S + grow;
+      mc.strokeStyle = mc.fillStyle = "#fff"; mc.lineCap = mc.lineJoin = "round"; mc.lineWidth = 32 * S + grow;
       lay.tunnels.forEach(function (t) { mc.stroke(new Path2D(smooth(t, w, h))); });
       lay.chambers.forEach(function (k, ci) { var Rn = rng(31 + ci * 7), ph = [Rn() * 6, Rn() * 6, Rn() * 6]; mc.beginPath();
         for (var a = 0; a <= 64; a++) { var th = a / 64 * Math.PI * 2, j = 1 + .07 * Math.sin(th * 2 + ph[0]) + .05 * Math.sin(th * 3 + ph[1]) + .03 * Math.sin(th * 5 + ph[2]);
           var px = k[0] * w + Math.cos(th) * (k[2] * w * j + grow / 2), py = k[1] * h + Math.sin(th) * (k[3] * h * j + grow / 2); a ? mc.lineTo(px, py) : mc.moveTo(px, py); }
         mc.closePath(); mc.fill(); });
-      mc.filter = "none"; mc.fillRect(0, 0, w, Math.max(0, gy - 2));
-      return mc.getImageData(0, 0, w, h).data;
+      var md = mc.getImageData(0, 0, w, h).data; boxBlur(md, w, h, blur / 1.7, [3]);
+      for (var yy = 0, top = Math.max(0, Math.round(gy - 2)); yy < top; yy++) for (var xx = 0; xx < w; xx++) md[(yy * w + xx) * 4 + 3] = 255;
+      return md;
     }
     var tight = mask(9 * S + 2, 0), wide = mask(16 * S + 4, 22 * S);
     var sd = sc.getImageData(0, 0, w, h).data, out = c.createImageData(w, h), o = out.data, R = rng(7);
