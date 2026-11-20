@@ -21,18 +21,9 @@
 
   var GRAIN = (function () { var g = document.createElement("canvas"); g.width = g.height = 256; var c = g.getContext("2d"), im = c.createImageData(256, 256), d = im.data; for (var i = 0; i < d.length; i += 4) { var v = Math.random() * 255; d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 46; } c.putImageData(im, 0, 0); return g; })();
 
-  // soft, slightly uneven blob used as the resting mask
-  var BLOB = (function () {
-    var W = 400, H = 300, m = document.createElement("canvas"); m.width = W; m.height = H; var mc = m.getContext("2d");
-    var pad = .045, x0 = W * pad, y0 = H * pad, w = W * (1 - 2 * pad), h = H * (1 - 2 * pad), rr = Math.min(w, h) * .14, e = noise1(rng(9), 8);
-    mc.filter = "blur(" + Math.round(W * .022) + "px)"; mc.fillStyle = "#000"; mc.beginPath();
-    mc.moveTo(x0 + rr, y0 + (e(.1) - .5) * h * .08);
-    mc.bezierCurveTo(x0 + w * .35, y0 - h * .04 * e(.3), x0 + w * .65, y0 + h * .06 * e(.5), x0 + w - rr, y0);
-    mc.quadraticCurveTo(x0 + w, y0, x0 + w, y0 + rr); mc.lineTo(x0 + w, y0 + h - rr); mc.quadraticCurveTo(x0 + w, y0 + h, x0 + w - rr, y0 + h);
-    mc.bezierCurveTo(x0 + w * .6, y0 + h + h * .03 * e(.8), x0 + w * .3, y0 + h - h * .04 * e(.9), x0 + rr, y0 + h);
-    mc.quadraticCurveTo(x0, y0 + h, x0, y0 + h - rr); mc.lineTo(x0, y0 + rr); mc.quadraticCurveTo(x0, y0, x0 + rr, y0); mc.fill();
-    return "url(" + m.toDataURL() + ")";
-  })();
+  // soft, slightly uneven blob used as the resting mask. Pre-baked PNG (made in Chrome): Safari can't blur a canvas,
+  // so drawing it at runtime gave iPhones a hard, jagged edge.
+  var BLOB = "url(\"" + new URL("assets/fields/mask.png", location.href).href + "\")";
 
   var IMGS = {};
   function load(f) { return IMGS[f] || (IMGS[f] = new Promise(function (ok) { var i = new Image(); i.onload = function () { ok(i); }; i.src = f; })); }

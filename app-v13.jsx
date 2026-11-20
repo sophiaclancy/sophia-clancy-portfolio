@@ -360,6 +360,9 @@ function Playground() {
   );
 }
 
+// Phones and tablets get the still image: no hover to play it, and Safari renders the live prototype badly.
+const NX_TOUCH = typeof matchMedia !== "undefined" && matchMedia("(hover: none), (pointer: coarse), (max-width: 760px)").matches;
+
 function NbLiveCover() {
   const ref = React.useRef(null);
   React.useEffect(() => {
@@ -373,9 +376,9 @@ function NbLiveCover() {
     return () => { card.removeEventListener("mouseenter", on); card.removeEventListener("mouseleave", off); card.removeEventListener("focus", on); card.removeEventListener("blur", off); };
   }, []);
   return (
-    <div className="nx-cover">
+    <div className={"nx-cover" + (NX_TOUCH ? " nx-touch" : "")}>
       <img className="nx-win nx-still" src="assets/thumbs/notability-window.webp" alt="" aria-hidden="true" />
-      <iframe ref={ref} className="nx-live" src="prototypes/notability/index.html?embed&rest=great" title="Study Session prototype" tabIndex="-1" loading="lazy" aria-hidden="true"></iframe>
+      <iframe ref={ref} className="nx-live" src={NX_TOUCH ? "about:blank" : "prototypes/notability/index.html?embed&rest=great"} title="Study Session prototype" tabIndex="-1" loading="lazy" aria-hidden="true"></iframe>
     </div>
   );
 }

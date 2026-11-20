@@ -838,3 +838,7 @@ html body .sb .sb-wm-txt{position:absolute;inset:0;display:flex;align-items:cent
 /* wordmark sits as close to the subtitle as the old heading did */
 html body .sb .sb-name-wm{margin-bottom:-10px!important}
 .sb-wm svg{margin-top:-6px}
+
+/* Notability card on touch screens: show the still, not the live iframe */
+.nx-cover.nx-touch img.nx-still{opacity:1!important;position:absolute;left:50%;top:50%;width:68cqw;height:auto;transform:translate(-50%,-50%);z-index:1;filter:drop-shadow(0 2.4cqw 3cqw rgba(20,36,60,.4))}
+.nx-cover.nx-touch iframe.nx-live{visibility:hidden}
