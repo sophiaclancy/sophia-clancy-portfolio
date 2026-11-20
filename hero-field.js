@@ -438,7 +438,8 @@
   }
 
   function boot() {
-    const tryHero = () => { const h = document.querySelector(".v12-hero"); if (h) { initForest(h); return true; } return false; };
+    // Skip when the hero isn't rendered (Direction A hides it): saves a 294KB download and the pixel work on every page.
+    const tryHero = () => { const h = document.querySelector(".v12-hero"); if (h) { if (h.getClientRects().length) initForest(h); return true; } return false; };
     if (!tryHero()) { const mo = new MutationObserver(() => { if (tryHero()) mo.disconnect(); }); mo.observe(document.body, { childList: true, subtree: true }); }
   }
   document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", boot) : boot();

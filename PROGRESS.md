@@ -611,3 +611,16 @@ Branch: `design/direction-a`. All styling lives in `direction-a.css` (remove its
 - Risk: Low (block 23.0 at end of case-b.css; backup case-b-before-structure.css)
 - Status: ✅ Done
 - Review: [ ]
+
+### Milestone 24.0 — Writing centered + performance pass (Nov 20)
+- What changed:
+  - Writing list and essays are centered in the page area like the case studies (`.wr` gets auto margins).
+  - `hero-field.js` skips the old forest hero when it isn't rendered (hidden by `direction-a.css` on every page). Saves a 294KB download and the pixel processing on Work, About, Play and Writing. Blocking JS on those pages went from 220–340ms to 0–14ms.
+  - The build stamps real width/height (and `decoding="async"`) onto case-study images so lazy images reserve their space. Fixes Baro's scroll jump (CLS 0.21 while scrolling on live). `case-b.css` adds `:where(.cb main) img{height:auto}` so nothing stretches.
+  - Contexto's clutter-desktop image: 1.3MB → 436KB (1600px, q82; original in `portfolio-private/originals/`). Contexto prototype wallpaper: 343KB JPG → 42KB WebP.
+  - `vercel.json` caching: hashed `_build/` and font files cached for a year, React for a week, images for a day (with background refresh). HTML still always fresh, so updates show instantly.
+- Primary inspiration used: Sophia ("very quick speeds and loading")
+- Anti-slop decision: No visual changes beyond the Writing centering.
+- Risk: Low. Revert = git revert; no content changed.
+- Status: ✅ Done · verify Baro CLS + cache headers on live after deploy
+- Review: [ ]
