@@ -195,6 +195,29 @@ const PERF_HEAD = `<style id="perf-vt">
 </style>
 <script type="speculationrules" id="perf-spec">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"eager"}]}</script>`;
 
+// Local <img> tags get their real width/height (and async decoding) so the browser reserves
+// space before the file arrives: lazy images no longer push the text down while you scroll (CLS).
+const sizeCache = new Map();
+async function addImageSizes(html) {
+  for (const [m] of [...html.matchAll(/<img\b[^>]*>/g)]) {
+    if (/\swidth=/.test(m)) continue;
+    const src = (m.match(/\ssrc="([^"]+)"/) || [])[1];
+    if (!src || /^(https?:|data:)/.test(src)) continue;
+    const r = decodeURIComponent(src.split("?")[0]);
+    if (!fs.existsSync(abs(r))) continue;
+    if (!sizeCache.has(r)) {
+      try { const { width, height } = await sharp(abs(r)).metadata(); sizeCache.set(r, width && height ? [width, height] : null); }
+      catch { sizeCache.set(r, null); }
+    }
+    const wh = sizeCache.get(r);
+    if (!wh) continue;
+    let tag = m.replace(/^<img\b/, `<img width="${wh[0]}" height="${wh[1]}"`);
+    if (!/\sdecoding=/.test(tag)) tag = tag.replace(/^<img\b/, '<img decoding="async"');
+    html = html.replace(m, () => tag);
+  }
+  return html;
+}
+
 async function buildHtml(file, rewrite) {
   let html = fs.readFileSync(file, "utf8");
   const before = html;
@@ -254,6 +277,7 @@ async function buildHtml(file, rewrite) {
   if (!isRedirect) html = html.replace("</head>", () => `${PERF_HEAD}\n</head>`);
 
   html = rewrite(html);
+  if (/<body[^>]*class="[^"]*\bcb\b/.test(html)) html = await addImageSizes(html); // case studies only: their CSS keeps height:auto
   if (html !== before) { fs.writeFileSync(file, html); console.log(`html ${rel(file)}`); }
 }
 

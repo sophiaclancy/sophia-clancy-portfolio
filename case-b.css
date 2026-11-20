@@ -262,3 +262,6 @@ body.cb main{padding-top:40px}
 
 /* case-study side rail: whole block sits a little lower */
 @media (min-width:901px){.cb .rail{padding-top:64px!important}}
+
+/* Images carry width/height (added by the build) to reserve space; this keeps them proportional. Zero specificity so any explicit size above still wins. */
+:where(.cb main) img{height:auto}
